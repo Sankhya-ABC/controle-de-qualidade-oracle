@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQARQQUESTFORN" sequenceType="A" sequenceField="IDARQFORN">
+    <description>Arquivos dos Questionários</description>
+      <primaryKey>
+          <field name="IDARQFORN"/>
+      </primaryKey>
+    <instances>
+      <instance name="ArquivosQuestionarios">
+        <description>Arquivos Questionários</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="IDQUALIF" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id Qualificação</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDARQFORN" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Id. Arquivo</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="N" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Usuário</description>
+        <expression>return $ctx_usuario_logado;</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DATAINCLUSAO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Data Inclusão</description>
+        <expression>return getDateTime();</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="ARQUIVOQUEST" dataType="ARQUIVO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Arquivo Questionário</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DATAVALIDADE" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Data Validade</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

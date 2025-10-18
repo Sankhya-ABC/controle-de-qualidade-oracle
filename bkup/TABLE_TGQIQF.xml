@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQIQF" sequenceType="A" sequenceField="IDIQF">
+    <description>Indice de Qualificação de Fornecedores</description>
+      <primaryKey>
+          <field name="IDIQF"/>
+      </primaryKey>
+    <instances>
+      <instance name="IndiceQualificacao">
+        <description>Indice de Qualificação de Fornecedor</description>
+      </instance>
+    </instances>
+    <fields>
+      <field name="VALIDADE" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Validade</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDCONFIG" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Id. Configuração</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CLASSIFICACAO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Classificação</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="RESULTADO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Resultado</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDIQF" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Indice</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="visivel">N</prop>
+        </properties>
+      </field>
+      <field name="IQF" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Indice de Qualificação</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

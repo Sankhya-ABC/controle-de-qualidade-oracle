@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQRESPGESTAOMUDANCA" sequenceType="M">
+    <description>Aprovação da Proposta de Mudança</description>
+      <primaryKey>
+          <field name="IDGESTAO"/>
+          <field name="CODUSU"/>
+      </primaryKey>
+    <instances>
+      <instance name="RespAprovacaoFinal">
+        <description>Aprovação Final da Mudança</description>
+        <relationShip>
+          <relation entityName="GestaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="ConsRespAprMudanca">
+        <description>Aprovação da Proposta de Mudança</description>
+        <relationShip>
+          <relation entityName="GestaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="ConsRespAprovacaoFinal">
+        <description>Aprovação Final da Mudança</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="GestaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RespAprovacaoMudanca">
+        <description>Aprovação da Proposta de Mudança</description>
+        <relationShip>
+          <relation entityName="GestaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="ASSINATURA" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Assinatura</description>
+        <properties>
+          <prop name="readOnly">S</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DATAAPROVACAO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Data Aprovação</description>
+        <expression>return getDateTime();</expression>
+        <properties>
+          <prop name="readOnly">S</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="OBSNAOAPROVADO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+        <description>Motivo da reprova</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Usuário Aprovação</description>
+        <expression>return $ctx_usuario_logado;</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="APROVADO" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Aprovado?</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDGESTAO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Gestão</description>
+        <properties>
+          <prop name="readOnly">S</prop>
+          <prop name="visivel">N</prop>
+        </properties>
+      </field>
+      <field name="REPROVADO" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Reprovado?</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="ORIGEM" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="7" nullable="S" visible="S" required="N">
+        <description>Origem</description>
+        <fieldOptions>
+          <option value="AM">Aprovação de Mudança</option>
+          <option value="AF">Aprovação Final de Mudança</option>
+        </fieldOptions>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

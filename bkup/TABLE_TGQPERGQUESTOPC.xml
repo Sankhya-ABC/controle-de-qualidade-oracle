@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQPERGQUESTOPC" sequenceType="M">
+    <description>Opções das Perguntas</description>
+      <primaryKey>
+          <field name="IDOPC"/>
+      </primaryKey>
+    <instances>
+      <instance name="OpcaoPergunta">
+        <description>Opção da Pergunta</description>
+      </instance>
+    </instances>
+    <fields>
+      <field name="IDOPC" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Ordenação</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDPERG" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Pergunta</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="OPCAO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Opção</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

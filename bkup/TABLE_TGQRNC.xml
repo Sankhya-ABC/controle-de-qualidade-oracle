@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQRNC" sequenceType="A" sequenceField="RNCID">
+    <description>Registro de Não Conformidade</description>
+      <primaryKey>
+          <field name="RNCID"/>
+      </primaryKey>
+    <instances>
+      <instance name="RegistroNaoConformidade">
+        <description>Registro de Não Conformidade</description>
+        <relationShip>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.TIPOCADASTRO = 1</expression>
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.TIPOCADASTRO = 3</expression>
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="ResponsavelRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Detalhamento" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.TIPOCADASTRO = 2</expression>
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="ConsultaRNC">
+        <description>Consulta de Não Conformidades</description>
+        <relationShip>
+          <relation entityName="ConsDadosVerificacaoEficacia" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsDadosAcoesImediatas" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsDadosCausaRaiz" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsAcoesCorretivas" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsDadosRevisao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsDadosImplementacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsDadosLiberacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsDadosAbrangencia" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="FasesNaoConforme" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaDetalhe" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsDadosRiscosOportunidades" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="Abrangencia">
+        <description>Abrangência da Não Conformidade</description>
+        <relationShip>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaDetalhe" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="DadosAbrangencia" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="AcoesImediatas">
+        <description>Ações Imediatas</description>
+        <relationShip>
+          <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="DadosAcoesImediatas" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaDetalhe" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="CausaRaiz">
+        <description>Causa Raiz</description>
+        <relationShip>
+          <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaDetalhe" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="DadosCausaRaiz" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="AcoesCorretivas">
+        <description>Ações Corretivas</description>
+        <relationShip>
+          <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="DadosAcoesCorretivas" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaDetalhe" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="Implementacao">
+        <description>Implementação</description>
+        <relationShip>
+          <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaDetalhe" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="DadosImplementacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="VerificacaoEficacia">
+        <description>Verificação de Eficácia</description>
+        <relationShip>
+          <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaDetalhe" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="DadosVerificacaoEficacia" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RevisaoDocumentos">
+        <description>Revisão de Documentos</description>
+        <relationShip>
+          <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="DadosRevisao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaDetalhe" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RiscosOportunidades">
+        <description>Riscos e Oportunidades</description>
+        <relationShip>
+          <relation entityName="DadosRiscosOportunidades" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaDetalhe" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="Liberacao">
+        <description>Liberação de Produtos</description>
+        <relationShip>
+          <relation entityName="DadosLiberacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsultaDetalhe" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ORIGEM" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="TIPONC" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="PERCENTUALDESVIO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="14" nullable="S" visible="S" required="N">
+        <description>Percentual de desvio</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="STATUS" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="15" nullable="S" visible="S" required="N">
+        <description>Status</description>
+        <fieldOptions>
+          <option value="P">Pendente</option>
+          <option value="A">Atrasada</option>
+          <option value="C">Concluída</option>
+          <option value="E">Cancelada</option>
+        </fieldOptions>
+      </field>
+      <field name="RNCID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Registro</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="10" nullable="S" visible="S" required="N">
+        <description>Usuário</description>
+        <expression>return $ctx_usuario_logado;</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="PROCESSO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="9" nullable="S" visible="S" required="N">
+        <description>Processo</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="FASESNCID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Fase</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="CODPARC" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Código Parceiro</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="ORIGEM" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Origem</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="REINCIDENTE" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="12" nullable="S" visible="S" required="N">
+        <description>Reincidente</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">NC Reincidente</prop>
+        </properties>
+      </field>
+      <field name="DETALHAMENTO" dataType="HTML" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="11" nullable="S" visible="S" required="N">
+        <description>Detalhamento</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="PRIORIDADE" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+        <description>Prioridade</description>
+        <fieldOptions>
+          <option value="1">Simples</option>
+          <option value="2">Prioritário</option>
+          <option value="3">Crítico</option>
+        </fieldOptions>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DATAREGISTRO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Data Registro</description>
+        <expression>return getDateTime();</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="TIPONC" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Tipo Não Conformidade</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="NCVINCULADA" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="13" nullable="S" visible="S" required="N">
+        <description>Não Conformidade Vinculada</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">NC Reincidente</prop>
+        </properties>
+      </field>
+      <field name="DATAPREVENCERRAR" dataType="DATA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="7" nullable="S" visible="S" required="N">
+        <description>Data Prevista Encerramento</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="NAOPROCEDENTE" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="9" nullable="S" visible="S" required="N">
+        <description>Não Procedente</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

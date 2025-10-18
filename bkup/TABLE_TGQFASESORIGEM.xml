@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQFASESORIGEM" sequenceType="M">
+    <description>Fases por origem</description>
+      <primaryKey>
+          <field name="FASESID"/>
+      </primaryKey>
+    <instances>
+      <instance name="FasesOrigem">
+        <description>Fases por Origem</description>
+        <relationShip>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="FASESNCID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Fase</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DIAS" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Qtde Dias</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="ID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Id Cadastro</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

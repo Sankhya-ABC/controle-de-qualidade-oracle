@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQCONFIG" sequenceType="A" sequenceField="IDCONFIG">
+    <description>Configurações e Parametrizações</description>
+      <primaryKey>
+          <field name="IDCONFIG"/>
+      </primaryKey>
+    <instances>
+      <instance name="ConfigQualidade">
+        <description>Configurações e Parametrizações</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="IndiceQualificacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDCONFIG" targetName="IDCONFIG"/>
+            </fields>
+          </relation>
+          <relation entityName="PontuacaoFornec" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDCONFIG" targetName="IDCONFIG"/>
+            </fields>
+          </relation>
+          <relation entityName="CriterioQualific" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDCONFIG" targetName="IDCONFIG"/>
+            </fields>
+          </relation>
+          <relation entityName="Empresa" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODEMP" targetName="CODEMP"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="CODEMP" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="9" nullable="S" visible="S" required="N">
+        <description>Empresa</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="EMAILNOTIFYQF" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="10" nullable="S" visible="S" required="N">
+        <description>Email Notificação para Qualificação Vencida</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Controle de Fornecedor</prop>
+        </properties>
+      </field>
+      <field name="DIASRESPFORNEC" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="11" nullable="S" visible="S" required="N">
+        <description>Dias para retorno do Fornecedor</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Controle de Fornecedor</prop>
+        </properties>
+      </field>
+      <field name="NOTIFICFORNEC" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="8" nullable="S" visible="S" required="N">
+        <description>Notificar fornecedor?</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Controle de Fornecedor</prop>
+        </properties>
+      </field>
+      <field name="EMAILNOTFY" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>E-mail Notificação</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Controle de Documentos</prop>
+        </properties>
+      </field>
+      <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+        <description>Usuário Notificação</description>
+        <expression>return $ctx_usuario_logado;</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Controle de Documentos</prop>
+        </properties>
+      </field>
+      <field name="INDICEPADRAOEMP" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="7" nullable="S" visible="S" required="N">
+        <description>Indice Qualificação Padrão</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Controle de Fornecedor</prop>
+        </properties>
+      </field>
+      <field name="CONTROLEFORNECEDOR" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Bloqueia Compras para Fornecedores com Qualificação Vencida?</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Controle de Fornecedor</prop>
+        </properties>
+      </field>
+      <field name="IDCONFIG" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Configuração</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="visivel">N</prop>
+        </properties>
+      </field>
+      <field name="QTDDIASDOC" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Qtde. Dias para Notificação</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Controle de Documentos</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

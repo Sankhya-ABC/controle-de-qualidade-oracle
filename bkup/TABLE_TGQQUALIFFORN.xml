@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQQUALIFFORN" sequenceType="A" sequenceField="IDQUALIF">
+    <description>Qualificação de Fornecedores</description>
+      <primaryKey>
+          <field name="IDQUALIF"/>
+      </primaryKey>
+    <instances>
+      <instance name="QualificacaoFornecedor">
+        <description>Qualificação de Fornecedor</description>
+        <relationShip>
+          <relation entityName="Questionarios" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDQUEST" targetName="IDQUEST"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.FORNECEDOR = 'S'</expression>
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="ArquivosQuestionarios" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDQUALIF" targetName="IDQUALIF"/>
+            </fields>
+          </relation>
+          <relation entityName="RespostaFornecedor" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDQUALIF" targetName="IDQUALIF"/>
+            </fields>
+          </relation>
+          <relation entityName="CertificadosQualificacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDQUALIF" targetName="IDQUALIF"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="RESULTADOIQF" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="8" nullable="S" visible="S" required="N">
+        <description>Resultado IQF</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="SITUACAO" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="11" nullable="S" visible="S" required="N">
+        <description>Situação</description>
+        <fieldOptions>
+          <option value="P">Pendente</option>
+          <option value="C">Concluido</option>
+          <option value="CA">Cancelado</option>
+        </fieldOptions>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="CODPARC" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Código Fornecedor</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="TIPOFORNECIMENTO" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Tipo de Fornecimento</description>
+        <fieldOptions>
+          <option value="M">Matéria-Prima</option>
+          <option value="T">Transporte</option>
+          <option value="E">Embalagem</option>
+          <option value="Q">Químicos Controlados</option>
+          <option value="S">Serviços</option>
+        </fieldOptions>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="PONTUACAO" dataType="DECIMAL" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="7" nullable="S" visible="S" required="N">
+        <description>Pontuação</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDQUEST" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="9" nullable="S" visible="S" required="N">
+        <description>Id. Questionário</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="QUALIFICACAO" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Qualificação</description>
+        <fieldOptions>
+          <option value="R">Requalificação</option>
+          <option value="Q">Qualificado</option>
+          <option value="D">Desqualificado</option>
+          <option value="E">Em Processo de Qualificação</option>
+        </fieldOptions>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="FORMAQUALIF" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+        <description>Forma Qualificalçao</description>
+        <fieldOptions>
+          <option value="A">Ambos</option>
+          <option value="C">Certificado</option>
+          <option value="Q">Questionário</option>
+        </fieldOptions>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDQUALIF" dataType="INTEIRO" calculated="N" allowSearch="N" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Qualificação</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DATAQUALI" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Data Qualificação</description>
+        <expression>return getDateTime();</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DATAVALIDADE" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Data Validade</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

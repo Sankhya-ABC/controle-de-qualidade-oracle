@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQQUEMGESTAOMUDANCA" sequenceType="A" sequenceField="ID">
+    <description>Quem</description>
+      <primaryKey>
+          <field name="ID"/>
+      </primaryKey>
+    <instances>
+      <instance name="QuemGestao">
+        <description>Quem</description>
+        <relationShip>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="ID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Quem</description>
+        <properties>
+          <prop name="visivel">N</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODPARC" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Parceiro</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDACOES" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Id. Ações</description>
+        <properties>
+          <prop name="readOnly">S</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

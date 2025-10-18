@@ -1,0 +1,3 @@
+rootProject.name = 'qualitymanagement'
+include 'qualitymanagement-model'
+include 'qualitymanagement-vc'

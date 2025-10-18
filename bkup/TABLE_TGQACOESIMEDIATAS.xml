@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQACOESIMEDIATAS" sequenceType="A" sequenceField="IDACOES">
+    <description>Ações Imediatas</description>
+      <primaryKey>
+          <field name="IDACOES"/>
+      </primaryKey>
+    <instances>
+      <instance name="ConsDadosAcoesImediatas">
+        <description>Dados Acoes Imediatas</description>
+        <relationShip>
+          <relation entityName="RespAcaoImediata" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="DadosAcoesImediatas">
+        <description>Dados Ações Imediatas</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="RespAcaoImediata" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="RNCID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Registro</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="DATAPRAZO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Prazo</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Dados da Ação</prop>
+        </properties>
+      </field>
+      <field name="ACAODETALHE" dataType="HTML" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Detalhe Ação</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Dados da Ação</prop>
+        </properties>
+      </field>
+      <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Usuário</description>
+        <expression>return $ctx_usuario_logado;</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+          <prop name="UIGroupName">Dados da Ação</prop>
+        </properties>
+      </field>
+      <field name="DATAACAO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Data Ação</description>
+        <expression>return getDateTime();</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Dados da Ação</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="NAOSEAPLICA" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="8" nullable="S" visible="S" required="N">
+        <description>Não se Aplica</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDACOES" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Id. Ações</description>
+        <properties>
+          <prop name="visivel">N</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

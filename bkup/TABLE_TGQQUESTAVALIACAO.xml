@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQQUESTAVALIACAO" sequenceType="A" sequenceField="IDAVALIACAO">
+    <description>Questionário de avaliação da mudança</description>
+      <primaryKey>
+          <field name="IDAVALIACAO"/>
+      </primaryKey>
+    <instances>
+      <instance name="AvaliacaoDeRiscos">
+        <description>Questionário de Avaliação de Riscos</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="Questionarios" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.ORIGEM = 3</expression>
+            <fields>
+              <field localName="IDQUEST" targetName="IDQUEST"/>
+            </fields>
+          </relation>
+          <relation entityName="PerguntasRiscos" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDAVALIACAO" targetName="IDAVALIACAO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="ConsQuestionarioAvaliacao">
+        <description>Questionário de Avaliação da Mudança</description>
+        <relationShip>
+          <relation entityName="ConsPerguntasAvaliacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDAVALIACAO" targetName="IDAVALIACAO"/>
+            </fields>
+          </relation>
+          <relation entityName="Questionarios" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDQUEST" targetName="IDQUEST"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="ConsAprovacaoFinal">
+        <description>Questionário de Avaliação Final</description>
+        <relationShip>
+          <relation entityName="Questionarios" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDQUEST" targetName="IDQUEST"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsPerguntasAprovacaoFinal" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDAVALIACAO" targetName="IDAVALIACAO"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="ConsAvaliacaoDeRiscos">
+        <description>Questionário de Avaliação de Riscos</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="Questionarios" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.ORIGEM = 3</expression>
+            <fields>
+              <field localName="IDQUEST" targetName="IDQUEST"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsPerguntasRiscos" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDAVALIACAO" targetName="IDAVALIACAO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="QuestionarioAvaliacao">
+        <description>Questionário de Avaliação da Mudança</description>
+        <relationShip>
+          <relation entityName="Questionarios" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.ORIGEM = 2</expression>
+            <fields>
+              <field localName="IDQUEST" targetName="IDQUEST"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="PerguntaAvaliacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDAVALIACAO" targetName="IDAVALIACAO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="AprovacaoFinal">
+        <description>Questionário de Avaliação Final</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="Questionarios" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDQUEST" targetName="IDQUEST"/>
+            </fields>
+          </relation>
+          <relation entityName="PerguntasAprovacaoFinal" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDAVALIACAO" targetName="IDAVALIACAO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="ORIGEM" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Origem</description>
+        <fieldOptions>
+          <option value="2">Gestão de Mudanças Avaliação</option>
+          <option value="3">Gestão de Mudanças Riscos</option>
+          <option value="4">Gestão de Mudanças Finalização</option>
+        </fieldOptions>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDQUEST" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Id. Questionário</description>
+        <properties>
+          <prop name="readOnly">S</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDGESTAO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Id. Gestão de Mudança</description>
+        <properties>
+          <prop name="readOnly">S</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DATAINCLUSAO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Data Inclusão</description>
+        <expression>return getDateTime();</expression>
+        <properties>
+          <prop name="readOnly">S</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Usuário</description>
+        <expression>return $ctx_usuario_logado;</expression>
+        <properties>
+          <prop name="readOnly">S</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDAVALIACAO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Avaliação</description>
+        <properties>
+          <prop name="readOnly">S</prop>
+          <prop name="UITabName">__main</prop>
+          <prop name="visivel">N</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

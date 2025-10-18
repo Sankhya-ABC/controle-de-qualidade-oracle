@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQCONTDOC" sequenceType="A" sequenceField="IDDOC">
+    <description>Controle de Documentos</description>
+      <primaryKey>
+          <field name="IDDOC"/>
+      </primaryKey>
+    <instances>
+      <instance name="ControleDocumentos">
+        <description>Controle de Documentos</description>
+        <relationShip>
+          <relation entityName="ControleImpressao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDDOC" targetName="IDDOCUMENTO"/>
+            </fields>
+          </relation>
+          <relation entityName="ListaArquivos" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDDOC" targetName="IDDOCUMENTO"/>
+            </fields>
+          </relation>
+          <relation entityName="HistoricoStatus" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDDOC" targetName="IDDOCUMENTO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="IDDOC" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Documento</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="visivel">N</prop>
+        </properties>
+      </field>
+      <field name="STATUS" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Status</description>
+        <fieldOptions>
+          <option value="P">Pendente</option>
+          <option value="R">Revisado</option>
+          <option value="A">Aprovado</option>
+        </fieldOptions>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="TITULODOC" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Título Documento</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODDOC" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Identificação do Documento</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

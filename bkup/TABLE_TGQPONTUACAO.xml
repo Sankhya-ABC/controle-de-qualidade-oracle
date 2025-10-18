@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQPONTUACAO" sequenceType="A" sequenceField="IDPONTOS">
+    <description>Pontuação</description>
+      <primaryKey>
+          <field name="IDPONTOS"/>
+      </primaryKey>
+    <instances>
+      <instance name="PontuacaoFornec">
+        <description>Pontuação Qualificação de Fornecedor</description>
+      </instance>
+    </instances>
+    <fields>
+      <field name="CRITERIO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Critério</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDCONFIG" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Id. Configuração</description>
+        <properties>
+          <prop name="visivel">N</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="PONTOS" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Pontos</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDPONTOS" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Pontos</description>
+        <properties>
+          <prop name="visivel">N</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

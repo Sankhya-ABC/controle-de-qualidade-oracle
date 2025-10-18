@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+
+    <menu id="qualityManagement" description="Gestão de Qualidade" icon="/$ctx/assets/icon.png">
+        <ui id="ConsDadosAbrangencia" url="/$ctx/ConsDadosAbrangencia.xhtml5" description="Dados Abrangência da Não Conformidade"/>
+        <ui id="ConsAcoesCorretivas" url="/$ctx/ConsAcoesCorretivas.xhtml5" description="Dados da Ações Corretivas"/>
+        <ui id="ConsDadosAcoesImediatas" url="/$ctx/ConsDadosAcoesImediatas.xhtml5" description="ConsDadosAcoesImediatas"/>
+        <ui id="ConsAcoesMudanca" url="/$ctx/ConsAcoesMudanca.xhtml5" description="ConsAcoesMudanca"/>
+        <ui id="ListaArquivos" url="/$ctx/ListaArquivos.xhtml5" description="ListaArquivos"/>
+        <ui id="ArquivoEvidencia" url="/$ctx/ArquivoEvidencia.xhtml5" description="ArquivoEvidencia"/>
+        <ui id="ArquivosQuestionarios" url="/$ctx/ArquivosQuestionarios.xhtml5" description="ArquivosQuestionarios"/>
+        <ui id="TipoRNC" url="/$ctx/TipoRNC.xhtml5" description="TipoRNC"/>
+        <ui id="ConsDadosCausaRaiz" url="/$ctx/ConsDadosCausaRaiz.xhtml5" description="ConsDadosCausaRaiz"/>
+        <ui id="CertificadosQualificacao" url="/$ctx/CertificadosQualificacao.xhtml5" description="CertificadosQualificacao"/>
+        <ui id="ConfigQualidade" url="/$ctx/ConfigQualidade.xhtml5" description="ConfigQualidade"/>
+        <ui id="ControleDocumentos" url="/$ctx/ControleDocumentos.xhtml5" description="ControleDocumentos"/>
+        <ui id="CriterioQualific" url="/$ctx/CriterioQualific.xhtml5" description="CriterioQualific"/>
+        <ui id="ControleImpressao" url="/$ctx/ControleImpressao.xhtml5" description="ControleImpressao"/>
+        <ui id="DocumentosEvidencias" url="/$ctx/DocumentosEvidencias.xhtml5" description="DocumentosEvidencias"/>
+        <ui id="CadastroFases" url="/$ctx/CadastroFases.xhtml5" description="CadastroFases"/>
+        <ui id="FasesGestaoMudanca" url="/$ctx/FasesGestaoMudanca.xhtml5" description="FasesGestaoMudanca"/>
+        <ui id="FasesOrigem" url="/$ctx/FasesOrigem.xhtml5" description="FasesOrigem"/>
+        <ui id="AcoesDaMudanca" url="/$ctx/AcoesDaMudanca.xhtml5" description="AcoesDaMudanca"/>
+        <ui id="HistoricoStatus" url="/$ctx/HistoricoStatus.xhtml5" description="HistoricoStatus"/>
+        <ui id="ConsDadosImplementacao" url="/$ctx/ConsDadosImplementacao.xhtml5" description="ConsDadosImplementacao"/>
+        <ui id="IndiceQualificacao" url="/$ctx/IndiceQualificacao.xhtml5" description="IndiceQualificacao"/>
+        <ui id="DadosLiberacao" url="/$ctx/DadosLiberacao.xhtml5" description="DadosLiberacao"/>
+        <ui id="PerguntasQuestionario" url="/$ctx/PerguntasQuestionario.xhtml5" description="PerguntasQuestionario"/>
+        <ui id="OpcaoPergunta" url="/$ctx/OpcaoPergunta.xhtml5" description="OpcaoPergunta"/>
+        <ui id="PerguntaAvaliacao" url="/$ctx/PerguntaAvaliacao.xhtml5" description="PerguntaAvaliacao"/>
+        <ui id="PermissaoDoc" url="/$ctx/PermissaoDoc.xhtml5" description="PermissaoDoc"/>
+        <ui id="PermissaoDocUsuario" url="/$ctx/PermissaoDocUsuario.xhtml5" description="PermissaoDocUsuario"/>
+        <ui id="PontuacaoFornec" url="/$ctx/PontuacaoFornec.xhtml5" description="PontuacaoFornec"/>
+        <ui id="Prioridades" url="/$ctx/Prioridades.xhtml5" description="Prioridades"/>
+        <ui id="QualificacaoFornecedor" url="/$ctx/QualificacaoFornecedor.xhtml5" description="QualificacaoFornecedor"/>
+        <ui id="RespostaFornecedor" url="/$ctx/RespostaFornecedor.xhtml5" description="RespostaFornecedor"/>
+        <ui id="QuemGestao" url="/$ctx/QuemGestao.xhtml5" description="QuemGestao"/>
+        <ui id="QuemRNC" url="/$ctx/QuemRNC.xhtml5" description="QuemRNC"/>
+        <ui id="AvaliacaoDeRiscos" url="/$ctx/AvaliacaoDeRiscos.xhtml5" description="AvaliacaoDeRiscos"/>
+        <ui id="Questionarios" url="/$ctx/Questionarios.xhtml5" description="Questionarios"/>
+        <ui id="FasesNaoConforme" url="/$ctx/FasesNaoConforme.xhtml5" description="FasesNaoConforme"/>
+        <ui id="RespAprovacaoFinal" url="/$ctx/RespAprovacaoFinal.xhtml5" description="RespAprovacaoFinal"/>
+        <ui id="ConsultaRespRNC" url="/$ctx/ConsultaRespRNC.xhtml5" description="ConsultaRespRNC"/>
+        <ui id="ConsDadosRevisao" url="/$ctx/ConsDadosRevisao.xhtml5" description="ConsDadosRevisao"/>
+        <ui id="DadosRiscosOportunidades" url="/$ctx/DadosRiscosOportunidades.xhtml5" description="DadosRiscosOportunidades"/>
+        <ui id="RegistroNaoConformidade" url="/$ctx/RegistroNaoConformidade.xhtml5" description="RegistroNaoConformidade"/>
+        <ui id="Detalhamento" url="/$ctx/Detalhamento.xhtml5" description="Detalhamento"/>
+        <ui id="ControleUsuarios" url="/$ctx/ControleUsuarios.xhtml5" description="ControleUsuarios"/>
+        <ui id="ConsDadosVerificacaoEficacia" url="/$ctx/ConsDadosVerificacaoEficacia.xhtml5" description="ConsDadosVerificacaoEficacia"/>
+    </menu>
+
+</metadados>

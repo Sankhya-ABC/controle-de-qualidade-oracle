@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQPRIORIDADE" sequenceType="A" sequenceField="IDPRIORIDADE">
+    <description>Prioridades</description>
+      <primaryKey>
+          <field name="IDPRIORIDADE"/>
+      </primaryKey>
+    <instances>
+      <instance name="Prioridades">
+        <description>Cadastro de Prioridades</description>
+      </instance>
+    </instances>
+    <fields>
+      <field name="DESCRICAO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Descrição</description>
+      </field>
+      <field name="IDPRIORIDADE" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Prioridade</description>
+      </field>
+      <field name="PRAZO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Prazo</description>
+      </field>
+      <field name="TIPOPRAZO" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Tipo de Prazo</description>
+        <fieldOptions>
+          <option value="M">Mes(es)</option>
+          <option value="D">Dia(s)</option>
+          <option value="S">Semana(s)</option>
+          <option value="A">Ano(s)</option>
+        </fieldOptions>
+      </field>
+    </fields>
+  </table>
+</metadados>

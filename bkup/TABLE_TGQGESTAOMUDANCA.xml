@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQGESTAOMUDANCA" sequenceType="A" sequenceField="IDGESTAO">
+    <description>Gestão de Mudanças</description>
+      <primaryKey>
+          <field name="IDGESTAO"/>
+      </primaryKey>
+    <instances>
+      <instance name="AcoesDaMudanca">
+        <description>Ações da Gestão de Mudança</description>
+        <relationShip>
+          <relation entityName="FasesGestaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESID" targetName="FASESID"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.TIPOCADASTRO = 4</expression>
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="AcoesMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="ConsultaGestao">
+        <description>Consulta Gestão de Mudanças</description>
+        <relationShip>
+          <relation entityName="ConsAprovacaoFinal" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsAvaliacaoDeRiscos" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsRespAprovacaoFinal" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="FasesGestaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESID" targetName="FASESID"/>
+            </fields>
+          </relation>
+          <relation entityName="ProcessoGM" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.TIPOCADASTRO = 4</expression>
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsRespAprMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsQuestionarioAvaliacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsAcoesMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="GestaoMudanca">
+        <description>Gestão de Mudanças</description>
+        <relationShip>
+          <relation entityName="FasesGestaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESID" targetName="FASESID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="ProcessoGM" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.TIPOCADASTRO = 4</expression>
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="RespAprovacaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.ORIGEM = 'AM'</expression>
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="MudancaQuestionarioAvaliacao">
+        <description>Questionário de Avaliação da Mudança</description>
+        <relationShip>
+          <relation entityName="FasesGestaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESID" targetName="FASESID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.TIPOCADASTRO = 4</expression>
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="QuestionarioAvaliacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="MudancaAvaliacaoRisco">
+        <description>Avaliação de Riscos das Ações</description>
+        <relationShip>
+          <relation entityName="FasesGestaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESID" targetName="FASESID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="AvaliacaoDeRiscos" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.TIPOCADASTRO = 4</expression>
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="AvaliacaoPosMudanca">
+        <description>Avaliação após as mudanças</description>
+        <relationShip>
+          <relation entityName="FasesGestaoMudanca" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESID" targetName="FASESID"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="TipoCadastro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.TIPOCADASTRO = 4</expression>
+            <fields>
+              <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="AprovacaoFinal" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="RespAprovacaoFinal" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.ORIGEM = 'AP'</expression>
+            <fields>
+              <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="FASESID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="8" nullable="S" visible="S" required="N">
+        <description>Fase Gestão Mudança</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="DTCRIACAO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+        <description>Data Criação</description>
+        <expression>return getDateTime();</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="JUSTIFICATIVA" dataType="TEXTO" calculated="N" allowSearch="N" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Justificativa</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDGESTAO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Gestão</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="DTALTER" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="7" nullable="S" visible="S" required="N">
+        <description>Data Alteração</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="SUGESTAOMUDANCA" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Sugestão de Mudança</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="PROCESSO" dataType="INTEIRO" calculated="N" allowSearch="N" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Processo</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Solicitante</description>
+        <expression>return $ctx_usuario_logado;</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="SITUACAOATUAL" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Situação Atual</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

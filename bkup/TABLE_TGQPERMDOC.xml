@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQPERMDOC" sequenceType="M">
+    <description>Permissão de Documentos</description>
+      <primaryKey>
+          <field name="CODUSU"/>
+      </primaryKey>
+    <instances>
+      <instance name="PermissaoDoc">
+        <description>Permissão de Documentos</description>
+        <relationShip>
+          <relation entityName="ControleDocumentos" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDDOC" targetName="IDDOC"/>
+            </fields>
+          </relation>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="ConfigQualidade" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDCONFIG" targetName="IDCONFIG"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Usuário</description>
+      </field>
+      <field name="IDCONFIG" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Id. Configuração</description>
+      </field>
+      <field name="LEITURA" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Leitura</description>
+      </field>
+      <field name="REVISAO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Revisão</description>
+      </field>
+      <field name="APROVACAO" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+        <description>Aprovação</description>
+      </field>
+      <field name="IDDOC" dataType="INTEIRO" calculated="N" allowSearch="N" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Id. Documento</description>
+      </field>
+      <field name="IMPRESSAO" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Impressão</description>
+      </field>
+    </fields>
+  </table>
+</metadados>

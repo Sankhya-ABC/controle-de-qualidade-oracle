@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQQUALIFRESP" sequenceType="M">
+    <description>Resposta Questionário</description>
+      <primaryKey>
+          <field name="TGQQUALIFRESP"/>
+      </primaryKey>
+    <instances>
+      <instance name="RespostaFornecedor">
+        <description>Respostas do Questionário</description>
+        <relationShip>
+          <relation entityName="Questionarios" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDQUEST" targetName="IDQUEST"/>
+            </fields>
+          </relation>
+          <relation entityName="PerguntasQuestionario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDPERG" targetName="IDPERG"/>
+            </fields>
+          </relation>
+          <relation entityName="QualificacaoFornecedor" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="IDQUALIF" targetName="IDQUALIF"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="RESPOSTA" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Resposta</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DTCRIACAO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Data Inclusão</description>
+        <expression>return getDateTime();</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="IDQUALIF" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Qualificação</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDQUEST" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Id. Questionário</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="visivel">N</prop>
+        </properties>
+      </field>
+      <field name="IDPERG" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Id. Pergunta</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

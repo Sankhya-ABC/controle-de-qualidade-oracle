@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQFASESGM" sequenceType="A" sequenceField="FASESID">
+    <description>Fases Gestão de Mudanças</description>
+      <primaryKey>
+          <field name="FASESID"/>
+      </primaryKey>
+    <instances>
+      <instance name="FasesGestaoMudanca">
+        <description>Fases Gestão de Mudanças</description>
+      </instance>
+    </instances>
+    <fields>
+      <field name="DESCFASE" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="S" order="1" nullable="S" visible="S" required="N">
+        <description>Descição da Fase</description>
+      </field>
+      <field name="FASESID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Fase</description>
+      </field>
+    </fields>
+  </table>
+</metadados>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQRNCDET" sequenceType="A" sequenceField="IDRNCDET">
+    <description>Detalhamento</description>
+      <primaryKey>
+          <field name="IDRNCDET"/>
+      </primaryKey>
+    <instances>
+      <instance name="Detalhamento">
+        <description>Detalhamento</description>
+        <relationShip>
+          <relation entityName="Produto" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPROD" targetName="CODPROD"/>
+            </fields>
+          </relation>
+          <relation entityName="ItemNota" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="NUNOTA" targetName="NUNOTA"/>
+              <field localName="SEQUENCIA" targetName="SEQUENCIA"/>
+            </fields>
+          </relation>
+          <relation entityName="Volume" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODVOL" targetName="CODVOL"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="ConsultaDetalhe">
+        <description>Detalhamento</description>
+        <relationShip>
+          <relation entityName="Volume" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODVOL" targetName="CODVOL"/>
+            </fields>
+          </relation>
+          <relation entityName="Produto" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPROD" targetName="CODPROD"/>
+            </fields>
+          </relation>
+          <relation entityName="ItemNota" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="NUNOTA" targetName="NUNOTA"/>
+              <field localName="SEQUENCIA" targetName="SEQUENCIA"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="QDTDE" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+        <description>Qtde Total</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="NULOTE" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Nº Lote</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="RNCID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Registro</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="visivel">N</prop>
+        </properties>
+      </field>
+      <field name="NUMNOTA" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Nº Nota Fiscal</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDRNCDET" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Id. Detalhe</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="visivel">N</prop>
+        </properties>
+      </field>
+      <field name="DESCNAOCONFORME" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="9" nullable="S" visible="S" required="N">
+        <description>Descrição Não Conforme</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODPROD" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Código Produto</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="NUNOTA" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Nº Único</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="SEQUENCIA" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Sequência</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="QTDENAOCONFORME" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="7" nullable="S" visible="S" required="N">
+        <description>Qtde Não Conforme</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="ORDEMPRODUCAO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Ordem de Produção</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODVOL" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="8" nullable="S" visible="S" required="N">
+        <description>Unidade</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

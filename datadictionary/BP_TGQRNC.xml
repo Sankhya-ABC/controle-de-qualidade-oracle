@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+    
+    <table name="BP_TGQRNC" sequenceType="A" sequenceField="RNCID">
+        <description>Registro de Não Conformidades</description>
+        <primaryKey>
+            <field name="RNCID"/>
+        </primaryKey>
+        <instances>
+            <instance name="BpRegistroNaoConformidade">
+                <description>Registro de Não Conformidades</description>
+                <relationShip>
+                    <relation entityName="Parceiro">
+                        <fields>
+                            <field localName="CODPARC" targetName="CODPARC"/>
+                        </fields>
+                    </relation>
+                    <relation entityName="Usuario">
+                        <fields>
+                            <field localName="CODUSU" targetName="CODUSU"/>
+                        </fields>
+                    </relation>
+                </relationShip>
+            </instance>
+        </instances>
+        <fields>
+            <field name="RNCID" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Código RNC</description>
+            </field>
+            <field name="RNCFASESID" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Fase</description>
+            </field>
+            <field name="CODPARC" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Cliente/Fornecedor</description>
+            </field>
+            <field name="DATAREGISTRO" dataType="DATA" allowSearch="S" visibleOnSearch="S">
+                <description>Data Registro</description>
+                <expression>
+                    if($valorCampo != null){
+                    return $valorCampo;
+                    }
+                    return getDateTime();
+                </expression>
+            </field>
+            <field name="TIPONC" dataType="LISTA" allowSearch="S" visibleOnSearch="S">
+                <description>Tipo NC</description>
+                <fieldOptions>
+                    <option value="1">Interno</option>
+                    <option value="2">Cliente</option>
+                    <option value="3">Fornecedor</option>
+                </fieldOptions>
+            </field>
+            <field name="ORIGEM" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Origem</description>
+            </field>
+            <field name="NOTAFISCAL" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Nota Fiscal</description>
+            </field>
+            <field name="OP" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Ordem Produção</description>
+            </field>
+            <field name="DETALHAMENTO" dataType="CAIXA_TEXTO" allowSearch="S" visibleOnSearch="S">
+                <description>Detalhamento Problema</description>
+            </field>
+            <field name="PRIORIDADE" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Prioridade</description>
+            </field>
+            <field name="PRAZONC" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Prazo NC</description>
+            </field>
+            <field name="DATAPREVENCERRAR" dataType="DATA" allowSearch="S" visibleOnSearch="S">
+                <description>Data Prev. Encerramento</description>
+                <expression>
+                    $sql.select("PRAZO","AD_TGQPRI","PRIORIDADEID="+$col_PRIORIDADE);
+
+                    //dias = this.PRAZONC;
+                    datahoje = $ctx_d_atual;
+
+                    var dias = 0;
+
+                    //datahoje.setDate(datahoje.getDate() + dias);
+                    //this.dataprevencerrar=datahoje;
+
+                    if ($sql.next()){
+                    dias = $sql.getInt(1);
+                    datahoje.setDate(datahoje.getDate() + dias);
+                    return datahoje;
+                    }
+                    return null;
+
+                    //datahoje.setDate(datahoje.getDate() + dias);
+                    //this.dataprevencerrar=datahoje;
+
+
+
+
+                    //if (dias>0){
+                    //  datahoje = $ctx_d_atual;
+                    //   datahoje.setDate(datahoje.getDate() + dias);
+                    //    this.dataprevencerrar=datahoje;
+                    //}
+
+                </expression>
+            </field>
+            <field name="NCVINCULADA" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Não Conformidade Vinculada</description>
+            </field>
+            <field name="NAOPROCEDENTE" dataType="LISTA" allowSearch="S" visibleOnSearch="S">
+                <description>Não Procedente</description>
+                <fieldOptions>
+                    <option value="S">Sim</option>
+                    <option value="N">Não</option>
+                </fieldOptions>
+            </field>
+            <field name="PROCESSO" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Processo</description>
+            </field>
+            <field name="CODUSU" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Usuário</description>
+                <expression>$ctx_usuario_logado</expression>
+            </field>
+        </fields>
+    </table>
+    
+    
+</metadados>

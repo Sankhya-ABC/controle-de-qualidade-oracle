@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQCADASTROS" sequenceType="A" sequenceField="ID">
+    <description>Cadastros Gerais</description>
+      <primaryKey>
+          <field name="ID"/>
+      </primaryKey>
+    <instances>
+      <instance name="TipoRNC">
+        <description>Tipo RNC</description>
+        <relationShip>
+          <relation entityName="FasesOrigem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ID" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="Origem">
+        <description>Origem RNC</description>
+        <relationShip>
+          <relation entityName="FasesOrigem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ID" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="TipoCadastro">
+        <description>Cadastros Gerais</description>
+        <relationShip>
+          <relation entityName="FasesOrigem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ID" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="ProcessoGM">
+        <description>Processo Gestão Mudança</description>
+        <relationShip>
+          <relation entityName="FasesOrigem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ID" targetName="ID"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="ID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Cadastro</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="TIPOCADASTRO" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Tipo de Cadastro</description>
+        <fieldOptions>
+          <option value="4">Gestão de Mudanças</option>
+          <option value="1">Origem RNC</option>
+          <option value="2">Processo RNC</option>
+          <option value="3">Tipo RNC</option>
+        </fieldOptions>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DESCRICAO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="S" order="1" nullable="S" visible="S" required="N">
+        <description>Descrição</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="PRAZODIAS" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Prazo em Dias</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>

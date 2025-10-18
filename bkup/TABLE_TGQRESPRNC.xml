@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQRESPRNC" sequenceType="A" sequenceField="IDRESP">
+    <description>Responsável por RNC</description>
+      <primaryKey>
+          <field name="IDRESP"/>
+      </primaryKey>
+    <instances>
+      <instance name="ConsultaRespRNC">
+        <description>Responsável por RNC</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="ResponsavelRNC">
+        <description>Responsáveis da RNC</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RespAcaoImediata">
+        <description>Responsáveis pela Ação Imediata</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RespCausaRaiz">
+        <description>Responsáveis pela Causa Raiz</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RespAcoesCorretivas">
+        <description>Responsável Ações Corretivas</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RespImplementacao">
+        <description>Responsáveis pela Implementação</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RespVerifEficacia">
+        <description>Responsáveis pela Verificação de Eficácia</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RespRevisao">
+        <description>Responsáveis pela Revisão</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RespRiscosOportunidades">
+        <description>Quem</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+      <instance name="RespLiberacao">
+        <description>Responável pela Liberação</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="ENVIAREMAIL" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Enviar Email de Notificação?</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="RNCID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Registro</description>
+        <properties>
+          <prop name="visivel">N</prop>
+        </properties>
+      </field>
+      <field name="CODPARC" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
+        <description>Responsável (Parceiro)</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="IDRESP" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Id. Responsavel</description>
+        <properties>
+          <prop name="visivel">N</prop>
+        </properties>
+      </field>
+      <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Responsável (Usuário)</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="FASESNCID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Fase</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>
