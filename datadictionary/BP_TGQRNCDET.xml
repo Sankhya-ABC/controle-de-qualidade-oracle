@@ -25,7 +25,7 @@
            <field name="QTDENAOCONFORME" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
                <description>Qtde não conforme</description>
            </field>
-           <field name="UNIDADE" dataType="LISTA" allowSearch="S" visibleOnSearch=""S>
+           <field name="UNIDADE" dataType="LISTA" allowSearch="S" visibleOnSearch="S">
                <description>Unidade</description>
                <fieldOptions>
                    <option value="UN">Unidade</option>
