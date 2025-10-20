@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+    
+    <table name="BP_TGQDEP" sequenceType="A" sequenceField="PROCESSOID">
+        <description>Cadastros de Processos</description>
+        <primaryKey>
+            <field name="PROCESSOID"/>
+        </primaryKey>
+        <instances>
+            <instance name="BpCadProcess">
+                <description>Cadastros de Processos</description>
+            </instance>
+        </instances>
+        <fields>
+            <field name="PROCESSOID" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>ID Processo (Depto)</description>
+            </field>
+            <field name="DEPDESCRICAO" dataType="TEXTO" allowSearch="S" visibleOnSearch="S">
+                <description>Nome Depto</description>
+            </field>
+        </fields>
+    </table>
+</metadados>
