@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <menu id="br.com.sankhya.qualidade.FrameBuilder" description="Controle de Qualidade" icon="/$ctx/assets/icon.png">
+    <folder id="br.com.sankhya.qualidade.GestaodeDocumentos" resourceId="br.com.sankhya.qualidade.GestaodeDocumentos" description="Gestão de Documentos">
+      <dynamicForm id="br.com.sankhya.qualidade.ControledeDocumentos" resourceId="br.com.sankhya.qualidade.ControledeDocumentos" description="Controle de Documentos" instance="ControleDocumentos">
+        <properties>
+          <entityName>ControleDocumentos</entityName>
+        </properties>
+      </dynamicForm>
+    </folder>
+    <folder id="br.com.sankhya.qualidade.gestaofornecedores" resourceId="br.com.sankhya.qualidade.gestaofornecedores" description="Gestão de Fornecedores">
+      <dynamicForm id="br.com.sankhya.qualidade.QualificacaodeFornecedor" resourceId="br.com.sankhya.qualidade.QualificacaodeFornecedor" description="Qualificação de Fornecedor" instance="QualificacaoFornecedor">
+        <properties>
+          <entityName>QualificacaoFornecedor</entityName>
+        </properties>
+      </dynamicForm>
+    </folder>
+    <folder id="br.com.sankhya.qualidade.gestaonaoconforme" resourceId="br.com.sankhya.qualidade.gestaonaoconforme" description="Gestão de Não Conformidades">
+      <dynamicForm id="br.com.sankhya.qualidade.ConsultaNaoConforme" resourceId="br.com.sankhya.qualidade.ConsultaNaoConforme" description="Consulta Não Conformidade" instance="ConsultaRNC">
+        <properties>
+          <entityName>ConsultaRNC</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.registronaoconforme" resourceId="br.com.sankhya.qualidade.registronaoconforme" description="01. Registro de Não Conformidade" instance="RegistroNaoConformidade">
+        <properties>
+          <entityName>RegistroNaoConformidade</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.acoesimediatas" resourceId="br.com.sankhya.qualidade.acoesimediatas" description="02. Ações Imediatas" instance="AcoesImediatas">
+        <properties>
+          <entityName>AcoesImediatas</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.revisaodocumentos" resourceId="br.com.sankhya.qualidade.revisaodocumentos" description="06. Revisão de Documentos" instance="RevisaoDocumentos">
+        <properties>
+          <entityName>RevisaoDocumentos</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.implementacao" resourceId="br.com.sankhya.qualidade.implementacao" description="08. Implementação" instance="Implementacao">
+        <properties>
+          <entityName>Implementacao</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.causaraiz" resourceId="br.com.sankhya.qualidade.causaraiz" description="03. Causa Raiz" instance="CausaRaiz">
+        <properties>
+          <entityName>CausaRaiz</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.abrangencia" resourceId="br.com.sankhya.qualidade.abrangencia" description="04. Abrangência da Não Conformidade" instance="Abrangencia">
+        <properties>
+          <entityName>Abrangencia</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.liberacaoproduto" resourceId="br.com.sankhya.qualidade.liberacaoproduto" description="09. Liberação de Produto" instance="Liberacao">
+        <properties>
+          <entityName>Liberacao</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.acoescorretivas" resourceId="br.com.sankhya.qualidade.acoescorretivas" description="05. Ações Corretivas" instance="AcoesCorretivas">
+        <properties>
+          <entityName>AcoesCorretivas</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.verificacaoeficacia" resourceId="br.com.sankhya.qualidade.verificacaoeficacia" description="10. Verificação de Eficacia" instance="VerificacaoEficacia">
+        <properties>
+          <entityName>VerificacaoEficacia</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.riscosoportunidades" resourceId="br.com.sankhya.qualidade.riscosoportunidades" description="07. Riscos e Oportunidades" instance="RiscosOportunidades">
+        <properties>
+          <entityName>RiscosOportunidades</entityName>
+        </properties>
+      </dynamicForm>
+    </folder>
+    <folder id="br.com.sankhya.qualidade.gestaodemudancas" resourceId="br.com.sankhya.qualidade.gestaodemudancas" description="Gestão de Mudanças">
+      <dynamicForm id="br.com.sankhya.qualidade.avaliacaoriscos" resourceId="br.com.sankhya.qualidade.avaliacaoriscos" description="4.Avaliação de Riscos das Ações" instance="MudancaAvaliacaoRisco">
+        <properties>
+          <entityName>MudancaAvaliacaoRisco</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.cadastromudancas" resourceId="br.com.sankhya.qualidade.cadastromudancas" description="1.Cadastro de Gestão de Mudanças" instance="GestaoMudanca">
+        <properties>
+          <entityName>GestaoMudanca</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.questionarioavaliacao" resourceId="br.com.sankhya.qualidade.questionarioavaliacao" description="2.Questionário de Avaliação da Mudança" instance="MudancaQuestionarioAvaliacao">
+        <properties>
+          <entityName>MudancaQuestionarioAvaliacao</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.acoesmudanca" resourceId="br.com.sankhya.qualidade.acoesmudanca" description="3.Ações da Gestão de Mudança" instance="AcoesDaMudanca">
+        <properties>
+          <entityName>AcoesDaMudanca</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.aprovacaofinal" resourceId="br.com.sankhya.qualidade.aprovacaofinal" description="5.Aprovação da Proposta de Mudança" instance="AvaliacaoPosMudanca">
+        <properties>
+          <entityName>AvaliacaoPosMudanca</entityName>
+        </properties>
+      </dynamicForm>
+      <dynamicForm id="br.com.sankhya.qualidade.consultagestao" resourceId="br.com.sankhya.qualidade.consultagestao" description="Consulta Gestão de Mudanças" instance="ConsultaGestao">
+        <properties>
+          <entityName>ConsultaGestao</entityName>
+        </properties>
+      </dynamicForm>
+    </folder>
+    <dynamicForm id="br.com.sankhya.qualidade.configparametros" resourceId="br.com.sankhya.qualidade.configparametros" description="Configuração e Parametrização" instance="ConfigQualidade">
+      <properties>
+        <entityName>ConfigQualidade</entityName>
+      </properties>
+    </dynamicForm>
+    <dynamicForm id="br.com.sankhya.qualidade.cadastrosgerais" resourceId="br.com.sankhya.qualidade.cadastrosgerais" description="Cadastros Gerais" instance="TipoCadastro">
+      <properties>
+        <entityName>TipoCadastro</entityName>
+      </properties>
+    </dynamicForm>
+    <dynamicForm id="br.com.sankhya.qualidade.cadastroquestionario" resourceId="br.com.sankhya.qualidade.cadastroquestionario" description="Cadastro de Questionários" instance="Questionarios">
+      <properties>
+        <entityName>Questionarios</entityName>
+      </properties>
+    </dynamicForm>
+  </menu>
+</metadados>
