@@ -8,37 +8,37 @@
 
 
 # Objetivo
-Para aumentar a consist√™ncia e a efici√™ncia na constru√ß√£o de um add-on, este template foi desenvolvido com uma estrutura pr√©-configurada que simplifica os processos iniciais de desenvolvimento. Al√©m disso, com algumas configura√ß√µes adicionais, √© poss√≠vel automatizar a distribui√ß√£o do add-on no Sankhya Place.
+Para aumentar a consistÍncia e a eficiÍncia na construÁ„o de um add-on, este template foi desenvolvido com uma estrutura prÈ-configurada que simplifica os processos iniciais de desenvolvimento. AlÈm disso, com algumas configuraÁıes adicionais, È possÌvel automatizar a distribuiÁ„o do add-on no Sankhya Place.
 
 # Requisitos
 
-- Servidor de aplica√ß√£o e banco de dados Sankhya - [SDK](https://downloads.sankhya.com.br/downloads?app=SDK)
+- Servidor de aplicaÁ„o e banco de dados Sankhya - [SDK](https://downloads.sankhya.com.br/downloads?app=SDK)
 - [Java 1.8](https://www.java.com/pt-BR/download/)
 - IDE para desenvolvimento de projetos em Java - Recomendamos o uso do [Intellij](https://www.jetbrains.com/idea/download)
-- [Gradle](https://gradle.org/install/) - Se estiver utilizando o IntelliJ, n√£o ser√° necess√°rio fazer o download do Gradle, pois ele j√° vem integrado √† IDE.
+- [Gradle](https://gradle.org/install/) - Se estiver utilizando o IntelliJ, n„o ser· necess·rio fazer o download do Gradle, pois ele j· vem integrado ‡ IDE.
 - Ser [registrado na base de desenvolvedores](https://www.sankhya.com.br/developers/) Sankhya.
 
 ##### **Requisitos computacionais**
 
 - **Processador**: Intel Core i5 ou superior.
-  - Processadores equivalentes AMD Ryzen tamb√©m s√£o adequados.
-- **Mem√≥ria RAM**: 16 GB ou mais.
-- **Armazenamento**: SSD de no m√≠nimo 120 GB.
+  - Processadores equivalentes AMD Ryzen tambÈm s„o adequados.
+- **MemÛria RAM**: 16 GB ou mais.
+- **Armazenamento**: SSD de no mÌnimo 120 GB.
 
 
 # 1. Ambiente de desenvolvimento
 
-## 1.1 Servidor de aplica√ß√£o e banco de dados Sankhya
+## 1.1 Servidor de aplicaÁ„o e banco de dados Sankhya
 
-Para preparar o ambiente de desenvolvimento, fa√ßa o download do projeto modelo atrav√©s do [Link](https://sankhyadist.s3.sa-east-1.amazonaws.com/addon-template.zip), se preferir voc√™ pode seguir com o desenvolvimento do seu add-on utilizando o seu ambiente de teste da aplica√ß√£o Sankhya.
+Para preparar o ambiente de desenvolvimento, faÁa o download do projeto modelo atravÈs do [Link](https://sankhyadist.s3.sa-east-1.amazonaws.com/addon-template.zip), se preferir vocÍ pode seguir com o desenvolvimento do seu add-on utilizando o seu ambiente de teste da aplicaÁ„o Sankhya.
 
-Obs.: Caso n√£o tenha acesso ao Sankhya ID realize o cadastro da sua empresa como desenvolvedora para seguir. [Saiba mais](https://developer.sankhya.com.br/docs/como-participar-do-ecossistema-de-desenvolvimento-sankhya).
+Obs.: Caso n„o tenha acesso ao Sankhya ID realize o cadastro da sua empresa como desenvolvedora para seguir. [Saiba mais](https://developer.sankhya.com.br/docs/como-participar-do-ecossistema-de-desenvolvimento-sankhya).
 
-### 1.1.1. Inicializa√ß√£o do banco de dados Oracle e SQL <br><br>
+### 1.1.1. InicializaÁ„o do banco de dados Oracle e SQL <br><br>
 
 ##### Preservando a base de desenvolvimento
 
-Para garantir a preserva√ß√£o dos dados da sua base de desenvolvimento, crie um volume antes de executar o container. Use o comando:<br>
+Para garantir a preservaÁ„o dos dados da sua base de desenvolvimento, crie um volume antes de executar o container. Use o comando:<br>
 
 Oracle
 ```bash
@@ -50,7 +50,7 @@ SQL
 docker volume create mssql_dados
 ```
 
-Ap√≥s a cria√ß√£o do volume √© necess√°rio inicar o container, para isso execute o comando abaixo:<br>
+ApÛs a criaÁ„o do volume È necess·rio inicar o container, para isso execute o comando abaixo:<br>
 
 Oracle
 
@@ -64,8 +64,8 @@ SQL
 docker run -d --name sankhya_sqlserver -p 1433:1433 -v mssql_dados:/var/opt/mssql sankhyaimages/skdev-mssql:1.1.0
 ```
 
-A primeira vez que o container rodar uma s√©rie de configura√ß√µes ser√£o feitas na base de dados, inclusive a importa√ß√£o do dump. Levar√° de 20 a 30 minutos...
-Execute o comando abaixo para verificar o log de configura√ß√£o:
+A primeira vez que o container rodar uma sÈrie de configuraÁıes ser„o feitas na base de dados, inclusive a importaÁ„o do dump. Levar· de 20 a 30 minutos...
+Execute o comando abaixo para verificar o log de configuraÁ„o:
 
 Oracle
 
@@ -79,29 +79,29 @@ SQL
 docker logs -f mssql_dados
 ```
 
-Ap√≥s finalizar toda a configura√ß√£o, acesse o docker e verifique que seu container est√° em execu√ß√£o.
+ApÛs finalizar toda a configuraÁ„o, acesse o docker e verifique que seu container est· em execuÁ„o.
 
 
 ##### Conectando na base de dados 
 
 Oracle 
 
-Para conectar na base de dados Oracle, basta utilizar os seguintes dados de conex√£o:
+Para conectar na base de dados Oracle, basta utilizar os seguintes dados de conex„o:
 
-- **Endere√ßo:** `127.0.0.1`
+- **EndereÁo:** `127.0.0.1`
 - **Porta:** `1521`
 - **SID:** `XE`
-- **Usu√°rio:** `SANKHYA`
+- **Usu·rio:** `SANKHYA`
 - **Senha:** `developer`
 
 SQL
 
-Para conectar na base de dados SQL, basta utilizar os seguintes dados de conex√£o:
+Para conectar na base de dados SQL, basta utilizar os seguintes dados de conex„o:
 
 - **URL**: [`localhost`](http://localhost)
 - **Porta**: `1433`
 - **Banco**: `jiva`
-- **Usu√°rio**: `SANKHYA`
+- **Usu·rio**: `SANKHYA`
 - **Senha**: `developer`
 
 ##### Parando e reiniciando o container docker
@@ -131,51 +131,51 @@ docker start sankhya_sqlserver
 ```
 ---
 
-### 1.1.2 Servidor de aplica√ß√£o
+### 1.1.2 Servidor de aplicaÁ„o
 
-Ap√≥s inicializar o banco de dados, √© necess√°rio instalar e iniciar o servidor de aplica√ß√£o. Para isso, acesse a [Central de Downloads Sankhya](https://downloads.sankhya.com.br/downloads?app=WildFly&c=1) e fa√ßa o download do WildFly 23.0 e realize os seguintes comandos de acordo com o seu sistema operacional:
+ApÛs inicializar o banco de dados, È necess·rio instalar e iniciar o servidor de aplicaÁ„o. Para isso, acesse a [Central de Downloads Sankhya](https://downloads.sankhya.com.br/downloads?app=WildFly&c=1) e faÁa o download do WildFly 23.0 e realize os seguintes comandos de acordo com o seu sistema operacional:
 
 Windows
 ```bash
 C:\wildfly_8180\bin\standalone.bat
 ```
 
-Onde C:\wildfly_8180 √© o caminho onde o wildfly est√° instalado.
+Onde C:\wildfly_8180 È o caminho onde o wildfly est· instalado.
 
 Linux
 ```bash
 /home/mgeweb/wildfly_producao/bin/./standalone.sh
 ```
 
-Onde /home/mgeweb/wildfly_producao √© o caminho onde o wildfly est√° instalado.
+Onde /home/mgeweb/wildfly_producao È o caminho onde o wildfly est· instalado.
 
-**Siga as instru√ß√µes detalhadas nos manuais abaixo:**
-- [Manual de Instala√ß√£o do Sankhya OM em Ambiente Linux](https://ajuda.sankhya.com.br/hc/pt-br/articles/360045547894-Manual-de-Instala%C3%A7%C3%A3o-Sankhya-Om-em-Ambiente-Linux#Configura%C3%A7%C3%A3odoWildfly)
-- [Manual de Instala√ß√£o do Sankhya OM em Ambiente Windows](https://ajuda.sankhya.com.br/hc/pt-br/articles/360045695134-Manual-de-Instala%C3%A7%C3%A3o-Sankhya-Om-em-Ambiente-Windows)
+**Siga as instruÁıes detalhadas nos manuais abaixo:**
+- [Manual de InstalaÁ„o do Sankhya OM em Ambiente Linux](https://ajuda.sankhya.com.br/hc/pt-br/articles/360045547894-Manual-de-Instala%C3%A7%C3%A3o-Sankhya-Om-em-Ambiente-Linux#Configura%C3%A7%C3%A3odoWildfly)
+- [Manual de InstalaÁ„o do Sankhya OM em Ambiente Windows](https://ajuda.sankhya.com.br/hc/pt-br/articles/360045695134-Manual-de-Instala%C3%A7%C3%A3o-Sankhya-Om-em-Ambiente-Windows)
 
 **Para habilitar o modo debug efetue os seguintes passos:**
 1. Acesse a pasta do WildFly: `wildfly\bin`.
 2. Edite o arquivo **`standalone.conf.bat`** (no Windows) ou edite o arquivo **`standalone.conf`** (no Linux).
-3. Remova o coment√°rio do seguinte argumento:
+3. Remova o coment·rio do seguinte argumento:
 ```bash
 # Sample JPDA settings for remote socket debugging  
 JAVA_OPTS="$JAVA_OPTS -agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n"
 ``` 
-Ap√≥s finalizar a configura√ß√£o do wildfly, acesse o WPM: http://localhost:8080/wpm, para efetuar a instala√ß√£o de uma vers√£o do Sankhya Om.
+ApÛs finalizar a configuraÁ„o do wildfly, acesse o WPM: http://localhost:8080/wpm, para efetuar a instalaÁ„o de uma vers„o do Sankhya Om.
 
-# 2. Configura√ß√µes do add-on studio
+# 2. ConfiguraÁıes do add-on studio
 
-## 2.1. Configura√ß√µes do arquivo settings.gradle
+## 2.1. ConfiguraÁıes do arquivo settings.gradle
 
-Altere os valores conforme o exemplo baixo, para configurar o nome do projeto e os m√≥dulos.
+Altere os valores conforme o exemplo baixo, para configurar o nome do projeto e os mÛdulos.
 ```groovy
 rootProject.name = 'addonexemplo'
 include 'model'
 include 'vc'
 ```
-## 2.2 Configura√ß√µes do arquivo build.gradle
+## 2.2 ConfiguraÁıes do arquivo build.gradle
 Configure os seguintes itens conforme especificado abaixo no arquivo build.gradle:
-- **group**<br> Por conven√ß√£o utiliza-se o seu dom√≠nio ao contr√°rio seguido do nome da aplica√ß√£o, conforme exemplo abaixo:
+- **group**<br> Por convenÁ„o utiliza-se o seu domÌnio ao contr·rio seguido do nome da aplicaÁ„o, conforme exemplo abaixo:
   ```groovy
   group = 'br.com.fabricante.addonexemplo'
   ```
@@ -186,12 +186,12 @@ Configure os seguintes itens conforme especificado abaixo no arquivo build.gradl
      plataformaMinima = "4.28"
   }
   ```
-  - **serverFolder**: Pasta onde est√° configurado o servidor wildfly. Sugerido vari√°vel de ambiente,
-    para n√£o causar conflito entre ambientes que utilizem diferentes SO's. Abaixo seguem alguns guias para a configura√ß√£o do servidor Wildfly em ambiente local.
-  - **plataformaMinima**: Vers√£o do Sankhya Om m√≠nima suportada, sugerido 4.28 e acima.
+  - **serverFolder**: Pasta onde est· configurado o servidor wildfly. Sugerido vari·vel de ambiente,
+    para n„o causar conflito entre ambientes que utilizem diferentes SO's. Abaixo seguem alguns guias para a configuraÁ„o do servidor Wildfly em ambiente local.
+  - **plataformaMinima**: Vers„o do Sankhya Om mÌnima suportada, sugerido 4.28 e acima.
 
 - **addon**
-<br>Caso esteja utilizando o template baixado via √Årea do Desenvolvedor, pule para a etapa de [Gest√£o de depend√™ncias](#3-gest√£o-de-depend√™ncias).
+<br>Caso esteja utilizando o template baixado via ¡rea do Desenvolvedor, pule para a etapa de [Gest„o de dependÍncias](#3-gest„o-de-dependÍncias).
   ```groovy 
   addon {
       appKey="APP_KEY_INFORMADA"
@@ -199,10 +199,10 @@ Configure os seguintes itens conforme especificado abaixo no arquivo build.gradl
   }
   ```
   - Guia de como obter [Appkey](https://developer.sankhya.com.br/reference/obter-appkey).
-  - **Importante**: O campo "appKey" √© obrigat√≥rio para a gera√ß√£o do Addon.
+  - **Importante**: O campo "appKey" È obrigatÛrio para a geraÁ„o do Addon.
 
-# 3. Gest√£o de depend√™ncias
-O gradle j√° inclui as seguintes depend√™ncias por padr√£o.
+# 3. Gest„o de dependÍncias
+O gradle j· inclui as seguintes dependÍncias por padr„o.
 - model:
   - mge-modelcore
   - jape
@@ -225,57 +225,57 @@ O gradle j√° inclui as seguintes depend√™ncias por padr√£o.
   - wildfly-spec-api
   - commons-httpclient-3.0.1-snk
 
-Para utilizar novas depend√™ncias fornecidas pelo Sankhya Om, use a diretiva implementation. Para adicionar novas
-bibliotecas ao addon, use a diretiva moduleLib. O Gradle importa bibliotecas de forma hier√°rquica, conforme
-especificado no POM ou no m√≥dulo. Revise as bibliotecas para manter o addon o mais enxuto poss√≠vel.
+Para utilizar novas dependÍncias fornecidas pelo Sankhya Om, use a diretiva implementation. Para adicionar novas
+bibliotecas ao addon, use a diretiva moduleLib. O Gradle importa bibliotecas de forma hier·rquica, conforme
+especificado no POM ou no mÛdulo. Revise as bibliotecas para manter o addon o mais enxuto possÌvel.
 
 
-As depend√™ncias e bibliotecas podem ser alteradas no arquivo build.gradle dentro dos m√≥dulos "model" e "vc" do projeto.
+As dependÍncias e bibliotecas podem ser alteradas no arquivo build.gradle dentro dos mÛdulos "model" e "vc" do projeto.
 
 ```groovy
 dependencies{
-   //Sistema ir√° remover essa dependencia do SkOm e incluir ela no addon, dessa forma pode-se usar uma vers√£o diferente da do monolito
+   //Sistema ir· remover essa dependencia do SkOm e incluir ela no addon, dessa forma pode-se usar uma vers„o diferente da do monolito
     moduleLib('br.com.sankhya:skw-environment:1.8.2')
    
-   //N√£o ser√° adicionado no addon e usar√° a lib do monolito
+   //N„o ser· adicionado no addon e usar· a lib do monolito
     implementation('br.com.sankhya:bsh-1.3.0:master') 
 }
 
 ```
 
 # 4. Scripts/migrations
-Os scripts de migra√ß√£o s√£o respons√°veis pela cria√ß√£o e altera√ß√£o de tabelas, campos e outros objetos no banco de dados. Eles tamb√©m s√£o usados para realizar atualiza√ß√µes nas estruturas existentes.
+Os scripts de migraÁ„o s„o respons·veis pela criaÁ„o e alteraÁ„o de tabelas, campos e outros objetos no banco de dados. Eles tambÈm s„o usados para realizar atualizaÁıes nas estruturas existentes.
 
 #### Cuidados
-1) Altera√ß√µes em tabelas com alto volume de transa√ß√µes e que suportam processos cr√≠ticos devem ser feitas com extrema cautela. Mudan√ßas nesses cen√°rios podem afetar a performance do sistema, interrompendo ou at√© travando o ambiente de produ√ß√£o dos clientes.
-2) Evite manipular o banco de dados diretamente durante o desenvolvimento, pois isso pode gerar inconsist√™ncias e dificuldades futuras. Sempre prefira executar a tarefa "deployAddon" no Gradle para garantir que as altera√ß√µes sejam aplicadas corretamente.
-3) Testes s√£o fundamentais: Realize sempre testes de instala√ß√£o limpa e de atualiza√ß√µes para garantir que as migra√ß√µes funcionem como esperado sem causar impactos indesejados.
-4) Evite conflitos com outros projetos no banco de dados. Certifique-se de que as tabelas e campos que voc√™ cria n√£o interfiram em outras implementa√ß√µes.
-5) Use prefixos exclusivos para todos os objetos de banco de dados (como tabelas e campos). Isso ajuda a evitar conflitos e a manter a organiza√ß√£o, especialmente em projetos que compartilham o mesmo banco de dados.
+1) AlteraÁıes em tabelas com alto volume de transaÁıes e que suportam processos crÌticos devem ser feitas com extrema cautela. MudanÁas nesses cen·rios podem afetar a performance do sistema, interrompendo ou atÈ travando o ambiente de produÁ„o dos clientes.
+2) Evite manipular o banco de dados diretamente durante o desenvolvimento, pois isso pode gerar inconsistÍncias e dificuldades futuras. Sempre prefira executar a tarefa "deployAddon" no Gradle para garantir que as alteraÁıes sejam aplicadas corretamente.
+3) Testes s„o fundamentais: Realize sempre testes de instalaÁ„o limpa e de atualizaÁıes para garantir que as migraÁıes funcionem como esperado sem causar impactos indesejados.
+4) Evite conflitos com outros projetos no banco de dados. Certifique-se de que as tabelas e campos que vocÍ cria n„o interfiram em outras implementaÁıes.
+5) Use prefixos exclusivos para todos os objetos de banco de dados (como tabelas e campos). Isso ajuda a evitar conflitos e a manter a organizaÁ„o, especialmente em projetos que compartilham o mesmo banco de dados.
 
 
-# 5. Dicion√°rio de Dados
+# 5. Dicion·rio de Dados
 
-Para cada tabela, view ou script que voc√™ desejar criar ou alterar, crie um arquivo XML separado. Isso garante que a documenta√ß√£o e o recurso de autocompletar funcionem corretamente durante o desenvolvimento
+Para cada tabela, view ou script que vocÍ desejar criar ou alterar, crie um arquivo XML separado. Isso garante que a documentaÁ„o e o recurso de autocompletar funcionem corretamente durante o desenvolvimento
 
-- Valida√ß√£o no VS Code.
-  - Para garantir que o arquivo XML seja validado corretamente no VS Code, √© recomendada a instala√ß√£o do plugin [XML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) da Red Hat. Esse plugin auxilia na verifica√ß√£o de erros e melhora a experi√™ncia de edi√ß√£o do XML, oferecendo recursos como autocompletar e valida√ß√£o de esquemas.
+- ValidaÁ„o no VS Code.
+  - Para garantir que o arquivo XML seja validado corretamente no VS Code, È recomendada a instalaÁ„o do plugin [XML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) da Red Hat. Esse plugin auxilia na verificaÁ„o de erros e melhora a experiÍncia de ediÁ„o do XML, oferecendo recursos como autocompletar e validaÁ„o de esquemas.
 
-Para seguir com a configura√ß√£o do dicion√°rio de dados, siga a documenta√ß√£o: [Sankhya Developer - Dicion√°rio de Dados](https://developer.sankhya.com.br/docs/dicionario-de-dados).
+Para seguir com a configuraÁ„o do dicion·rio de dados, siga a documentaÁ„o: [Sankhya Developer - Dicion·rio de Dados](https://developer.sankhya.com.br/docs/dicionario-de-dados).
 
-# 6. Par√¢metros
-O Gradle cria automaticamente a configura√ß√£o de par√¢metros necess√°ria durante o processo de build. Para criar o arquivo de par√¢metros, o Gradle utiliza o group definido no arquivo build.gradle.
+# 6. Par‚metros
+O Gradle cria automaticamente a configuraÁ„o de par‚metros necess·ria durante o processo de build. Para criar o arquivo de par‚metros, o Gradle utiliza o group definido no arquivo build.gradle.
 
-Para configurar os seus par√¢metros, siga a documenta√ß√£o: [Sankhya Developer - Par√¢metros](https://developer.sankhya.com.br/docs/parametros).
+Para configurar os seus par‚metros, siga a documentaÁ„o: [Sankhya Developer - Par‚metros](https://developer.sankhya.com.br/docs/parametros).
 
-# 7. Considera√ß√µes Importantes
+# 7. ConsideraÁıes Importantes
 
-**Impacto**: Atualiza√ß√µes podem causar instabilidade no sistema do cliente se n√£o forem devidamente testadas.
+**Impacto**: AtualizaÁıes podem causar instabilidade no sistema do cliente se n„o forem devidamente testadas.
 
-**Reposit√≥rio**: Para cada addon que ser√° desenvolvido usando o template, √© necess√°rio criar um novo reposit√≥rio Git dedicado.
+**RepositÛrio**: Para cada addon que ser· desenvolvido usando o template, È necess·rio criar um novo repositÛrio Git dedicado.
 
 # 8. Testes em ambiente local
-Para realizar o deploy do addon em um ambiente de testes local, com a vari√°vel serverFolder configurada corretamente, execute o comando abaixo:<br>
+Para realizar o deploy do addon em um ambiente de testes local, com a vari·vel serverFolder configurada corretamente, execute o comando abaixo:<br>
 Linux
 ```bash
  ./gradlew clean deployAddon
@@ -285,22 +285,22 @@ Windows - Powershell
  ./gradlew.bat clean deployAddon
 ```
 
-# 9. C√≥digo de exemplo
+# 9. CÛdigo de exemplo
 
 Neste projeto existem [exemplos](addon-template-model/src/main/java/br/com/fabricante/addon/exemplos) de como criar um SPBean, um JOB e um Listener.
-- SPBean: Similar √† um endpoint do spring boot, um SPBean √© um servi√ßo que ser√° chamado via HTTP.
-- Job: Uma rotina que ser√° executada de tempos em tempos.
-- Listener: Um Listener ouve aos eventos (inser√ß√£o, edi√ß√£o, exclus√£o) de uma entidade.
+- SPBean: Similar ‡ um endpoint do spring boot, um SPBean È um serviÁo que ser· chamado via HTTP.
+- Job: Uma rotina que ser· executada de tempos em tempos.
+- Listener: Um Listener ouve aos eventos (inserÁ„o, ediÁ„o, exclus„o) de uma entidade.
 
-Existem dois tipos de documenta√ß√£o em cada uma das classes, uma que ensina o que deve ser feito e outra √© obrigat√≥ria.
+Existem dois tipos de documentaÁ„o em cada uma das classes, uma que ensina o que deve ser feito e outra È obrigatÛria.
 
-Na documenta√ß√£o existem indica√ß√µes de arquivos que precisam ser editados, como 'service-providers.xml' ou 'mgeschedule.xml'. O caminho sempre inicia com 'model' ou 'vc', fazendo refer√™ncia
-ao nome do projeto. Ex: quando nos referimos √† 'model', estamos falando do diret√≥rio 'addon-template-model' neste exemplo.
+Na documentaÁ„o existem indicaÁıes de arquivos que precisam ser editados, como 'service-providers.xml' ou 'mgeschedule.xml'. O caminho sempre inicia com 'model' ou 'vc', fazendo referÍncia
+ao nome do projeto. Ex: quando nos referimos ‡ 'model', estamos falando do diretÛrio 'addon-template-model' neste exemplo.
 
-√â muito importante entender que se tratam apenas de *exemplos* e que *n√£o recomendamos* que os mesmos sejam utilizados em produ√ß√£o.
+… muito importante entender que se tratam apenas de *exemplos* e que *n„o recomendamos* que os mesmos sejam utilizados em produÁ„o.
 
-Para fazer uma requisi√ß√£o HTTP ao servi√ßo dispon√≠vel neste exemplo:
-Como o servi√ßo deste exemplo utiliza autentica√ß√£o, voc√™ dever√° realizar login primeiro:
+Para fazer uma requisiÁ„o HTTP ao serviÁo disponÌvel neste exemplo:
+Como o serviÁo deste exemplo utiliza autenticaÁ„o, vocÍ dever· realizar login primeiro:
 
 ```bash
 curl --location 'localhost:8080/mge/service.sbr?serviceName=MobileLoginSP.login&outputType=json' \
@@ -317,7 +317,7 @@ curl --location 'localhost:8080/mge/service.sbr?serviceName=MobileLoginSP.login&
 }'
 ```
 
-Veja que no exemplo acima, `NOMUSU` √© SUP e `INTERNO` est√° vazio, indicando um login com SUP sem senha. O resultado da request acima √© algo parecido com:
+Veja que no exemplo acima, `NOMUSU` È SUP e `INTERNO` est· vazio, indicando um login com SUP sem senha. O resultado da request acima È algo parecido com:
 
 ```json
 {
@@ -339,12 +339,12 @@ Veja que no exemplo acima, `NOMUSU` √© SUP e `INTERNO` est√° vazio, indicando um
 }
 ```
 
-Veja que h√° um atributo chamado `jsessionid`, √© este que ser√° usado no exemplo abaixo, no valor de `mgeSession`:
+Veja que h· um atributo chamado `jsessionid`, È este que ser· usado no exemplo abaixo, no valor de `mgeSession`:
 
 ```bash
-curl --location 'localhost:8080/addon-template/service.sbr?serviceName=ExemploServicoSP.getAlgumaInfo&mgeSession=${jsessionid v√°lido}'
+curl --location 'localhost:8080/addon-template/service.sbr?serviceName=ExemploServicoSP.getAlgumaInfo&mgeSession=${jsessionid v·lido}'
 ```
-Se tudo ocorreu bem, voc√™ receber√° a seguinte resposta:
+Se tudo ocorreu bem, vocÍ receber· a seguinte resposta:
 
 ```json
 {
@@ -358,12 +358,12 @@ Se tudo ocorreu bem, voc√™ receber√° a seguinte resposta:
 }
 ```
 ---
-## Recomenda√ß√µes
-- Feche as conex√µes abertas com o DB ap√≥s utiliza-las;
-- Utilize os princ√≠pios do Clean Code;
-- Trate suas exce√ß√µes;
+## RecomendaÁıes
+- Feche as conexıes abertas com o DB apÛs utiliza-las;
+- Utilize os princÌpios do Clean Code;
+- Trate suas exceÁıes;
 
 ---
-## Refer√™ncias
-- [Padr√£o de nomenclatura de branches](https://comunidade.sankhya.com.br/t/sankhya-gitflow-padroes-de-nomenclatura-de-branch-para-um-fluxo-de-desenvolvimento-eficiente/7189)
+## ReferÍncias
+- [Padr„o de nomenclatura de branches](https://comunidade.sankhya.com.br/t/sankhya-gitflow-padroes-de-nomenclatura-de-branch-para-um-fluxo-de-desenvolvimento-eficiente/7189)
 - [Developer Sankhya](https://developer.sankhya.com.br/docs/add-on)

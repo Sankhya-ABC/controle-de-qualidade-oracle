@@ -4,6 +4,5 @@
     'entityName' é o nome da Entidade. É aqui que você define de qual entidade você ouvirá os eventos. Neste exemplo estamos ouvindo 'ItemNota'.
     O conteúdo de <listener> é o full qualified name da classe, ou seja, pacote + classe.
 -->
-    <listener entityName="ItemNota">br.com.le.addon.qualitymanagement.listeners.ExemploListener</listener>
 
 </listeners>
