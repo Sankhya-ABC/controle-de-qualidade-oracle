@@ -55,7 +55,7 @@ description = "Controle de Qualidade"
 
 apply(plugin: "br.com.sankhya.addonstudio")
 snkmodule {
-    serverFolder = 'C:\\wildfly_producao'
+    serverFolder = '/Users/lucascardoso/wildfly_producao'
     plataformaMinima = "4.28"
 }
 
