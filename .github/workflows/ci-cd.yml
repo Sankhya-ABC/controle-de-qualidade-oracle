@@ -1,0 +1,134 @@
+name: CI/CD - Build e Release Addon
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - feat-dev-lcds
+      - develop
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-and-release:
+    name: Build, Versionar e Gerar Artefato
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Configurar Git
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Configurar JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'gradle'
+      
+      - name: Dar permissão de execução ao Gradle Wrapper
+        run: chmod +x gradlew
+      
+      - name: Determinar próxima versão
+        id: versioning
+        run: |
+          # Buscar a última tag
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Última tag: $LAST_TAG"
+          
+          # Remover o 'v' se existir
+          VERSION=${LAST_TAG#v}
+          
+          # Extrair major, minor, patch
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+          
+          # Analisar mensagens de commit desde a última tag
+          COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"%s" 2>/dev/null || git log --pretty=format:"%s")
+          
+          # Determinar tipo de versão baseado nos commits
+          if echo "$COMMITS" | grep -qiE "^(BREAKING CHANGE|major):"; then
+            MAJOR=$((MAJOR + 1))
+            MINOR=0
+            PATCH=0
+          elif echo "$COMMITS" | grep -qiE "^(feat|feature|minor):"; then
+            MINOR=$((MINOR + 1))
+            PATCH=0
+          else
+            PATCH=$((PATCH + 1))
+          fi
+          
+          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+          echo "Nova versão: $NEW_VERSION"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "tag=v$NEW_VERSION" >> $GITHUB_OUTPUT
+      
+      - name: Criar tag de versão primeiro (para o Gradle usar)
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        run: |
+          TAG="${{ steps.versioning.outputs.tag }}"
+          git tag -a "$TAG" -m "Release $TAG - Build automatizado"
+          git push origin "$TAG"
+      
+      - name: Executar task gerarAddon
+        run: ./gradlew gerarAddon --no-daemon --stacktrace
+        env:
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+      
+      - name: Listar artefatos gerados
+        run: |
+          echo "📦 Procurando arquivo .exts gerado pelo gerarAddon:"
+          find build/libs -type f -name "*.exts" 2>/dev/null || echo "⚠️ Arquivo .exts não encontrado"
+          echo ""
+          echo "📂 Conteúdo completo do build/libs:"
+          ls -lah build/libs/ 2>/dev/null || echo "Pasta build/libs não encontrada"
+      
+      - name: Upload dos artefatos do addon
+        uses: actions/upload-artifact@v4
+        with:
+          name: qualitymanagement-${{ steps.versioning.outputs.version }}.exts
+          path: build/libs/*.exts
+          retention-days: 90
+          if-no-files-found: error
+      
+      - name: Criar GitHub Release
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.versioning.outputs.tag }}
+          name: Release ${{ steps.versioning.outputs.version }}
+          body: |
+            ## 🚀 Release ${{ steps.versioning.outputs.version }}
+            
+            ### 📦 Addon Quality Management
+            
+            **Arquivo:** `qualitymanagement.exts`
+            **Versão:** ${{ steps.versioning.outputs.version }}
+            
+            ### 📥 Como Instalar
+            1. Baixe o arquivo `qualitymanagement.exts` abaixo
+            2. Acesse o Sankhya
+            3. Vá em Importação de Pacotes
+            4. Importe o arquivo .exts
+            
+            ### 📝 Commits desta versão
+            Veja o histórico de commits desde a última release.
+          files: build/libs/*.exts
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

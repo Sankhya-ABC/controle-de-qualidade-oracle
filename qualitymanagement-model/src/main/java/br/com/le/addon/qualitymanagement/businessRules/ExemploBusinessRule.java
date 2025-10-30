@@ -1,6 +1,5 @@
 package br.com.le.addon.qualitymanagement.businessRules;
 
-import br.com.fabricante.addon.exemplos.callbacks.ExemploCallback;
 import br.com.sankhya.modelcore.comercial.ContextoRegra;
 import br.com.sankhya.modelcore.comercial.Regra;
 import br.com.sankhya.studio.annotations.hooks.BusinessRule;

@@ -1,0 +1,43 @@
+name: Build de Desenvolvimento
+
+on:
+  push:
+    branches:
+      - feat-*
+      - feature/*
+      - develop
+      - dev-*
+  pull_request:
+
+jobs:
+  build:
+    name: Build e Testes
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      
+      - name: Configurar JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'gradle'
+      
+      - name: Dar permissão de execução ao Gradle Wrapper
+        run: chmod +x gradlew
+      
+      - name: Executar gerarAddon
+        run: ./gradlew gerarAddon --no-daemon --stacktrace
+        env:
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+      
+      - name: Upload dos artefatos (desenvolvimento)
+        uses: actions/upload-artifact@v4
+        with:
+          name: qualitymanagement-dev-${{ github.sha }}.exts
+          path: build/libs/*.exts
+          retention-days: 30
+          if-no-files-found: error
+

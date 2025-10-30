@@ -1,4 +1,8 @@
-
+/*
+    Para mais informa��es de como efetuar a correta configura��o desse arquivo,
+    consulte a documenta��o oficial da Sankkhya no link abaixo:
+    <a href="https://developer.sankhya.com.br/docs/03_conf_addonstudio"/>
+ */
 buildscript {
 
     repositories{
@@ -17,7 +21,36 @@ buildscript {
 }
 
 group = 'br.com.le.addon.qualitymanagement'
-version="1.0.0"
+
+// Busca versão automaticamente da última tag Git
+def getVersionFromGit() {
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'describe', '--tags', '--abbrev=0'
+            standardOutput = stdout
+            ignoreExitValue = true
+        }
+        def tag = stdout.toString().trim()
+        
+        // Se não encontrou tag, retorna versão padrão
+        if (tag == null || tag.isEmpty()) {
+            println "  Nenhuma tag Git encontrada, usando versão padrão: 1.0.0"
+            return "1.0.0"
+        }
+        
+        // Remove 'v' do início se existir (v1.0.0 -> 1.0.0)
+        def version = tag.startsWith('v') ? tag.substring(1) : tag
+        println " Versão detectada da tag Git: ${version}"
+        return version
+    } catch (Exception e) {
+        // Se houver erro, usa versão padrão
+        println "  Erro ao buscar tag Git: ${e.message}, usando versão padrão: 1.0.0"
+        return "1.0.0"
+    }
+}
+
+version = getVersionFromGit()
 description = "Controle de Qualidade"
 
 apply(plugin: "br.com.sankhya.addonstudio")
