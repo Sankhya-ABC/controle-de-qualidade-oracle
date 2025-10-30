@@ -1,4 +1,8 @@
-
+/*
+    Para mais informa��es de como efetuar a correta configura��o desse arquivo,
+    consulte a documenta��o oficial da Sankkhya no link abaixo:
+    <a href="https://developer.sankhya.com.br/docs/03_conf_addonstudio"/>
+ */
 buildscript {
 
     repositories{
@@ -10,12 +14,43 @@ buildscript {
     }
 
     dependencies {
-        classpath "br.com.sankhya.studio:gradle-plugin:1+"
+        classpath "br.com.sankhya.studio:gradle-plugin:2+"
+        classpath "com.google.devtools.ksp:symbol-processing-gradle-plugin:2.0.0-1.0.24"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0"
     }
 }
 
 group = 'br.com.le.addon.qualitymanagement'
-version="1.0.0"
+
+// Busca versão automaticamente da última tag Git
+def getVersionFromGit() {
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'describe', '--tags', '--abbrev=0'
+            standardOutput = stdout
+            ignoreExitValue = true
+        }
+        def tag = stdout.toString().trim()
+        
+        // Se não encontrou tag, retorna versão padrão
+        if (tag == null || tag.isEmpty()) {
+            println "  Nenhuma tag Git encontrada, usando versão padrão: 1.0.0"
+            return "1.0.0"
+        }
+        
+        // Remove 'v' do início se existir (v1.0.0 -> 1.0.0)
+        def version = tag.startsWith('v') ? tag.substring(1) : tag
+        println " Versão detectada da tag Git: ${version}"
+        return version
+    } catch (Exception e) {
+        // Se houver erro, usa versão padrão
+        println "  Erro ao buscar tag Git: ${e.message}, usando versão padrão: 1.0.0"
+        return "1.0.0"
+    }
+}
+
+version = getVersionFromGit()
 description = "Controle de Qualidade"
 
 apply(plugin: "br.com.sankhya.addonstudio")
@@ -25,6 +60,7 @@ snkmodule {
 }
 
 addon {
+    autoDDL=false
     appKey="10a32095-d90a-4df3-a251-f4dbd6294eb1"
     parceiroNome = "BP - ABC "
 }
