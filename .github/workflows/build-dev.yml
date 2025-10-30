@@ -28,11 +28,6 @@ jobs:
       - name: Dar permissão de execução ao Gradle Wrapper
         run: chmod +x gradlew
       
-      - name: Executar build
-        run: ./gradlew build --no-daemon --stacktrace
-        env:
-          GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-      
       - name: Executar gerarAddon
         run: ./gradlew gerarAddon --no-daemon --stacktrace
         env:
