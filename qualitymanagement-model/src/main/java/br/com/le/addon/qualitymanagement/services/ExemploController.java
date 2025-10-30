@@ -1,7 +1,7 @@
 package br.com.le.addon.qualitymanagement.services;
 
-import br.com.fabricante.addon.exemplos.dto.RequestDTO;
-import br.com.fabricante.addon.exemplos.dto.ResponseDTO;
+import br.com.le.addon.qualitymanagement.dto.RequestDTO;
+import br.com.le.addon.qualitymanagement.dto.ResponseDTO;
 import br.com.sankhya.studio.annotations.Service;
 
 import java.util.HashMap;
