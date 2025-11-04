@@ -1,23 +1,11 @@
 package br.com.le.addon.qualitymanagement.actionButtons;
 
-import br.com.le.addon.qualitymanagement.services.AtualizaFases;
 import br.com.sankhya.extensions.actionbutton.AcaoRotinaJava;
 import br.com.sankhya.extensions.actionbutton.ContextoAcao;
 import br.com.sankhya.extensions.actionbutton.Registro;
-import br.com.sankhya.studio.annotations.hooks.ActionButton;
-import br.com.sankhya.studio.annotations.hooks.RefreshTypeEnum;
-import br.com.sankhya.studio.annotations.hooks.TransactionType;
+import br.com.le.addon.qualitymanagement.services.AtualizaFases;
 
-@ActionButton(
-    description = "Atualizar Fase",
-    instanceName = "adsasdasd",
-    accessControlled = false,
-    transactionType = TransactionType.AUTOMATIC,
-    refreshType = RefreshTypeEnum.PARENT_ITEM)
-
-public class AtualizaFaseBt implements AcaoRotinaJava {
-
-    @Override
+public class VoltarFaseBt implements AcaoRotinaJava {
     public void doAction(ContextoAcao ctx) throws Exception {
         byte b;
         int i;
@@ -25,9 +13,9 @@ public class AtualizaFaseBt implements AcaoRotinaJava {
         for (i = (arrayOfRegistro = ctx.getLinhas()).length, b = 0; b < i; ) {
             Registro linha = arrayOfRegistro[b];
             String rncid = linha.getCampo("RNCID").toString();
-            String origem = linha.getCampo("ORIGEM").toString();
+            String status = linha.getCampo("STATUS").toString();
             try {
-                AtualizaFases.atualizaFaseRnc(rncid, origem);
+                AtualizaFases.retornaFaseRnc(rncid, status);
                 ctx.setMensagemRetorno("Fase atualizada!");
             } catch (Exception e) {
                 e.getMessage();

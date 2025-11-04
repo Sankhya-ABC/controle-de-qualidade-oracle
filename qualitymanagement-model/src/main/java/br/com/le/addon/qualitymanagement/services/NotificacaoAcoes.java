@@ -5,7 +5,7 @@ import br.com.sankhya.jape.EntityFacade;
 import br.com.sankhya.jape.dao.JdbcWrapper;
 import br.com.sankhya.jape.sql.NativeSql;
 import br.com.sankhya.modelcore.util.EntityFacadeFactory;
-import br.com.snkcps.qualidade.utils.EnviarEmailUtil;
+import br.com.le.addon.qualitymanagement.utils.EnviarEmailUtil;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 

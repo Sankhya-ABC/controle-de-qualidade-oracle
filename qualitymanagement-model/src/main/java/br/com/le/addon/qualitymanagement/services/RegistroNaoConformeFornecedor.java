@@ -6,7 +6,7 @@ import br.com.sankhya.jape.dao.JdbcWrapper;
 import br.com.sankhya.jape.sql.NativeSql;
 import br.com.sankhya.modelcore.util.EntityFacadeFactory;
 import br.com.sankhya.modelcore.util.ParameterUtils;
-import br.com.snkcps.qualidade.utils.EnviarEmailUtil;
+import br.com.le.addon.qualitymanagement.utils.EnviarEmailUtil;
 import java.sql.ResultSet;
 
 public class RegistroNaoConformeFornecedor {
