@@ -95,11 +95,11 @@ public class ServicoAdicional {
         jdbc.openSession();
         NativeSql sql = new NativeSql(jdbc);
         sql.appendSql(" SELECT SERV.CATSERV,");
-        sql.appendSql(" NVL(PLP.VALORDECLCORREIOS, 'N') AS VALORDECLCORREIOS,");
-        sql.appendSql(" NVL(PLP.AVISORECCORREIOS, 'N') AS AVISORECCORREIOS,");
-        sql.appendSql(" NVL(PLP.ELEICAOCORREIOS, 'N') AS ELEICAOCORREIOS,");
-        sql.appendSql(" NVL(PLP.ENTRVIZCORREIOS, 'N') AS ENTRVIZCORREIOS,");
-        sql.appendSql(" NVL(PLP.MAOPROPCORREIOS, 'N') AS MAOPROPCORREIOS,");
+        sql.appendSql(" ISNULL(PLP.VALORDECLCORREIOS, 'N') AS VALORDECLCORREIOS,");
+        sql.appendSql(" ISNULL(PLP.AVISORECCORREIOS, 'N') AS AVISORECCORREIOS,");
+        sql.appendSql(" ISNULL(PLP.ELEICAOCORREIOS, 'N') AS ELEICAOCORREIOS,");
+        sql.appendSql(" ISNULL(PLP.ENTRVIZCORREIOS, 'N') AS ENTRVIZCORREIOS,");
+        sql.appendSql(" ISNULL(PLP.MAOPROPCORREIOS, 'N') AS MAOPROPCORREIOS,");
         sql.appendSql(" PLP.VALORDECLARADO AS VALORDECLARADO,");
         sql.appendSql(" PLP.NUMVIZINHO");
         sql.appendSql(" FROM   SIGPLP PLP,");

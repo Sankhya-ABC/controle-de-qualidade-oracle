@@ -24,7 +24,7 @@ public class QuestionarioGestaoMudanca {
                 NativeSql sqlQuestionario = new NativeSql(jdbc);
                 sqlQuestionario.appendSql(" SELECT IDQUEST, ORIGEM ");
                 sqlQuestionario.appendSql(" FROM TGQQUESTQUALIF Q ");
-                sqlQuestionario.appendSql(" WHERE NVL(INATIVO,'N') = 'N' ");
+                sqlQuestionario.appendSql(" WHERE ISNULL(INATIVO,'N') = 'N' ");
                 sqlQuestionario.appendSql(" AND ORIGEM <> 1 ");
                 sqlQuestionario
                     .appendSql(" AND NOT EXISTS (SELECT * FROM TGQQUESTAVALIACAO A WHERE A.IDQUEST =  Q.IDQUEST AND IDGESTAO =" +
@@ -37,7 +37,7 @@ public class QuestionarioGestaoMudanca {
                     System.out.println("insert questionario");
                     StringBuilder query = new StringBuilder();
                     query.append(" INSERT INTO TGQQUESTAVALIACAO (IDAVALIACAO, IDGESTAO, IDQUEST, ORIGEM ) ");
-                    query.append(" VALUES ( SEQ_TGQQUESTAVALIACAO.nextval, " +
+                    query.append(" VALUES ( NEXT VALUE FOR SEQ_TGQQUESTAVALIACAO, " +
                         Integer.valueOf(idGestao) + ", " + idQuest + ", " +
                         origem + " )");
                     NativeSql sql = new NativeSql(jdbc);

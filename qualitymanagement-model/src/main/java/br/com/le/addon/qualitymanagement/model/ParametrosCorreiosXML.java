@@ -94,8 +94,8 @@ public class ParametrosCorreiosXML {
         jdbc = dwf.getJdbcWrapper();
         jdbc.openSession();
         NativeSql sql = new NativeSql(jdbc);
-        sql.appendSql(" SELECT USUARIO, SENHA, CODADM, CONTRATO, CARPOST, NUMSERV, URL ");
-        sql.appendSql(" FROM  SIGCFG WHERE ROWNUM = 1");
+        sql.appendSql(" SELECT TOP 1 USUARIO, SENHA, CODADM, CONTRATO, CARPOST, NUMSERV, URL ");
+        sql.appendSql(" FROM  SIGCFG");
         ResultSet rset = sql.executeQuery();
         while (rset.next()) {
             setUsuario(rset.getString("USUARIO"));

@@ -136,14 +136,14 @@ public class Remetente {
         jdbc.openSession();
         NativeSql sql = new NativeSql(jdbc);
         sql.appendSql(" SELECT REMETENTE.RAZAOSOCIAL,");
-        sql.appendSql(" ENDERECO.TIPO || ' ' || ENDERECO.NOMEEND AS LOGRADOURO,");
+        sql.appendSql(" ENDERECO.TIPO + ' ' + ENDERECO.NOMEEND AS LOGRADOURO,");
         sql.appendSql(" REMETENTE.NUMEND,");
         sql.appendSql(" REMETENTE.COMPLEMENTO,");
-        sql.appendSql(" NVL(BAIRRO.DESCRICAOCORREIO, BAIRRO.NOMEBAI) AS NOME_BAIRRO,");
+        sql.appendSql(" ISNULL(BAIRRO.DESCRICAOCORREIO, BAIRRO.NOMEBAI) AS NOME_BAIRRO,");
         sql.appendSql(" REMETENTE.CEP,");
-        sql.appendSql(" NVL(CIDADE.DESCRICAOCORREIO, CIDADE.NOMECID) AS NOME_CIDADE,");
+        sql.appendSql(" ISNULL(CIDADE.DESCRICAOCORREIO, CIDADE.NOMECID) AS NOME_CIDADE,");
         sql.appendSql(" UF.UF,");
-        sql.appendSql(" SUBSTR(REMETENTE.TELEFONE, 3) AS TELEFONE,");
+        sql.appendSql(" SUBSTRING(REMETENTE.TELEFONE, 3, LEN(REMETENTE.TELEFONE)) AS TELEFONE,");
         sql.appendSql(" REMETENTE.FAX,");
         sql.appendSql(" REMETENTE.EMAIL,");
         sql.appendSql(" REMETENTE.CGC AS CNPJ_CPF");
