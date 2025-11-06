@@ -1,11 +1,25 @@
-package br.com.le.addon.qualitymanagement.actionButtons;
+package br.com.le.addon.qualitymanagement.actionButtons.enviarnotificacao;
 
+import br.com.le.addon.qualitymanagement.services.NotificacaoAcoes;
 import br.com.sankhya.extensions.actionbutton.AcaoRotinaJava;
 import br.com.sankhya.extensions.actionbutton.ContextoAcao;
 import br.com.sankhya.extensions.actionbutton.Registro;
-import br.com.le.addon.qualitymanagement.services.NotificacaoAcoes;
+import br.com.sankhya.studio.annotations.hooks.ActionButton;
+import br.com.sankhya.studio.annotations.hooks.RefreshTypeEnum;
+import br.com.sankhya.studio.annotations.hooks.TransactionType;
 
-public class EnviaNotificacaoBt implements AcaoRotinaJava {
+/**
+ * Botão "Enviar Notificacao" para RespVerifEficacia (10. Verificação de Eficacia)
+ */
+@ActionButton(
+    description = "Enviar Notificacao",
+    instanceName = "RespVerifEficacia",
+    accessControlled = false,
+    transactionType = TransactionType.AUTOMATIC,
+    refreshType = RefreshTypeEnum.PARENT_ITEM)
+public class EnviarNotificacaoRespVerifEficacia implements AcaoRotinaJava {
+
+    @Override
     public void doAction(ContextoAcao ctx) throws Exception {
         String retorno = null;
         byte b;
@@ -19,9 +33,9 @@ public class EnviaNotificacaoBt implements AcaoRotinaJava {
             try {
                 retorno = NotificacaoAcoes.enviaNotificacao(rncId, codParc, enviarEmail);
                 if (retorno != null) {
-                    ctx.setMensagemRetorno("Notificaenviada!");
+                    ctx.setMensagemRetorno("Notificacao enviada!");
                 } else {
-                    ctx.setMensagemRetorno("Notificanenviada! Verificar o cadastro de email.");
+                    ctx.setMensagemRetorno("Notificacao nao enviada! Verificar o cadastro de email.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -30,3 +44,4 @@ public class EnviaNotificacaoBt implements AcaoRotinaJava {
         }
     }
 }
+

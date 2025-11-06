@@ -1,11 +1,25 @@
-package br.com.le.addon.qualitymanagement.actionButtons;
+package br.com.le.addon.qualitymanagement.actionButtons.fornecedores;
 
+import br.com.le.addon.qualitymanagement.services.QuestionarioFornecedor;
 import br.com.sankhya.extensions.actionbutton.AcaoRotinaJava;
 import br.com.sankhya.extensions.actionbutton.ContextoAcao;
 import br.com.sankhya.extensions.actionbutton.Registro;
-import br.com.le.addon.qualitymanagement.services.QuestionarioFornecedor;
+import br.com.sankhya.studio.annotations.hooks.ActionButton;
+import br.com.sankhya.studio.annotations.hooks.RefreshTypeEnum;
+import br.com.sankhya.studio.annotations.hooks.TransactionType;
 
-public class EnviaQuestionarioFornecBt implements AcaoRotinaJava {
+/**
+ * Botão de ação "Enviar Questionario ao Fornecedor" para Qualificação de Fornecedor
+ */
+@ActionButton(
+    description = "Enviar Questionario ao Fornecedor",
+    instanceName = "QualificacaoFornecedor",
+    accessControlled = false,
+    transactionType = TransactionType.AUTOMATIC,
+    refreshType = RefreshTypeEnum.PARENT_ITEM)
+public class EnviarQuestionarioFornecedor implements AcaoRotinaJava {
+
+    @Override
     public void doAction(ContextoAcao ctx) throws Exception {
         byte b;
         int i;
@@ -26,3 +40,4 @@ public class EnviaQuestionarioFornecBt implements AcaoRotinaJava {
         }
     }
 }
+

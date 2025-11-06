@@ -1,13 +1,27 @@
-package br.com.le.addon.qualitymanagement.actionButtons;
+package br.com.le.addon.qualitymanagement.actionButtons.documentos;
 
+import br.com.le.addon.qualitymanagement.services.AtualizaDocumentos;
 import br.com.sankhya.extensions.actionbutton.AcaoRotinaJava;
 import br.com.sankhya.extensions.actionbutton.ContextoAcao;
 import br.com.sankhya.extensions.actionbutton.Registro;
-import br.com.le.addon.qualitymanagement.services.AtualizaDocumentos;
+import br.com.sankhya.studio.annotations.hooks.ActionButton;
+import br.com.sankhya.studio.annotations.hooks.RefreshTypeEnum;
+import br.com.sankhya.studio.annotations.hooks.TransactionType;
 
 import java.math.BigDecimal;
 
-public class DocumentoRevisadoBt implements AcaoRotinaJava {
+/**
+ * Botão de ação "Marcar Documento Revisado" para Controle de Documentos
+ */
+@ActionButton(
+    description = "Marcar Documento Revisado",
+    instanceName = "ControleDocumentos",
+    accessControlled = false,
+    transactionType = TransactionType.AUTOMATIC,
+    refreshType = RefreshTypeEnum.PARENT_ITEM)
+public class MarcarDocumentoRevisado implements AcaoRotinaJava {
+
+    @Override
     public void doAction(ContextoAcao ctx) throws Exception {
         byte b;
         int i;
@@ -29,3 +43,4 @@ public class DocumentoRevisadoBt implements AcaoRotinaJava {
         }
     }
 }
+

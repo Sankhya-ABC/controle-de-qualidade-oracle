@@ -1,11 +1,25 @@
-package br.com.le.addon.qualitymanagement.actionButtons;
+package br.com.le.addon.qualitymanagement.actionButtons.cancelarrnc;
 
+import br.com.le.addon.qualitymanagement.services.AtualizaFases;
 import br.com.sankhya.extensions.actionbutton.AcaoRotinaJava;
 import br.com.sankhya.extensions.actionbutton.ContextoAcao;
 import br.com.sankhya.extensions.actionbutton.Registro;
-import br.com.le.addon.qualitymanagement.services.AtualizaFases;
+import br.com.sankhya.studio.annotations.hooks.ActionButton;
+import br.com.sankhya.studio.annotations.hooks.RefreshTypeEnum;
+import br.com.sankhya.studio.annotations.hooks.TransactionType;
 
-public class ConcluirRncBt implements AcaoRotinaJava {
+/**
+ * Botão de ação "Cancelar RNC" para 01. Registro de Não Conformidade
+ */
+@ActionButton(
+    description = "Cancelar RNC",
+    instanceName = "RegistroNaoConformidade",
+    accessControlled = false,
+    transactionType = TransactionType.AUTOMATIC,
+    refreshType = RefreshTypeEnum.PARENT_ITEM)
+public class CancelarRncRegistro implements AcaoRotinaJava {
+
+    @Override
     public void doAction(ContextoAcao ctx) throws Exception {
         byte b;
         int i;
@@ -23,3 +37,4 @@ public class ConcluirRncBt implements AcaoRotinaJava {
         }
     }
 }
+
