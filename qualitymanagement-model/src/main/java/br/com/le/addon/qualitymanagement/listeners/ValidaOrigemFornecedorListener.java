@@ -13,7 +13,7 @@ import br.com.sankhya.studio.annotations.Listener;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 
-@Listener(instanceNames = {"LUCASTROCAR"})
+@Listener(instanceNames = {"?????"})
 public class ValidaOrigemFornecedorListener extends PersistenceEventAdapter {
     public void afterDelete(PersistenceEvent event) throws Exception {}
 
