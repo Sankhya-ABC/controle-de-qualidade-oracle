@@ -42,13 +42,13 @@ public class ValidaOrigemFornecedorListener extends PersistenceEventAdapter {
         jdbc = dwf.getJdbcWrapper();
         jdbc.openSession();
         NativeSql sqlDadosOrigem = new NativeSql(jdbc);
-        sqlDadosOrigem.appendSql(" SELECT COUNT(*) QTDE, ISNULL(R.PERCENTUALDESVIO,0) PERCENTUALDESVIO ");
+        sqlDadosOrigem.appendSql(" SELECT COUNT(*) QTDE, NVL(R.PERCENTUALDESVIO,0) PERCENTUALDESVIO ");
         sqlDadosOrigem.appendSql(" FROM TGQRNC R, TGQCADASTROS O ");
         sqlDadosOrigem.appendSql(" WHERE RNCID =  " + registro.asBigDecimal("RNCID"));
         sqlDadosOrigem.appendSql(" AND R.ORIGEM = O.ID ");
         sqlDadosOrigem.appendSql(" AND R.ORIGEM = 1 ");
         sqlDadosOrigem.appendSql(" AND UPPER(O.DESCRICAO) LIKE 'FORNECEDOR%' ");
-        sqlDadosOrigem.appendSql(" GROUP BY ISNULL(R.PERCENTUALDESVIO,0) ");
+        sqlDadosOrigem.appendSql(" GROUP BY NVL(R.PERCENTUALDESVIO,0) ");
         ResultSet rsetrnc = sqlDadosOrigem.executeQuery();
         while (rsetrnc.next()) {
             origemFornec.add(rsetrnc.getBigDecimal("QTDE"));
