@@ -2646,4 +2646,16 @@ ALTER TABLE TGQRESPRNC DROP COLUMN ORIGEM;
 ALTER TABLE TGQQUALIFRESP MODIFY IDQUEST NUMBER(10,0)
 </oracle>
   </sql>
+  <sql nomeObjeto="TGQRESPRNC_ADD_CODUSU" tipoObjeto="COLUMN" nomeTabela="TGQRESPRNC" executar="SE_NAO_EXISTIR" ordem="122">
+    <oracle> 
+
+ALTER TABLE TGQRESPRNC ADD CODUSU NUMBER(38,0)
+
+</oracle>
+    <mssql> 
+
+ALTER TABLE TGQRESPRNC ADD CODUSU INT
+
+</mssql>
+  </sql>
 </scripts>
