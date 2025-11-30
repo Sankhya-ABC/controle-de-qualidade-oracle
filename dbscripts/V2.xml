@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/scripts.xsd">
+
+    <sql nomeObjeto="TRG_INS_UPD_TGQPERGQUEST" tipoObjeto="TRIGGER" nomeTabela="TGQPERGQUEST" executar="SE_NAO_EXISTIR" ordem="1">
+        <oracle>
+            CREATE OR REPLACE TRIGGER TRG_INS_UPD_TGQPERGQUEST
+            BEFORE INSERT OR UPDATE ON TGQPERGQUEST
+            FOR EACH ROW
+            BEGIN
+            IF inserting THEN
+            :NEW.DTCRIACAO := SYSDATE;
+            END IF;
+
+            IF updating THEN
+            :NEW.DTALTER := SYSDATE;
+            END IF;
+            END;
+            /
+        </oracle>
+    </sql>
+
+    <sql nomeObjeto="TRG_INS_CONFIG" tipoObjeto="TRIGGER" nomeTabela="TGQCONFIG" executar="SE_NAO_EXISTIR" ordem="2">
+        <oracle>
+            CREATE OR REPLACE TRIGGER TRG_INS_CONFIG
+            BEFORE INSERT ON TGQCONFIG
+            FOR EACH ROW
+            BEGIN
+            INSERT INTO TGQCRITERIOQF (ID, DESCRICAO, IDCONFIG)
+            SELECT ROWNUM, O.OPCAO, :NEW.IDCONFIG
+            FROM TDDCAM C,
+            TDDOPC O
+            WHERE C.NUCAMPO = O.NUCAMPO
+            AND C.NOMETAB = 'TGQQUALIFFORN'
+            AND C.NOMECAMPO = 'QUALIFICACAO';
+            END;
+            /
+        </oracle>
+    </sql>
+
+    <sql nomeObjeto="TRG_INS_UPD_DOC_QLD" tipoObjeto="TRIGGER" nomeTabela="TGQCONTDOC" executar="SE_NAO_EXISTIR" ordem="95">
+        <oracle>
+            CREATE OR REPLACE TRIGGER TRG_INS_UPD_DOC_QLD
+            AFTER INSERT OR UPDATE ON TGQCONTDOC
+            FOR EACH ROW
+            BEGIN
+            INSERT INTO TGQHISTSTATUS
+            (IDHIST, IDDOCUMENTO, STATUS, DATASTATUS, USUARIO)
+            VALUES (SEQ_HISTSTATUS.NEXTVAL,
+            :NEW.IDDOC,
+            :NEW.STATUS,
+            SYSDATE,
+            STP_GET_CODUSULOGADO());
+            END;
+            /
+        </oracle>
+    </sql>
+
+</scripts>
