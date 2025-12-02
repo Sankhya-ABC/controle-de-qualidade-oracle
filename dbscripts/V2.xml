@@ -70,8 +70,8 @@
             BEGIN
             :NEW.DATAACAO := SYSDATE;
             :NEW.CODUSU := STP_GET_CODUSULOGADO();
-            END
-            ;/
+            END;
+            /
 
             /*
             NomeObjeto: TRG_INS_UPD_TGQARQDOC
@@ -86,6 +86,7 @@
             :NEW.DATACRIACAO := SYSDATE;
             :NEW.CODUSU := STP_GET_CODUSULOGADO();
             END;
+            /
         </oracle>
     </sql>
     <sql nomeObjeto="TRG_INS_UPD_TGQIMPLEMENTACAO" tipoObjeto="TRIGGER" nomeTabela="TGQIMPLEMENTACAO" executar="SEMPRE" ordem="6">
