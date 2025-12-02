@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/scripts.xsd">
 
-    <sql nomeObjeto="TRG_INS_UPD_TGQPERGQUEST" tipoObjeto="TRIGGER" nomeTabela="TGQPERGQUEST" executar="SE_NAO_EXISTIR" ordem="1">
+    <sql nomeObjeto="TRG_INS_UPD_TGQPERGQUEST" tipoObjeto="TRIGGER" nomeTabela="TGQPERGQUEST" executar="SEMPRE" ordem="1">
         <oracle>
             CREATE OR REPLACE TRIGGER TRG_INS_UPD_TGQPERGQUEST
             BEFORE INSERT OR UPDATE ON TGQPERGQUEST
@@ -19,7 +19,7 @@
         </oracle>
     </sql>
 
-    <sql nomeObjeto="TRG_INS_CONFIG" tipoObjeto="TRIGGER" nomeTabela="TGQCONFIG" executar="SE_NAO_EXISTIR" ordem="2">
+    <sql nomeObjeto="TRG_INS_CONFIG" tipoObjeto="TRIGGER" nomeTabela="TGQCONFIG" executar="SEMPRE" ordem="2">
         <oracle>
             CREATE OR REPLACE TRIGGER TRG_INS_CONFIG
             BEFORE INSERT ON TGQCONFIG
@@ -37,7 +37,7 @@
         </oracle>
     </sql>
 
-    <sql nomeObjeto="TRG_INS_UPD_DOC_QLD" tipoObjeto="TRIGGER" nomeTabela="TGQCONTDOC" executar="SE_NAO_EXISTIR" ordem="3">
+    <sql nomeObjeto="TRG_INS_UPD_DOC_QLD" tipoObjeto="TRIGGER" nomeTabela="TGQCONTDOC" executar="SEMPRE" ordem="3">
         <oracle>
             CREATE OR REPLACE TRIGGER TRG_INS_UPD_DOC_QLD
             AFTER INSERT OR UPDATE ON TGQCONTDOC
@@ -54,7 +54,7 @@
             /
         </oracle>
     </sql>
-    <sql nomeObjeto="TRG_INS_UPD_TGQQUALIFFORN" tipoObjeto="TRIGGER" nomeTabela="TGQQUALIFFORN" executar="SE_NAO_EXISTIR" ordem="4">
+    <sql nomeObjeto="TRG_INS_UPD_TGQQUALIFFORN" tipoObjeto="TRIGGER" nomeTabela="TGQQUALIFFORN" executar="SEMPRE" ordem="4">
         <oracle>
             CREATE OR REPLACE TRIGGER TRG_INS_UPD_TGQQUALIFFORN
             BEFORE INSERT OR UPDATE ON TGQQUALIFFORN FOR EACH ROW
@@ -63,7 +63,7 @@
             END;
         </oracle>
     </sql>
-    <sql nomeObjeto="TRG_INS_UPD_TGQCAUSARAIZ" tipoObjeto="TRIGGER" nomeTabela="TGQCAUSARAIZ" executar="SE_NAO_EXISTIR" ordem="5">
+    <sql nomeObjeto="TRG_INS_UPD_TGQCAUSARAIZ" tipoObjeto="TRIGGER" nomeTabela="TGQCAUSARAIZ" executar="SEMPRE" ordem="5">
         <oracle>
             CREATE OR REPLACE TRIGGER TRG_INS_UPD_TGQCAUSARAIZ
             BEFORE INSERT OR UPDATE ON TGQCAUSARAIZ FOR EACH ROW
@@ -88,7 +88,7 @@
             END;
         </oracle>
     </sql>
-    <sql nomeObjeto="TRG_INS_UPD_TGQIMPLEMENTACAO" tipoObjeto="TRIGGER" nomeTabela="TGQIMPLEMENTACAO" executar="SE_NAO_EXISTIR" ordem="119">
+    <sql nomeObjeto="TRG_INS_UPD_TGQIMPLEMENTACAO" tipoObjeto="TRIGGER" nomeTabela="TGQIMPLEMENTACAO" executar="SEMPRE" ordem="6">
         <oracle>
             CREATE OR REPLACE TRIGGER TRG_INS_UPD_TGQIMPLEMENTACAO
             BEFORE INSERT OR UPDATE ON TGQIMPLEMENTACAO FOR EACH ROW
