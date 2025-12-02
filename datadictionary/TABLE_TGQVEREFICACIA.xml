@@ -93,7 +93,6 @@
       </field>
       <field name="DATAVEREFIC" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
         <description>Data Ação</description>
-        <expression>return $ctx_usuario_logado;</expression>
         <properties>
           <prop name="UITabName">__main</prop>
           <prop name="readOnly">S</prop>

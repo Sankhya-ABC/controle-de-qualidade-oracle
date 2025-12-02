@@ -37,7 +37,7 @@
         </oracle>
     </sql>
 
-    <sql nomeObjeto="TRG_INS_UPD_DOC_QLD" tipoObjeto="TRIGGER" nomeTabela="TGQCONTDOC" executar="SE_NAO_EXISTIR" ordem="95">
+    <sql nomeObjeto="TRG_INS_UPD_DOC_QLD" tipoObjeto="TRIGGER" nomeTabela="TGQCONTDOC" executar="SE_NAO_EXISTIR" ordem="3">
         <oracle>
             CREATE OR REPLACE TRIGGER TRG_INS_UPD_DOC_QLD
             AFTER INSERT OR UPDATE ON TGQCONTDOC
@@ -54,5 +54,82 @@
             /
         </oracle>
     </sql>
+    <sql nomeObjeto="TRG_INS_UPD_TGQQUALIFFORN" tipoObjeto="TRIGGER" nomeTabela="TGQQUALIFFORN" executar="SE_NAO_EXISTIR" ordem="4">
+        <oracle>
+            CREATE OR REPLACE TRIGGER TRG_INS_UPD_TGQQUALIFFORN
+            BEFORE INSERT OR UPDATE ON TGQQUALIFFORN FOR EACH ROW
+            BEGIN
+            :NEW.DATAQUALI := SYSDATE
+            END;
+        </oracle>
+    </sql>
+    <sql nomeObjeto="TRG_INS_UPD_TGQCAUSARAIZ" tipoObjeto="TRIGGER" nomeTabela="TGQCAUSARAIZ" executar="SE_NAO_EXISTIR" ordem="5">
+        <oracle>
+            CREATE OR REPLACE TRIGGER TRG_INS_UPD_TGQCAUSARAIZ
+            BEFORE INSERT OR UPDATE ON TGQCAUSARAIZ FOR EACH ROW
+            BEGIN
+            :NEW.DATAACAO := SYSDATE;
+            :NEW.CODUSU := STP_GET_CODUSULOGADO();
+            END
+            ;/
+
+            /*
+            NomeObjeto: TRG_INS_UPD_TGQARQDOC
+            TipoObjeto: TRIGGER
+            NomeTabela: TGQARQDOC
+            Executar  : SE_NAO_EXISTIR
+            */
+
+            CREATE OR REPLACE TRIGGER TRG_INS_UPD_TGQARQDOC
+            BEFORE INSERT OR UPDATE ON TGQARQDOC FOR EACH ROW
+            BEGIN
+            :NEW.DATACRIACAO := SYSDATE;
+            :NEW.CODUSU := STP_GET_CODUSULOGADO();
+            END;
+        </oracle>
+    </sql>
+    <sql nomeObjeto="TRG_INS_UPD_TGQIMPLEMENTACAO" tipoObjeto="TRIGGER" nomeTabela="TGQIMPLEMENTACAO" executar="SE_NAO_EXISTIR" ordem="119">
+        <oracle>
+            CREATE OR REPLACE TRIGGER TRG_INS_UPD_TGQIMPLEMENTACAO
+            BEFORE INSERT OR UPDATE ON TGQIMPLEMENTACAO FOR EACH ROW
+            BEGIN
+            :NEW.DTIMPL := SYSDATE;
+            :NEW.CODUSU := STP_GET_CODUSULOGADO();
+            END;
+            /
+
+            /*
+            NomeObjeto: STATUS
+            TipoObjeto: PROCEDURE
+            NomeTabela: TGQRNC
+            Executar  : SE_NAO_EXISTIR
+            */
+
+            DECLARE
+            v_column_count INTEGER;
+            BEGIN
+            -- Verifica se a coluna STATUS existe na tabela TGQRNC
+            SELECT COUNT(*)
+            INTO v_column_count
+            FROM user_tab_columns
+            WHERE table_name = 'TGQRNC'
+            AND column_name = 'STATUS';
+
+            -- Se a coluna nao existir, entao adiciona
+            IF v_column_count = 0 THEN
+            EXECUTE IMMEDIATE 'ALTER TABLE TGQRNC ADD (STATUS VARCHAR2(50))';
+            EXECUTE IMMEDIATE 'INSERT INTO TDDOPC (VALOR, OPCAO, PADRAO, CONTROLE, NUMOS, LIBERADO) VALUES (''A'',''Atrasada'',''S'',''X'',6,''S'')';
+            EXECUTE IMMEDIATE 'INSERT INTO TDDOPC (VALOR, OPCAO, PADRAO, CONTROLE, NUMOS, LIBERADO) VALUES (''C'',''Concluida'',''S'',''X'',6,''S'')';
+            EXECUTE IMMEDIATE 'INSERT INTO TDDOPC (VALOR, OPCAO, PADRAO, CONTROLE, NUMOS, LIBERADO) VALUES (''E'',''Cancelada'',''S'',''X'',6,''S'')';
+            EXECUTE IMMEDIATE 'INSERT INTO TDDOPC (VALOR, OPCAO, PADRAO, CONTROLE, NUMOS, LIBERADO) VALUES (''P'',''Pendente'',''S'',''X'',6,''S'')';
+            DBMS_OUTPUT.PUT_LINE('A coluna STATUS foi adicionada a tabela TGQRNC.');
+            ELSE
+            DBMS_OUTPUT.PUT_LINE('A coluna STATUS ja existe na tabela TGQRNC.');
+            END IF;
+            END;
+        </oracle>
+    </sql>
+
+
 
 </scripts>

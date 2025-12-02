@@ -34,6 +34,11 @@
               <field localName="CODUSU" targetName="CODUSU"/>
             </fields>
           </relation>
+          <relation entityName="Produto">
+              <fields>
+                  <field localName="CODPROD" targetName="CODPROD"/>
+              </fields>
+          </relation>
         </relationShip>
       </instance>
     </instances>
