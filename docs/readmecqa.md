@@ -143,6 +143,23 @@ Núcleo de parametrização do sistema.
 
 ---
 
+### 6. Cadastro de Questionários
+
+Catálogo central de questionários reutilizáveis, consumido por Qualificação de Fornecedores e Gestão de Mudanças.
+
+**Funcionalidades:**
+- Criação de questionários com perguntas ordenadas
+- 5 tipos de resposta: Texto, Numérico, Combo, Radio, Checkbox
+- Categorização por origem (Fornecedor, Avaliação, Riscos, Finalização)
+- Envio ao fornecedor via email com URL Base64
+- Auto-populção em Gestão de Mudanças (fases 2, 4, 5)
+- Pontuação automática para fornecedores (Score → A/B/T)
+- Respostas Sim/Não + Observação para mudanças
+
+**Documentação:** [docs/Questionarios.md](Questionarios.md)
+
+---
+
 ## Menu do Sistema
 
 ```
@@ -291,3 +308,4 @@ export JAVA_HOME="C:/Program Files/Eclipse Foundation/jdk-8.0.302.8-hotspot"
 | [Documentos.md](Documentos.md) | Gestão de Documentos |
 | [GestaoMudancas.md](GestaoMudancas.md) | Gestão de Mudanças |
 | [Configuracoes.md](Configuracoes.md) | Configurações e Parametrização |
+| [Questionarios.md](Questionarios.md) | Cadastro de Questionários |
