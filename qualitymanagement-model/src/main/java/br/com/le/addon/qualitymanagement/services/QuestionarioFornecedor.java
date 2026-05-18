@@ -1,64 +1,151 @@
 package br.com.le.addon.qualitymanagement.services;
 
-
-import java.util.Base64;
+import br.com.le.addon.qualitymanagement.utils.AuthQuestionarioUtil;
+import br.com.le.addon.qualitymanagement.utils.EnviarEmailUtil;
 import br.com.sankhya.jape.EntityFacade;
 import br.com.sankhya.jape.dao.JdbcWrapper;
 import br.com.sankhya.jape.sql.NativeSql;
 import br.com.sankhya.modelcore.util.EntityFacadeFactory;
 import br.com.sankhya.modelcore.util.ParameterUtils;
-import br.com.le.addon.qualitymanagement.utils.EnviarEmailUtil;
+
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
+import java.util.Base64;
 
 public class QuestionarioFornecedor {
+
     public static void enviaQuestionario(String idQuest, String codFornec, String idQualif) throws Exception {
-        String loginBase64 = (String)ParameterUtils.getParameter("LOGINQLD");
-        String senhaBase64 = (String)ParameterUtils.getParameter("PSWQLD");
-        String emailFornec = null;
-        String emailBase64 = null;
-        String codQuestBase64 = null;
-        String codQualifBase64 = null;
-        String auth = null;
-        String urlQuestionario = (String)ParameterUtils.getParameter("URLQUALIDADE");
-        String empresa = (String)ParameterUtils.getParameter("NOMEEMPQLF");
-        JdbcWrapper jdbc = null;
-        EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
-        jdbc = dwf.getJdbcWrapper();
-        jdbc.openSession();
-        System.out.println("codFornec: " + codFornec);
-        System.out.println("loginBase64: " + loginBase64);
-        NativeSql sqlFornec = new NativeSql(jdbc);
-        sqlFornec.appendSql(" SELECT EMAILQUESTIONARIO ");
-        sqlFornec.appendSql(" FROM TGFPAR ");
-        sqlFornec.appendSql(" WHERE CODPARC =  " + codFornec);
-        ResultSet rsetFornec = sqlFornec.executeQuery();
-        rsetFornec.next();
-        System.out.println("email: " + rsetFornec.getString("EMAILQUESTIONARIO"));
-        emailFornec = rsetFornec.getString("EMAILQUESTIONARIO");
-        System.out.print("email fornec:" + emailFornec);
-        emailBase64 = Base64.getEncoder().encodeToString(emailFornec.getBytes());
-        codQuestBase64 = Base64.getEncoder().encodeToString(idQuest.getBytes());
-        codQualifBase64 = Base64.getEncoder().encodeToString(idQualif.getBytes());
-        auth = String.valueOf(emailBase64.replaceAll("\r", "").replaceAll("\t", "").replaceAll("\n", "")) + "?" + codQualifBase64.replaceAll("\r", "").replaceAll("\t", "").replaceAll("\n", "") + "?" + codQuestBase64.replaceAll("\r", "").replaceAll("\t", "").replaceAll("\n", "") + "?" + loginBase64.replaceAll("\r", "").replaceAll("\t", "").replaceAll("\n", "") + "?" + senhaBase64.replaceAll("\r", "").replaceAll("\t", "").replaceAll("\n", "") + "?";
-        urlQuestionario = String.valueOf(urlQuestionario) + "?" + auth;
-        System.out.println("urlQuestionario: " + urlQuestionario);
-        EnviarEmailUtil.enviarQuestionario(emailFornec, urlQuestionario, empresa);
+        validarCampoObrigatorio(idQuest, "ID do questionário");
+        validarCampoObrigatorio(codFornec, "Código do fornecedor");
+        validarCampoObrigatorio(idQualif, "ID da qualificação");
+
+        String loginBase64 = getParametroObrigatorio("LOGINQLF");
+        String senhaBase64 = getParametroObrigatorio("PSWQLD");
+        String urlQuestionario = getParametroObrigatorio("URLQUALIDADE");
+        String empresa = getParametroObrigatorio("NOMEEMPQLF");
+
+        String emailFornec = buscarEmailFornecedor(codFornec);
+
+        if (isEmpty(emailFornec)) {
+            throw new Exception("Fornecedor " + codFornec + " não possui e-mail cadastrado para envio do questionário.");
+        }
+
+        String emailBase64 = toBase64(emailFornec);
+        String codQuestBase64 = toBase64(idQuest);
+        String codQualifBase64 = toBase64(idQualif);
+
+        String auth = AuthQuestionarioUtil.montarAuth(
+            emailBase64,
+            codQualifBase64,
+            codQuestBase64,
+            loginBase64,
+            senhaBase64
+        );
+
+        String urlFinal = String.valueOf(urlQuestionario) + "?" + auth;
+
+        System.out.println("===== ENVIO QUESTIONÁRIO FORNECEDOR =====");
+        System.out.println("CODFORNEC: " + codFornec);
+        System.out.println("IDQUEST: " + idQuest);
+        System.out.println("IDQUALIF: " + idQualif);
+        System.out.println("EMAIL FORNEC: " + emailFornec);
+        System.out.println("URL FINAL: " + urlFinal);
+        System.out.println("========================================");
+
+        EnviarEmailUtil.enviarQuestionario(emailFornec, urlFinal, empresa);
     }
 
     public static void enviaNotificacao(BigDecimal codFornec, String mensagem) throws Exception {
-        String emailFornec = null;
-        JdbcWrapper jdbc = null;
-        EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
-        jdbc = dwf.getJdbcWrapper();
-        jdbc.openSession();
-        NativeSql sqlFornec = new NativeSql(jdbc);
-        sqlFornec.appendSql(" SELECT EMAILQUESTIONARIO ");
-        sqlFornec.appendSql(" FROM TGFPAR ");
-        sqlFornec.appendSql(" WHERE CODPARC =  " + codFornec);
-        ResultSet rsetFornec = sqlFornec.executeQuery();
-        rsetFornec.next();
-        emailFornec = rsetFornec.getString("EMAILQUESTIONARIO");
+        if (codFornec == null) {
+            throw new Exception("Código do fornecedor não informado.");
+        }
+
+        validarCampoObrigatorio(mensagem, "Mensagem");
+
+        String emailFornec = buscarEmailFornecedor(String.valueOf(codFornec));
+
+        if (isEmpty(emailFornec)) {
+            throw new Exception("Fornecedor " + codFornec + " não possui e-mail cadastrado para notificação.");
+        }
+
         EnviarEmailUtil.EnviarNotificacaoFornec(emailFornec, mensagem);
+    }
+
+    private static String buscarEmailFornecedor(String codFornec) throws Exception {
+        JdbcWrapper jdbc = null;
+        NativeSql sql = null;
+        ResultSet rset = null;
+
+        try {
+            EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
+            jdbc = dwf.getJdbcWrapper();
+            jdbc.openSession();
+
+            sql = new NativeSql(jdbc);
+
+            sql.appendSql(" SELECT ");
+            sql.appendSql("     EMAILQUESTIONARIO");
+            sql.appendSql(" FROM TGFPAR ");
+            sql.appendSql(" WHERE CODPARC = :CODPARC ");
+
+            sql.setNamedParameter("CODPARC", new BigDecimal(codFornec));
+
+            rset = sql.executeQuery();
+
+            if (!rset.next()) {
+                throw new Exception("Fornecedor não encontrado na TGFPAR. CODPARC: " + codFornec);
+            }
+
+            String email = rset.getString("EMAIL");
+
+            System.out.println("E-mail localizado para o fornecedor " + codFornec + ": " + email);
+
+            return email;
+
+        } finally {
+            if (rset != null) {
+                try {
+                    rset.close();
+                } catch (Exception ignored) {
+                }
+            }
+
+            if (sql != null) {
+                NativeSql.releaseResources(sql);
+            }
+
+            if (jdbc != null) {
+                jdbc.closeSession();
+            }
+        }
+    }
+
+    private static String getParametroObrigatorio(String chave) throws Exception {
+        Object valor = ParameterUtils.getParameter(chave);
+
+        if (valor == null || valor.toString().trim().isEmpty()) {
+            throw new Exception("Parâmetro obrigatório não configurado: " + chave);
+        }
+
+        return valor.toString();
+    }
+
+    private static String toBase64(String valor) {
+        if (valor == null) {
+            valor = "";
+        }
+
+        return Base64.getEncoder().encodeToString(valor.getBytes(StandardCharsets.UTF_8));
+    }
+
+    private static void validarCampoObrigatorio(String valor, String nomeCampo) throws Exception {
+        if (valor == null || valor.trim().isEmpty()) {
+            throw new Exception(nomeCampo + " não informado.");
+        }
+    }
+
+    private static boolean isEmpty(String valor) {
+        return valor == null || valor.trim().isEmpty();
     }
 }
