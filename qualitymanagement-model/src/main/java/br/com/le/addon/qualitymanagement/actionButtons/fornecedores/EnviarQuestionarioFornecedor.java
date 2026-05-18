@@ -8,36 +8,48 @@ import br.com.sankhya.studio.annotations.hooks.ActionButton;
 import br.com.sankhya.studio.annotations.hooks.RefreshTypeEnum;
 import br.com.sankhya.studio.annotations.hooks.TransactionType;
 
-/**
- * Bot√£o de a√ß√£o "Enviar Questionario ao Fornecedor" para Qualifica√ß√£o de Fornecedor
- */
 @ActionButton(
-    description = "Enviar Questionario ao Fornecedor",
+    description = "Enviar Question·rio ao Fornecedor",
     instanceName = "QualificacaoFornecedor",
     accessControlled = false,
     transactionType = TransactionType.AUTOMATIC,
-    refreshType = RefreshTypeEnum.PARENT_ITEM)
+    refreshType = RefreshTypeEnum.PARENT_ITEM
+)
 public class EnviarQuestionarioFornecedor implements AcaoRotinaJava {
 
     @Override
     public void doAction(ContextoAcao ctx) throws Exception {
-        byte b;
-        int i;
-        Registro[] arrayOfRegistro;
-        for (i = (arrayOfRegistro = ctx.getLinhas()).length, b = 0; b < i; ) {
-            Registro linha = arrayOfRegistro[b];
-            String idQuest = linha.getCampo("IDQUEST").toString();
-            String codFornec = linha.getCampo("CODPARC").toString();
-            String idQualif = linha.getCampo("IDQUALIF").toString();
-            System.out.println("idQualif: " + idQualif);
-            try {
-                QuestionarioFornecedor.enviaQuestionario(idQuest, codFornec, idQualif);
-                ctx.setMensagemRetorno("Questionario enviado!");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            b++;
+        Registro[] linhas = ctx.getLinhas();
+
+        if (linhas == null || linhas.length == 0) {
+            ctx.setMensagemRetorno("Nenhum registro selecionado.");
+            return;
         }
+
+        for (Registro linha : linhas) {
+            String idQuest = getCampoObrigatorio(linha, "IDQUEST");
+            String codFornec = getCampoObrigatorio(linha, "CODPARC");
+            String idQualif = getCampoObrigatorio(linha, "IDQUALIF");
+
+            System.out.println("===== BOT√O ENVIAR QUESTION¡RIO =====");
+            System.out.println("IDQUEST: " + idQuest);
+            System.out.println("CODPARC: " + codFornec);
+            System.out.println("IDQUALIF: " + idQualif);
+            System.out.println("====================================");
+
+            QuestionarioFornecedor.enviaQuestionario(idQuest, codFornec, idQualif);
+        }
+
+        ctx.setMensagemRetorno("Question·rio enviado com sucesso.");
+    }
+
+    private String getCampoObrigatorio(Registro linha, String campo) throws Exception {
+        Object valor = linha.getCampo(campo);
+
+        if (valor == null || valor.toString().trim().isEmpty()) {
+            throw new Exception("Campo obrigatÛrio n„o informado: " + campo);
+        }
+
+        return valor.toString();
     }
 }
-

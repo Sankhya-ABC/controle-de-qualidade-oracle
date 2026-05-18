@@ -74,7 +74,7 @@ public class Validacao {
                 descNotific = String.valueOf(descNotific) + "\n" +
                     rset.getString("DESCRCERT");
             try {
-                QuestionarioFornecedor.enviaNotificacao(rset.getBigDecimal("CODPARC"), descNotific);
+                QuestionarioFornecedorBkup.enviaNotificacao(rset.getBigDecimal("CODPARC"), descNotific);
             } catch (Exception e) {
                 e.printStackTrace();
             }
