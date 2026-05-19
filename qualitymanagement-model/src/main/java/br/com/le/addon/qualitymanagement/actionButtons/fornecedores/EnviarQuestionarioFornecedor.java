@@ -9,7 +9,7 @@ import br.com.sankhya.studio.annotations.hooks.RefreshTypeEnum;
 import br.com.sankhya.studio.annotations.hooks.TransactionType;
 
 @ActionButton(
-    description = "Enviar Questionário ao Fornecedor",
+    description = "Enviar Questionario ao Fornecedor",
     instanceName = "QualificacaoFornecedor",
     accessControlled = false,
     transactionType = TransactionType.AUTOMATIC,
