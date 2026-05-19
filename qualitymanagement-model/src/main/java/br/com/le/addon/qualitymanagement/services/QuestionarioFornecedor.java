@@ -97,7 +97,7 @@ public class QuestionarioFornecedor {
                 throw new Exception("Fornecedor não encontrado na TGFPAR. CODPARC: " + codFornec);
             }
 
-            String email = rset.getString("EMAIL");
+            String email = rset.getString("EMAILQUESTIONARIO");
 
             System.out.println("E-mail localizado para o fornecedor " + codFornec + ": " + email);
 
