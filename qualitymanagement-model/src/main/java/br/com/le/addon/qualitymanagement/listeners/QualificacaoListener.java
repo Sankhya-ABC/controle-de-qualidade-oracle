@@ -76,8 +76,9 @@ public class QualificacaoListener extends PersistenceEventAdapter {
 
             if (qtdePerguntas.compareTo(BigDecimal.ZERO) > 0) {
                 pontosFinais = pontosAcumulados
-                    .divide(qtdePerguntas, 4, RoundingMode.HALF_UP)
-                    .multiply(new BigDecimal(100));
+                    .divide(qtdePerguntas, 10, RoundingMode.HALF_UP)
+                    .multiply(new BigDecimal(100))
+                    .setScale(2, RoundingMode.HALF_UP);
                 statusPontuacao = classificarIqf(pontosFinais);
             }
 
