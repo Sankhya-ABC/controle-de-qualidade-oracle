@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/scripts.xsd">
+    <sql nomeObjeto="TRG_INS_UPD_TGQQUALIFFORN" tipoObjeto="TRIGGER" nomeTabela="TGQQUALIFFORN" executar="SE_EXISTIR" ordem="1">
+        <oracle>
+            CREATE OR REPLACE TRIGGER TRG_INS_UPD_TGQQUALIFFORN
+            BEFORE INSERT OR UPDATE ON TGQQUALIFFORN
+            FOR EACH ROW
+            BEGIN
+            :NEW.DATAQUALI := SYSDATE;
+            END;
+            /
+        </oracle>
+    </sql>
+</scripts>
