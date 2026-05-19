@@ -21,6 +21,9 @@ public final class CalculaPontuacaoQualificacao {
     private CalculaPontuacaoQualificacao() {
     }
 
+    /**
+     * Usado pelo botao de acao. Exige ao menos uma resposta salva.
+     */
     public static ResultadoPontuacao calcularEAtualizar(BigDecimal idQualif) throws Exception {
         if (idQualif == null) {
             throw new IllegalArgumentException("IDQUALIF nao informado.");
@@ -35,18 +38,51 @@ public final class CalculaPontuacaoQualificacao {
             );
         }
 
-        BigDecimal pontosAcumulados = BigDecimal.ZERO;
-        for (String resposta : respostas.values()) {
-            pontosAcumulados = pontosAcumulados.add(pontosDaResposta(resposta));
+        return aplicarCalculo(idQualif, respostas);
+    }
+
+    /**
+     * Usado pelo listener em RespostaFornecedor (insert/update/delete).
+     * Inclui a linha do evento quando o banco ainda nao refletiu o insert/update.
+     */
+    public static void recalcularNoEvento(DynamicVO respostaVo, boolean registroExcluido) throws Exception {
+        if (respostaVo == null) {
+            return;
         }
 
-        BigDecimal qtdePerguntas = new BigDecimal(respostas.size());
-        BigDecimal pontosFinais = pontosAcumulados
-            .divide(qtdePerguntas, 10, RoundingMode.HALF_UP)
-            .multiply(new BigDecimal(100))
-            .setScale(2, RoundingMode.HALF_UP);
+        BigDecimal idQualif = respostaVo.asBigDecimal("IDQUALIF");
+        if (idQualif == null) {
+            System.out.println("[CalculaPontuacao] Evento ignorado: IDQUALIF nulo.");
+            return;
+        }
 
-        String resultadoIqf = classificarIqf(pontosFinais);
+        Map<BigDecimal, String> respostas = carregarRespostas(idQualif);
+
+        if (!registroExcluido) {
+            adicionarResposta(respostas, respostaVo.asBigDecimal("IDPERG"), respostaVo.asString("RESPOSTA"));
+        }
+
+        aplicarCalculo(idQualif, respostas);
+    }
+
+    private static ResultadoPontuacao aplicarCalculo(BigDecimal idQualif, Map<BigDecimal, String> respostas)
+        throws Exception {
+        BigDecimal pontosFinais = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
+        String resultadoIqf = "T";
+
+        if (!respostas.isEmpty()) {
+            BigDecimal pontosAcumulados = BigDecimal.ZERO;
+            for (String resposta : respostas.values()) {
+                pontosAcumulados = pontosAcumulados.add(pontosDaResposta(resposta));
+            }
+
+            BigDecimal qtdePerguntas = new BigDecimal(respostas.size());
+            pontosFinais = pontosAcumulados
+                .divide(qtdePerguntas, 10, RoundingMode.HALF_UP)
+                .multiply(new BigDecimal(100))
+                .setScale(2, RoundingMode.HALF_UP);
+            resultadoIqf = classificarIqf(pontosFinais);
+        }
 
         atualizarQualificacao(idQualif, pontosFinais, resultadoIqf);
 
@@ -176,7 +212,7 @@ public final class CalculaPontuacaoQualificacao {
     }
 
     private static boolean isRespostaNegativa(String resposta) {
-        return "NAO".equals(resposta) || "N?O".equals(resposta) || "N".equals(resposta) || "NO".equals(resposta);
+        return "NAO".equals(resposta) || "NÃO".equals(resposta) || "N".equals(resposta) || "NO".equals(resposta);
     }
 
     private static BigDecimal multiplicadorFaixa(BigDecimal valor) {
