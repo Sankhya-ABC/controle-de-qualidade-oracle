@@ -16,7 +16,7 @@ import java.math.BigDecimal;
     instanceName = "QualificacaoFornecedor",
     accessControlled = false,
     transactionType = TransactionType.AUTOMATIC,
-    refreshType = RefreshTypeEnum.PARENT_ITEM
+    refreshType = RefreshTypeEnum.SELECTED_ITEMS
 )
 public class CalculaPontuacao implements AcaoRotinaJava {
 
