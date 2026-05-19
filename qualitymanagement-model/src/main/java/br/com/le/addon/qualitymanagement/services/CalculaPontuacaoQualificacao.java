@@ -1,9 +1,9 @@
 package br.com.le.addon.qualitymanagement.services;
 
 import br.com.le.addon.qualitymanagement.utils.ValidaNumero;
-import br.com.sankhya.jape.EntityFacade;
 import br.com.sankhya.jape.dao.JdbcWrapper;
 import br.com.sankhya.jape.sql.NativeSql;
+import br.com.sankhya.jape.vo.DynamicVO;
 import br.com.sankhya.jape.wrapper.JapeFactory;
 import br.com.sankhya.jape.wrapper.JapeWrapper;
 import br.com.sankhya.jape.wrapper.fluid.FluidUpdateVO;
@@ -12,6 +12,7 @@ import br.com.sankhya.modelcore.util.EntityFacadeFactory;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.ResultSet;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -20,15 +21,18 @@ public final class CalculaPontuacaoQualificacao {
     private CalculaPontuacaoQualificacao() {
     }
 
-    public static ResultadoPontuacao calcularEAtualizar(BigDecimal idQualif, BigDecimal idQuest) throws Exception {
+    public static ResultadoPontuacao calcularEAtualizar(BigDecimal idQualif) throws Exception {
         if (idQualif == null) {
             throw new IllegalArgumentException("IDQUALIF nao informado.");
         }
 
-        Map<BigDecimal, String> respostas = carregarRespostas(idQualif, idQuest);
+        Map<BigDecimal, String> respostas = carregarRespostas(idQualif);
 
         if (respostas.isEmpty()) {
-            throw new Exception("Nenhuma resposta encontrada para esta qualificacao.");
+            throw new Exception(
+                "Nenhuma resposta encontrada para IDQUALIF=" + idQualif
+                    + ". Salve os registros na aba Respostas do Questionario e tente novamente."
+            );
         }
 
         BigDecimal pontosAcumulados = BigDecimal.ZERO;
@@ -46,14 +50,49 @@ public final class CalculaPontuacaoQualificacao {
 
         atualizarQualificacao(idQualif, pontosFinais, resultadoIqf);
 
+        System.out.println("[CalculaPontuacao] IDQUALIF=" + idQualif
+            + " respostas=" + respostas.size()
+            + " pontuacao=" + pontosFinais
+            + " IQF=" + resultadoIqf);
+
         return new ResultadoPontuacao(pontosFinais, resultadoIqf, respostas.size());
     }
 
-    private static Map<BigDecimal, String> carregarRespostas(BigDecimal idQualif, BigDecimal idQuest) throws Exception {
+  /**
+     * Carrega respostas por IDQUALIF (PK composta IDQUALIF + IDPERG em TGQQUALIFRESP).
+     * Usa Jape na transacao corrente; SQL nativo como fallback.
+     */
+    private static Map<BigDecimal, String> carregarRespostas(BigDecimal idQualif) throws Exception {
+        Map<BigDecimal, String> respostas = carregarRespostasJape(idQualif);
+
+        if (respostas.isEmpty()) {
+            respostas = carregarRespostasSql(idQualif);
+        }
+
+        return respostas;
+    }
+
+    private static Map<BigDecimal, String> carregarRespostasJape(BigDecimal idQualif) throws Exception {
         Map<BigDecimal, String> respostas = new LinkedHashMap<>();
 
-        EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
-        JdbcWrapper jdbc = dwf.getJdbcWrapper();
+        JapeWrapper dao = JapeFactory.dao("RespostaFornecedor");
+        Collection<DynamicVO> registros = dao.find("IDQUALIF = ?", idQualif);
+
+        if (registros == null || registros.isEmpty()) {
+            return respostas;
+        }
+
+        for (DynamicVO vo : registros) {
+            adicionarResposta(respostas, vo.asBigDecimal("IDPERG"), vo.asString("RESPOSTA"));
+        }
+
+        return respostas;
+    }
+
+    private static Map<BigDecimal, String> carregarRespostasSql(BigDecimal idQualif) throws Exception {
+        Map<BigDecimal, String> respostas = new LinkedHashMap<>();
+
+        JdbcWrapper jdbc = EntityFacadeFactory.getDWFFacade().getJdbcWrapper();
         jdbc.openSession();
 
         NativeSql sql = null;
@@ -61,26 +100,14 @@ public final class CalculaPontuacaoQualificacao {
 
         try {
             sql = new NativeSql(jdbc);
-            sql.appendSql(" SELECT IDPERG, UPPER(TRIM(RESPOSTA)) AS RESPOSTA ");
+            sql.appendSql(" SELECT IDPERG, RESPOSTA ");
             sql.appendSql(" FROM TGQQUALIFRESP ");
             sql.appendSql(" WHERE IDQUALIF = :IDQUALIF ");
-
-            if (idQuest != null) {
-                sql.appendSql(" AND IDQUEST = :IDQUEST ");
-            }
-
             sql.setNamedParameter("IDQUALIF", idQualif);
-            if (idQuest != null) {
-                sql.setNamedParameter("IDQUEST", idQuest);
-            }
 
             rset = sql.executeQuery();
             while (rset.next()) {
-                BigDecimal idPerg = rset.getBigDecimal("IDPERG");
-                String resposta = rset.getString("RESPOSTA");
-                if (idPerg != null) {
-                    respostas.put(idPerg, resposta != null ? resposta : "");
-                }
+                adicionarResposta(respostas, rset.getBigDecimal("IDPERG"), rset.getString("RESPOSTA"));
             }
         } finally {
             if (rset != null) {
@@ -96,6 +123,23 @@ public final class CalculaPontuacaoQualificacao {
         }
 
         return respostas;
+    }
+
+    private static void adicionarResposta(Map<BigDecimal, String> respostas, BigDecimal idPerg, String resposta) {
+        if (idPerg == null) {
+            return;
+        }
+        String normalizada = normalizarResposta(resposta);
+        if (!normalizada.isEmpty()) {
+            respostas.put(idPerg, normalizada);
+        }
+    }
+
+    private static String normalizarResposta(String resposta) {
+        if (resposta == null) {
+            return "";
+        }
+        return resposta.trim().toUpperCase();
     }
 
     private static void atualizarQualificacao(BigDecimal idQualif, BigDecimal pontosFinais, String resultadoIqf)

@@ -33,13 +33,12 @@ public class CalculaPontuacao implements AcaoRotinaJava {
 
         for (Registro linha : linhas) {
             BigDecimal idQualif = toBigDecimal(linha.getCampo("IDQUALIF"));
-            BigDecimal idQuest = toBigDecimal(linha.getCampo("IDQUEST"));
 
             if (idQualif == null) {
                 throw new Exception("Campo obrigatorio nao informado: IDQUALIF");
             }
 
-            ResultadoPontuacao resultado = CalculaPontuacaoQualificacao.calcularEAtualizar(idQualif, idQuest);
+            ResultadoPontuacao resultado = CalculaPontuacaoQualificacao.calcularEAtualizar(idQualif);
 
             if (mensagens.length() > 0) {
                 mensagens.append("\n");
