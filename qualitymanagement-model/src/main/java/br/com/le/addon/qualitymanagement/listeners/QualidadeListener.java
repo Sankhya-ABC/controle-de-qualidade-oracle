@@ -5,7 +5,7 @@ import br.com.sankhya.jape.event.PersistenceEventAdapter;
 import br.com.sankhya.jape.event.TransactionContext;
 import br.com.sankhya.studio.annotations.Listener;
 
-@Listener(instanceNames = {"ConfigQualidade"})
+@Listener(instanceNames = {"LUCASTROCAR"})
 public class QualidadeListener extends PersistenceEventAdapter {
     public void afterDelete(PersistenceEvent event) throws Exception {}
 
