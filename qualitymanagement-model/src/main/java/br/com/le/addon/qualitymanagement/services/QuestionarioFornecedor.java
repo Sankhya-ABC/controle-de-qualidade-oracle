@@ -28,7 +28,7 @@ public class QuestionarioFornecedor {
         String emailFornec = buscarEmailFornecedor(codFornec);
 
         if (isEmpty(emailFornec)) {
-            throw new Exception("Fornecedor " + codFornec + " não possui e-mail cadastrado para envio do questionário.");
+            throw new Exception("Fornecedor " + codFornec + " nao possui e-mail cadastrado para envio do questionario.");
         }
 
         String emailBase64 = toBase64(emailFornec);
@@ -45,7 +45,7 @@ public class QuestionarioFornecedor {
 
         String urlFinal = String.valueOf(urlQuestionario) + "?" + auth;
 
-        System.out.println("===== ENVIO QUESTIONÁRIO FORNECEDOR =====");
+        System.out.println("===== ENVIO QUESTIONARIO FORNECEDOR =====");
         System.out.println("CODFORNEC: " + codFornec);
         System.out.println("IDQUEST: " + idQuest);
         System.out.println("IDQUALIF: " + idQualif);
@@ -58,7 +58,7 @@ public class QuestionarioFornecedor {
 
     public static void enviaNotificacao(BigDecimal codFornec, String mensagem) throws Exception {
         if (codFornec == null) {
-            throw new Exception("Código do fornecedor não informado.");
+            throw new Exception("Código do fornecedor nao informado.");
         }
 
         validarCampoObrigatorio(mensagem, "Mensagem");
@@ -66,7 +66,7 @@ public class QuestionarioFornecedor {
         String emailFornec = buscarEmailFornecedor(String.valueOf(codFornec));
 
         if (isEmpty(emailFornec)) {
-            throw new Exception("Fornecedor " + codFornec + " não possui e-mail cadastrado para notificação.");
+            throw new Exception("Fornecedor " + codFornec + " nao possui email cadastrado para notificação.");
         }
 
         EnviarEmailUtil.EnviarNotificacaoFornec(emailFornec, mensagem);
@@ -94,12 +94,12 @@ public class QuestionarioFornecedor {
             rset = sql.executeQuery();
 
             if (!rset.next()) {
-                throw new Exception("Fornecedor não encontrado na TGFPAR. CODPARC: " + codFornec);
+                throw new Exception("Fornecedor nao encontrado na TGFPAR. CODPARC: " + codFornec);
             }
 
             String email = rset.getString("EMAILQUESTIONARIO");
 
-            System.out.println("E-mail localizado para o fornecedor " + codFornec + ": " + email);
+            System.out.println("Email localizado para o fornecedor " + codFornec + ": " + email);
 
             return email;
 
