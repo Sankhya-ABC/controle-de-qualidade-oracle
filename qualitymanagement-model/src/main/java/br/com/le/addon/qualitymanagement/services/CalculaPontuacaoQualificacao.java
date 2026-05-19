@@ -1,17 +1,13 @@
-package br.com.le.addon.qualitymanagement.listeners;
+package br.com.le.addon.qualitymanagement.services;
 
 import br.com.le.addon.qualitymanagement.utils.ValidaNumero;
 import br.com.sankhya.jape.EntityFacade;
 import br.com.sankhya.jape.dao.JdbcWrapper;
-import br.com.sankhya.jape.event.PersistenceEvent;
-import br.com.sankhya.jape.event.PersistenceEventAdapter;
 import br.com.sankhya.jape.sql.NativeSql;
-import br.com.sankhya.jape.vo.DynamicVO;
 import br.com.sankhya.jape.wrapper.JapeFactory;
 import br.com.sankhya.jape.wrapper.JapeWrapper;
 import br.com.sankhya.jape.wrapper.fluid.FluidUpdateVO;
 import br.com.sankhya.modelcore.util.EntityFacadeFactory;
-import br.com.sankhya.studio.annotations.Listener;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,78 +15,41 @@ import java.sql.ResultSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Recalcula PONTUACAO e RESULTADOIQF em TGQQUALIFFORN a cada alteracao em TGQQUALIFRESP.
- */
-@Listener(instanceNames = {"RespostaFornecedor"})
-public class QualificacaoListener extends PersistenceEventAdapter {
+public final class CalculaPontuacaoQualificacao {
 
-    @Override
-    public void afterInsert(PersistenceEvent event) throws Exception {
-        calcPontuacao(event, false);
+    private CalculaPontuacaoQualificacao() {
     }
 
-    @Override
-    public void afterUpdate(PersistenceEvent event) throws Exception {
-        calcPontuacao(event, false);
-    }
-
-    @Override
-    public void afterDelete(PersistenceEvent event) throws Exception {
-        calcPontuacao(event, true);
-    }
-
-    /**
-     * @param registroExcluido true no afterDelete (linha ja removida do banco)
-     */
-    static void calcPontuacao(PersistenceEvent event, boolean registroExcluido) throws Exception {
-        DynamicVO registro = (DynamicVO) event.getVo();
-        BigDecimal idQualif = registro.asBigDecimal("IDQUALIF");
-
+    public static ResultadoPontuacao calcularEAtualizar(BigDecimal idQualif, BigDecimal idQuest) throws Exception {
         if (idQualif == null) {
-            System.out.println("[QualificacaoListener] IDQUALIF nulo no VO; pontuacao nao atualizada.");
-            return;
+            throw new IllegalArgumentException("IDQUALIF nao informado.");
         }
 
-        System.out.println("[QualificacaoListener] CalcPontuacao IDQUALIF=" + idQualif
-            + " excluido=" + registroExcluido
-            + " IDPERG=" + registro.asBigDecimal("IDPERG")
-            + " RESPOSTA=" + registro.asString("RESPOSTA"));
+        Map<BigDecimal, String> respostas = carregarRespostas(idQualif, idQuest);
 
-        Map<BigDecimal, String> respostasPorPergunta = carregarRespostas(idQualif);
-
-        if (!registroExcluido) {
-            aplicarRespostaDoEvento(respostasPorPergunta, registro);
+        if (respostas.isEmpty()) {
+            throw new Exception("Nenhuma resposta encontrada para esta qualificacao.");
         }
 
         BigDecimal pontosAcumulados = BigDecimal.ZERO;
-        for (String resposta : respostasPorPergunta.values()) {
+        for (String resposta : respostas.values()) {
             pontosAcumulados = pontosAcumulados.add(pontosDaResposta(resposta));
         }
 
-        BigDecimal qtdePerguntas = new BigDecimal(respostasPorPergunta.size());
-        BigDecimal pontosFinais = BigDecimal.ZERO;
-        String statusPontuacao = "T";
+        BigDecimal qtdePerguntas = new BigDecimal(respostas.size());
+        BigDecimal pontosFinais = pontosAcumulados
+            .divide(qtdePerguntas, 10, RoundingMode.HALF_UP)
+            .multiply(new BigDecimal(100))
+            .setScale(2, RoundingMode.HALF_UP);
 
-        if (qtdePerguntas.compareTo(BigDecimal.ZERO) > 0) {
-            pontosFinais = pontosAcumulados
-                .divide(qtdePerguntas, 10, RoundingMode.HALF_UP)
-                .multiply(new BigDecimal(100))
-                .setScale(2, RoundingMode.HALF_UP);
-            statusPontuacao = classificarIqf(pontosFinais);
-        }
+        String resultadoIqf = classificarIqf(pontosFinais);
 
-        System.out.println("[QualificacaoListener] respostas=" + respostasPorPergunta.size()
-            + " pontos=" + pontosFinais + " IQF=" + statusPontuacao);
+        atualizarQualificacao(idQualif, pontosFinais, resultadoIqf);
 
-        atualizarQualificacao(idQualif, pontosFinais, statusPontuacao);
+        return new ResultadoPontuacao(pontosFinais, resultadoIqf, respostas.size());
     }
 
-    /**
-     * Le respostas ja persistidas. Em afterInsert a linha nova pode ainda nao aparecer no SELECT
-     * (outra sessao JDBC); por isso aplicarRespostaDoEvento complementa com o VO do evento.
-     */
-    private static Map<BigDecimal, String> carregarRespostas(BigDecimal idQualif) throws Exception {
+    private static Map<BigDecimal, String> carregarRespostas(BigDecimal idQualif, BigDecimal idQuest) throws Exception {
         Map<BigDecimal, String> respostas = new LinkedHashMap<>();
 
         EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
@@ -105,7 +64,15 @@ public class QualificacaoListener extends PersistenceEventAdapter {
             sql.appendSql(" SELECT IDPERG, UPPER(TRIM(RESPOSTA)) AS RESPOSTA ");
             sql.appendSql(" FROM TGQQUALIFRESP ");
             sql.appendSql(" WHERE IDQUALIF = :IDQUALIF ");
+
+            if (idQuest != null) {
+                sql.appendSql(" AND IDQUEST = :IDQUEST ");
+            }
+
             sql.setNamedParameter("IDQUALIF", idQualif);
+            if (idQuest != null) {
+                sql.setNamedParameter("IDQUEST", idQuest);
+            }
 
             rset = sql.executeQuery();
             while (rset.next()) {
@@ -131,29 +98,13 @@ public class QualificacaoListener extends PersistenceEventAdapter {
         return respostas;
     }
 
-    private static void aplicarRespostaDoEvento(Map<BigDecimal, String> respostas, DynamicVO registro) {
-        BigDecimal idPerg = registro.asBigDecimal("IDPERG");
-        if (idPerg == null) {
-            return;
-        }
-
-        String resposta = registro.asString("RESPOSTA");
-        if (resposta == null) {
-            respostas.remove(idPerg);
-            return;
-        }
-
-        respostas.put(idPerg, resposta.trim().toUpperCase());
-    }
-
-    private static void atualizarQualificacao(BigDecimal idQualif, BigDecimal pontosFinais, String statusPontuacao)
+    private static void atualizarQualificacao(BigDecimal idQualif, BigDecimal pontosFinais, String resultadoIqf)
         throws Exception {
         JapeWrapper qualificacaoDAO = JapeFactory.dao("QualificacaoFornecedor");
         FluidUpdateVO updateVO = qualificacaoDAO.prepareToUpdateByPK(new Object[] { idQualif });
         updateVO.set("PONTUACAO", pontosFinais);
-        updateVO.set("RESULTADOIQF", statusPontuacao);
+        updateVO.set("RESULTADOIQF", resultadoIqf);
         updateVO.update();
-        System.out.println("[QualificacaoListener] TGQQUALIFFORN atualizado IDQUALIF=" + idQualif);
     }
 
     static BigDecimal pontosDaResposta(String resposta) {
@@ -161,8 +112,12 @@ public class QualificacaoListener extends PersistenceEventAdapter {
             return BigDecimal.ZERO;
         }
 
-        if ("SIM".equals(resposta)) {
+        if (isRespostaPositiva(resposta)) {
             return BigDecimal.ONE;
+        }
+
+        if (isRespostaNegativa(resposta)) {
+            return BigDecimal.ZERO;
         }
 
         if (ValidaNumero.isNumeric(resposta)) {
@@ -170,6 +125,14 @@ public class QualificacaoListener extends PersistenceEventAdapter {
         }
 
         return BigDecimal.ZERO;
+    }
+
+    private static boolean isRespostaPositiva(String resposta) {
+        return "SIM".equals(resposta) || "S".equals(resposta) || "YES".equals(resposta);
+    }
+
+    private static boolean isRespostaNegativa(String resposta) {
+        return "NAO".equals(resposta) || "N?O".equals(resposta) || "N".equals(resposta) || "NO".equals(resposta);
     }
 
     private static BigDecimal multiplicadorFaixa(BigDecimal valor) {
@@ -199,5 +162,29 @@ public class QualificacaoListener extends PersistenceEventAdapter {
             return "B";
         }
         return "T";
+    }
+
+    public static final class ResultadoPontuacao {
+        private final BigDecimal pontuacao;
+        private final String resultadoIqf;
+        private final int quantidadeRespostas;
+
+        public ResultadoPontuacao(BigDecimal pontuacao, String resultadoIqf, int quantidadeRespostas) {
+            this.pontuacao = pontuacao;
+            this.resultadoIqf = resultadoIqf;
+            this.quantidadeRespostas = quantidadeRespostas;
+        }
+
+        public BigDecimal getPontuacao() {
+            return pontuacao;
+        }
+
+        public String getResultadoIqf() {
+            return resultadoIqf;
+        }
+
+        public int getQuantidadeRespostas() {
+            return quantidadeRespostas;
+        }
     }
 }
