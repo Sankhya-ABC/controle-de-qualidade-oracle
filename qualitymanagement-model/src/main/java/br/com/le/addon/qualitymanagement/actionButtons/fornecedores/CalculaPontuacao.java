@@ -50,6 +50,8 @@ public class CalculaPontuacao implements AcaoRotinaJava {
                 .append(resultado.getPontuacao())
                 .append(" | IQF ")
                 .append(resultado.getResultadoIqf())
+                .append(" | Status ")
+                .append(resultado.getQualificacao() != null ? resultado.getQualificacao() : "-")
                 .append(" (")
                 .append(resultado.getQuantidadeRespostas())
                 .append(" respostas)");

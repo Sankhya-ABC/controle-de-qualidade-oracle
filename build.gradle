@@ -25,23 +25,7 @@ group = 'br.com.le.addon.qualitymanagement'
 // Busca versão automaticamente da última tag Git
 def getVersionFromGit() {
     try {
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'describe', '--tags', '--abbrev=0'
-            standardOutput = stdout
-            ignoreExitValue = true
-        }
-        def tag = stdout.toString().trim()
-        
-        // Se não encontrou tag, retorna versão padrão
-        if (tag == null || tag.isEmpty()) {
-            println "  Nenhuma tag Git encontrada, usando versão padrão: 1.0.0"
-            return "1.0.0"
-        }
-        
-        // Remove 'v' do início se existir (v1.0.0 -> 1.0.0)
-        def version = tag.startsWith('v') ? tag.substring(1) : tag
-        println " Versão detectada da tag Git: ${version}"
+            return "1.0.4"
         return version
     } catch (Exception e) {
         // Se houver erro, usa versão padrão
