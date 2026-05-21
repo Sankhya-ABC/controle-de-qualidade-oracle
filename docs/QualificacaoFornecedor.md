@@ -46,31 +46,85 @@ Sistema de avaliação e qualificação de fornecedores via questionários digit
 |--------|--------|
 | `EnviarEmailUtil` | Envia emails HTML via fila `MSDFilaMensagem` (max 3 tentativas) |
 
-## Algoritmo de Pontuação
+## Algoritmo de Pontuação (QualificacaoListener)
 
-Executado automaticamente pelo `QualificacaoListener` ao inserir respostas:
+Executado automaticamente pelo `QualificacaoListener` ao inserir respostas na tabela `TGQQUALIFRESP`.
 
-1. **Respostas "SIM":** 1 ponto cada
-2. **Respostas numéricas** (por faixa de valor):
+### Quando dispara
 
-| Faixa | Pontos |
-|-------|--------|
-| < 10 | 0.15 |
-| 10 - 29 | 0.30 |
-| 30 - 49 | 0.45 |
-| 50 - 69 | 0.60 |
-| 70 - 89 | 0.75 |
-| ≥ 90 | 0.90 |
+Fornecedor responde questionário → sistema insere registro em `TGQQUALIFRESP` → evento `afterInsert` dispara o método `calcPontuacao()`.
 
-3. **Score final** = `(Total Pontos / Nº Perguntas) × 100`
+### Passo 1 — Busca das respostas
 
-4. **Classificação:**
+O listener agrupa as respostas por valor e conta quantas vezes cada resposta aparece:
 
-| Score | Classificação | Resultado |
-|-------|--------------|-----------|
-| 80 - 100 | A | Aprovado |
-| 50 - 79 | B | Bom |
-| ≤ 49 | T | Reprovado |
+```sql
+SELECT UPPER(RESPOSTA) RESPOSTA, COUNT(*) QTDE
+FROM TGQQUALIFRESP
+WHERE IDQUALIF = :idQualificacao
+GROUP BY RESPOSTA
+```
+
+### Passo 2 — Pontuação por tipo de resposta
+
+Cada resposta recebe pontos conforme seu tipo:
+
+| Tipo de Resposta | Valor da Resposta | Pontos por resposta |
+|-----------------|-------------------|---------------------|
+| Texto "SIM" | SIM | 1,00 |
+| Texto "NÃO" | NÃO | 0 (não pontua) |
+| Numérica | < 10 | 0,15 |
+| Numérica | 10 a 29 | 0,30 |
+| Numérica | 30 a 49 | 0,45 |
+| Numérica | 50 a 69 | 0,60 |
+| Numérica | 70 a 89 | 0,75 |
+| Numérica | ≥ 90 | 0,90 |
+
+O total de pontos é: `quantidade de respostas daquele grupo × pontos por resposta`.
+
+### Passo 3 — Cálculo da pontuação final
+
+```
+Pontuação Final = (Total de Pontos / Quantidade de Perguntas) × 100
+```
+
+### Passo 4 — Classificação (IQF)
+
+Com base na pontuação final, o fornecedor recebe uma classificação:
+
+| Pontuação Final | Classificação | Significado |
+|----------------|---------------|-------------|
+| 80 a 100 | **A** | Aprovado |
+| 50 a 79 | **B** | Aprovado com restrição |
+| ≤ 49 | **T** | Reprovado |
+
+### Passo 5 — Gravação do resultado
+
+O listener atualiza a tabela `TGQQUALIFFORN` com:
+- `PONTUACAO` → valor numérico da pontuação final (0 a 100)
+- `RESULTADOIQF` → classificação (A, B ou T)
+
+### Exemplo prático
+
+Questionário com 5 perguntas. Fornecedor respondeu:
+
+| Pergunta | Resposta | Pontos |
+|----------|----------|--------|
+| Possui ISO 9001? | SIM | 1,00 |
+| Possui ISO 14001? | SIM | 1,00 |
+| Possui ISO 14001? | NÃO | 0 |
+| Tempo de mercado (anos)? | 15 | 0,30 |
+| Satisfação dos clientes? | 85 | 0,75 |
+
+- Total de pontos da última iteração do cálculo: 0,75
+- Quantidade de perguntas: 5
+- Pontuação final: (0,75 / 5) × 100 = **15,00**
+- Classificação: **T** (Reprovado)
+
+### Observações importantes
+
+1. **Classificações fixas no código** — Os valores A, B, T e as faixas de pontuação (80-100, 50-79, ≤49) estão hardcoded no `QualificacaoListener.java`. Não são lidos da tabela `TGQIQF` cadastrada na tela de Configuração e Parametrização.
+2. **Tabela TGQIQF não é consultada** — Os campos `RESULTADO` e `CLASSIFICACAO` da tabela `TGQIQF` existem na tela de configuração mas não são utilizados em nenhum processo do sistema atualmente.
 
 ## Tabelas do Banco
 
