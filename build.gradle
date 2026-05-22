@@ -25,7 +25,7 @@ group = 'br.com.le.addon.qualitymanagement'
 // Busca versão automaticamente da última tag Git
 def getVersionFromGit() {
     try {
-            return "1.0.4"
+            return "1.0.6"
         return version
     } catch (Exception e) {
         // Se houver erro, usa versão padrão

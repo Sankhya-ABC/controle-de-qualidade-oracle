@@ -40,7 +40,7 @@ public class EnviarQuestionarioFornecedor implements AcaoRotinaJava {
             QuestionarioFornecedor.enviaQuestionario(idQuest, codFornec, idQualif);
         }
 
-        ctx.setMensagemRetorno("Questionário enviado com sucesso.");
+        ctx.setMensagemRetorno("E-mail enfileirado com questionario em anexo.");
     }
 
     private String getCampoObrigatorio(Registro linha, String campo) throws Exception {

@@ -1,6 +1,8 @@
 package br.com.le.addon.qualitymanagement.services;
 
-import br.com.le.addon.qualitymanagement.utils.AuthQuestionarioUtil;
+import br.com.le.addon.qualitymanagement.utils.AnexoEmail;
+import br.com.le.addon.qualitymanagement.utils.AnexoQuestionarioUtil;
+import br.com.le.addon.qualitymanagement.utils.DocumentosQuestionarioUtil;
 import br.com.le.addon.qualitymanagement.utils.EnviarEmailUtil;
 import br.com.sankhya.jape.EntityFacade;
 import br.com.sankhya.jape.dao.JdbcWrapper;
@@ -9,56 +11,56 @@ import br.com.sankhya.modelcore.util.EntityFacadeFactory;
 import br.com.sankhya.modelcore.util.ParameterUtils;
 
 import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
-import java.util.Base64;
+import java.util.Collections;
+import java.util.List;
 
 public class QuestionarioFornecedor {
 
-    public static void enviaQuestionario(String idQuest, String codFornec, String idQualif) throws Exception {
-        validarCampoObrigatorio(idQuest, "ID do questionário");
-        validarCampoObrigatorio(codFornec, "Código do fornecedor");
-        validarCampoObrigatorio(idQualif, "ID da qualificação");
+    private static final String PARAM_NOME_ARQUIVO_QUEST = "NOMEARQUIVOQUEST";
+    private static final String DEFAULT_NOME_ARQUIVO_QUEST =
+        "041500 QUESTION\u00c1RIO INICIAL DE FORNECEDORES (1).xlsx";
 
-        String loginBase64 = getParametroObrigatorio("LOGINQLF");
-        String senhaBase64 = getParametroObrigatorio("PSWQLD");
-        String urlQuestionario = getParametroObrigatorio("URLQUALIDADE");
+    public static void enviaQuestionario(String idQuest, String codFornec, String idQualif) throws Exception {
+        validarCampoObrigatorio(idQuest, "ID do questionario");
+        validarCampoObrigatorio(codFornec, "Codigo do fornecedor");
+        validarCampoObrigatorio(idQualif, "ID da qualificacao");
+
         String empresa = getParametroObrigatorio("NOMEEMPQLF");
+        String nomeArquivoQuest = resolverNomeArquivoQuestionario();
 
         String emailFornec = buscarEmailFornecedor(codFornec);
 
         if (isEmpty(emailFornec)) {
-            throw new Exception("Fornecedor " + codFornec + " nao possui e-mail cadastrado para envio do questionario.");
+            throw new Exception(
+                "Fornecedor " + codFornec + " nao possui e-mail cadastrado para envio do questionario.");
         }
 
-        String emailBase64 = toBase64(emailFornec);
-        String codQuestBase64 = toBase64(idQuest);
-        String codQualifBase64 = toBase64(idQualif);
+        List<String> documentos = DocumentosQuestionarioUtil.listarDescricoes(idQuest);
+        String blocoDocumentosHtml = DocumentosQuestionarioUtil.montarHtmlDocumentos(documentos);
 
-        String auth = AuthQuestionarioUtil.montarAuth(
-            emailBase64,
-            codQualifBase64,
-            codQuestBase64,
-            loginBase64,
-            senhaBase64
-        );
-
-        String urlFinal = String.valueOf(urlQuestionario) + "?" + auth;
+        AnexoEmail anexo = AnexoQuestionarioUtil.carregarAnexoQuestionario(idQuest, nomeArquivoQuest);
 
         System.out.println("===== ENVIO QUESTIONARIO FORNECEDOR =====");
         System.out.println("CODFORNEC: " + codFornec);
         System.out.println("IDQUEST: " + idQuest);
         System.out.println("IDQUALIF: " + idQualif);
         System.out.println("EMAIL FORNEC: " + emailFornec);
-        System.out.println("URL FINAL: " + urlFinal);
+        System.out.println("ANEXO: " + nomeArquivoQuest);
+        System.out.println("DOCUMENTOS LISTADOS: " + documentos.size());
         System.out.println("========================================");
 
-        EnviarEmailUtil.enviarQuestionario(emailFornec, urlFinal, empresa);
+        EnviarEmailUtil.enviarQuestionarioComAnexo(
+            emailFornec,
+            empresa,
+            blocoDocumentosHtml,
+            Collections.singletonList(anexo)
+        );
     }
 
     public static void enviaNotificacao(BigDecimal codFornec, String mensagem) throws Exception {
         if (codFornec == null) {
-            throw new Exception("Código do fornecedor nao informado.");
+            throw new Exception("Codigo do fornecedor nao informado.");
         }
 
         validarCampoObrigatorio(mensagem, "Mensagem");
@@ -66,10 +68,18 @@ public class QuestionarioFornecedor {
         String emailFornec = buscarEmailFornecedor(String.valueOf(codFornec));
 
         if (isEmpty(emailFornec)) {
-            throw new Exception("Fornecedor " + codFornec + " nao possui email cadastrado para notificação.");
+            throw new Exception("Fornecedor " + codFornec + " nao possui email cadastrado para notificacao.");
         }
 
         EnviarEmailUtil.EnviarNotificacaoFornec(emailFornec, mensagem);
+    }
+
+    private static String resolverNomeArquivoQuestionario() throws Exception {
+        Object valor = ParameterUtils.getParameter(PARAM_NOME_ARQUIVO_QUEST);
+        if (valor != null && !valor.toString().trim().isEmpty()) {
+            return valor.toString().trim();
+        }
+        return DEFAULT_NOME_ARQUIVO_QUEST;
     }
 
     private static String buscarEmailFornecedor(String codFornec) throws Exception {
@@ -125,23 +135,15 @@ public class QuestionarioFornecedor {
         Object valor = ParameterUtils.getParameter(chave);
 
         if (valor == null || valor.toString().trim().isEmpty()) {
-            throw new Exception("Parâmetro obrigatório não configurado: " + chave);
+            throw new Exception("Parametro obrigatorio nao configurado: " + chave);
         }
 
         return valor.toString();
     }
 
-    private static String toBase64(String valor) {
-        if (valor == null) {
-            valor = "";
-        }
-
-        return Base64.getEncoder().encodeToString(valor.getBytes(StandardCharsets.UTF_8));
-    }
-
     private static void validarCampoObrigatorio(String valor, String nomeCampo) throws Exception {
         if (valor == null || valor.trim().isEmpty()) {
-            throw new Exception(nomeCampo + " não informado.");
+            throw new Exception(nomeCampo + " nao informado.");
         }
     }
 

@@ -7,8 +7,9 @@ import br.com.sankhya.jape.vo.DynamicVO;
 import br.com.sankhya.studio.annotations.Listener;
 
 /**
- * Ao salvar QualificacaoFornecedor, le IDQUEST do cabecalho, busca IDPERG em
- * PerguntasQuestionario (filha de Questionarios) e cria RespostaFornecedor (PK: IDQUALIF + IDPERG).
+ * Ao incluir QualificacaoFornecedor, cria RespostaFornecedor para cada pergunta do IDQUEST
+ * (somente se ainda nao existir resposta).
+ * Ao alterar IDQUEST, exclui respostas antigas e recria conforme o novo questionario.
  */
 @Listener(instanceNames = {"QualificacaoFornecedor"})
 public class QualificacaoFornecedorListener extends PersistenceEventAdapter {
@@ -37,10 +38,9 @@ public class QualificacaoFornecedorListener extends PersistenceEventAdapter {
             if (!Boolean.TRUE.equals(CARREGAR_PERGUNTAS_NO_UPDATE.get())) {
                 return;
             }
-            CarregaPerguntasQualificacao.carregarAoSalvar(
+            CarregaPerguntasQualificacao.carregarAoTrocarQuestionario(
                 (DynamicVO) event.getVo(),
-                event.getJdbcWrapper(),
-                false
+                event.getJdbcWrapper()
             );
         } finally {
             CARREGAR_PERGUNTAS_NO_UPDATE.remove();

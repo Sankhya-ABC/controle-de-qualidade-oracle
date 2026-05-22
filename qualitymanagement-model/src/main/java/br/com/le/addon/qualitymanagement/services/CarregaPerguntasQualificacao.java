@@ -85,6 +85,102 @@ public final class CarregaPerguntasQualificacao {
             + " respostas criadas=" + criadas);
     }
 
+    /**
+     * Ao trocar IDQUEST no cabecalho: remove todas as respostas da qualificacao
+     * e recria conforme as perguntas do novo questionario.
+     */
+    public static void carregarAoTrocarQuestionario(DynamicVO qualificacaoVo, JdbcWrapper jdbc) throws Exception {
+        if (qualificacaoVo == null) {
+            return;
+        }
+
+        BigDecimal idQualif = qualificacaoVo.asBigDecimal("IDQUALIF");
+        BigDecimal idQuest = qualificacaoVo.asBigDecimal("IDQUEST");
+
+        if (idQualif == null) {
+            System.out.println("[CarregaPerguntas] Troca questionario ignorada: IDQUALIF nulo.");
+            return;
+        }
+
+        if (idQuest == null) {
+            System.out.println("[CarregaPerguntas] Troca questionario ignorada: IDQUEST nulo para IDQUALIF=" + idQualif);
+            return;
+        }
+
+        if (!questionarioAtivo(idQuest)) {
+            System.out.println("[CarregaPerguntas] Questionario inativo ou nao encontrado. IDQUEST=" + idQuest);
+            return;
+        }
+
+        int excluidas = excluirRespostasPorQualificacao(idQualif, jdbc);
+        List<BigDecimal> idPergsQuestionario = listarIdPergDoQuestionario(idQuest);
+        int criadas = 0;
+
+        for (BigDecimal idPerg : idPergsQuestionario) {
+            if (idPerg == null) {
+                continue;
+            }
+            criarResposta(idQualif, idPerg);
+            criadas++;
+        }
+
+        System.out.println("[CarregaPerguntas] Troca questionario IDQUALIF=" + idQualif
+            + " IDQUEST=" + idQuest
+            + " respostas excluidas=" + excluidas
+            + " respostas criadas=" + criadas);
+    }
+
+    private static int excluirRespostasPorQualificacao(BigDecimal idQualif, JdbcWrapper jdbc) throws Exception {
+        if (jdbc != null) {
+            int excluidas = excluirRespostasPorQualificacaoSql(idQualif, jdbc);
+            if (contarRespostas(jdbc, idQualif) == 0) {
+                return excluidas;
+            }
+        }
+        return excluirRespostasPorQualificacaoJape(idQualif);
+    }
+
+    private static int excluirRespostasPorQualificacaoJape(BigDecimal idQualif) throws Exception {
+        int excluidas = 0;
+        JapeWrapper dao = JapeFactory.dao(INST_RESPOSTA);
+        Collection<DynamicVO> registros = dao.find("IDQUALIF = ?", idQualif);
+
+        if (registros == null || registros.isEmpty()) {
+            return 0;
+        }
+
+        for (DynamicVO vo : registros) {
+            dao.delete(vo);
+            excluidas++;
+        }
+        return excluidas;
+    }
+
+    private static int excluirRespostasPorQualificacaoSql(BigDecimal idQualif, JdbcWrapper jdbc) throws Exception {
+        if (jdbc == null) {
+            return excluirRespostasPorQualificacaoJape(idQualif);
+        }
+
+        int qtde = contarRespostas(jdbc, idQualif);
+        if (qtde == 0) {
+            return 0;
+        }
+
+        NativeSql sql = null;
+        try {
+            sql = new NativeSql(jdbc);
+            sql.appendSql(" DELETE FROM TGQQUALIFRESP ");
+            sql.appendSql(" WHERE IDQUALIF = :IDQUALIF ");
+            sql.setNamedParameter("IDQUALIF", idQualif);
+            sql.executeUpdate();
+            return qtde;
+        } finally {
+            if (sql != null) {
+                NativeSql.releaseResources(sql);
+            }
+        }
+    }
+
     private static boolean questionarioAtivo(BigDecimal idQuest) throws Exception {
         if (questionarioAtivoJape(idQuest)) {
             return true;
