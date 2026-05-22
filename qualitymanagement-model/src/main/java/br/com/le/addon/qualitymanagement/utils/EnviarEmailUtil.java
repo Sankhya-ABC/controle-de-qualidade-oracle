@@ -118,64 +118,35 @@ public class EnviarEmailUtil {
         }
     }
 
-    public static String montarMensagemVencimento(
-        String tipoNotificacao,
-        String nomeDocumento,
-        String dataVencimento,
-        BigDecimal diasRestantes
-    ) throws Exception {
-        boolean venceHoje = "VENCIMENTO_HOJE".equals(tipoNotificacao);
-        String parametro = venceHoje ? "HTMLEMAILVENCHOJE" : "HTMLEMAILVENC";
-        String template = (String) ParameterUtils.getParameter(parametro);
+    /** Chave do parametro Sankhya com o HTML do e-mail de vencimento. */
+    public static final String PARAM_HTMLEMAILVENC = "HTMLEMAILVENC";
 
-        if (template == null || template.trim().isEmpty()) {
-            template = venceHoje ? templatePadraoVencimentoHoje() : templatePadraoVencimentoAviso();
-        }
-
-        String diasRestantesTexto = diasRestantes != null ? diasRestantes.toPlainString() : "";
+    /**
+     * Monta e-mail de vencimento: template obrigatoriamente do parametro {@link #PARAM_HTMLEMAILVENC}.
+     */
+    public static String montarMensagemVencimento(String listaVencimentosHtml) throws Exception {
+        String template = getParametroHtmlObrigatorio(PARAM_HTMLEMAILVENC);
+        String lista = listaVencimentosHtml != null ? listaVencimentosHtml : "";
 
         return template
-            .replace("{NOME_DOCUMENTO}", valorSeguro(nomeDocumento))
-            .replace("{DATA_VENCIMENTO}", valorSeguro(dataVencimento))
-            .replace("{DIAS_RESTANTES}", diasRestantesTexto)
-            .replace("[NOME_DOCUMENTO]", valorSeguro(nomeDocumento))
-            .replace("[DATA_VENCIMENTO]", valorSeguro(dataVencimento))
-            .replace("[DIAS_RESTANTES]", diasRestantesTexto);
+            .replace("{LISTA_VENCIMENTOS}", lista)
+            .replace("{DOCUMENTOS_VINCULADOS}", lista)
+            .replace("[LISTA_VENCIMENTOS]", lista)
+            .replace("[DOCUMENTOS_VINCULADOS]", lista)
+            .replace("{NOME_DOCUMENTO}", "")
+            .replace("{DATA_VENCIMENTO}", "")
+            .replace("{DIAS_RESTANTES}", "")
+            .replace("[NOME_DOCUMENTO]", "")
+            .replace("[DATA_VENCIMENTO]", "")
+            .replace("[DIAS_RESTANTES]", "");
     }
 
-    private static String valorSeguro(String valor) {
-        return valor != null ? valor : "";
-    }
-
-    private static String templatePadraoVencimentoAviso() {
-        return "<p>Prezado(a) fornecedor(a),</p>"
-            + "<p>Informamos que o documento/questionario abaixo esta proximo do vencimento conforme "
-            + "parametrizacao definida no sistema.</p>"
-            + "<p><strong>Detalhes do vencimento:</strong></p>"
-            + "<ul>"
-            + "<li>Documento/Questionario: {NOME_DOCUMENTO}</li>"
-            + "<li>Data de vencimento: {DATA_VENCIMENTO}</li>"
-            + "<li>Dias restantes para vencimento: {DIAS_RESTANTES}</li>"
-            + "</ul>"
-            + "<p>Solicitamos que realize a atualizacao ou renovacao do documento/questionario dentro do prazo "
-            + "para evitar pendencias em seu cadastro.</p>"
-            + "<p>Em caso de duvidas, favor entrar em contato com nossa equipe responsavel.</p>"
-            + "<p>Atenciosamente,</p>";
-    }
-
-    private static String templatePadraoVencimentoHoje() {
-        return "<p>Prezado(a) fornecedor(a),</p>"
-            + "<p>Informamos que o documento/questionario abaixo venceu na data de hoje.</p>"
-            + "<p><strong>Detalhes do vencimento:</strong></p>"
-            + "<ul>"
-            + "<li>Documento/Questionario: {NOME_DOCUMENTO}</li>"
-            + "<li>Data de vencimento: {DATA_VENCIMENTO}</li>"
-            + "</ul>"
-            + "<p>Solicitamos a regularizacao o mais breve possivel para evitar possiveis bloqueios de "
-            + "fornecimento e restricoes em seu cadastro junto a nossa empresa.</p>"
-            + "<p>Em caso de duvidas ou para envio da documentacao atualizada, favor entrar em contato com "
-            + "nossa equipe responsavel.</p>"
-            + "<p>Atenciosamente,</p>";
+    private static String getParametroHtmlObrigatorio(String chave) throws Exception {
+        Object valor = ParameterUtils.getParameter(chave);
+        if (valor == null || valor.toString().trim().isEmpty()) {
+            throw new Exception("Parametro obrigatorio nao configurado: " + chave);
+        }
+        return valor.toString();
     }
 
     private static void criarEmailNaFila(EntityFacade dwfFacade, String destinatario, String assunto, String mensagem, BigDecimal codSMTP, Collection<AnexoEmail> anexos) throws Exception {

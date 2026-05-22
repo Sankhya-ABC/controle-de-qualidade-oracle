@@ -56,6 +56,12 @@
           <prop name="UITabName">__main</prop>
         </properties>
       </field>
+      <field name="DESCRICAOARQ" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+        <description>Descricao</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
     </fields>
   </table>
 </metadados>
