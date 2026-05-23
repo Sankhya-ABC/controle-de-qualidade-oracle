@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../.gradle/scripts.xsd">
+<scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/scripts.xsd">
 
-    <sql nomeObjeto="VW_VENC_QUALIF_FORN" tipoObjeto="VIEW" nomeTabela="VW_VENC_QUALIF_FORN" executar="SE_EXISTIR" ordem="1">
+    <sql nomeObjeto="VW_VENC_QUALIF_FORN" tipoObjeto="VIEW" nomeTabela="VW_VENC_QUALIF_FORN" executar="SEMPRE" ordem="1">
         <oracle>
 
 CREATE OR REPLACE VIEW VW_VENC_QUALIF_FORN AS
