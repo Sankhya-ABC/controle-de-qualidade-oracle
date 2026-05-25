@@ -14,19 +14,64 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class EnviarEmailUtil {
+
+    /**
+     * @deprecated Usar {@link #enviarQuestionarioComAnexo}. Mantido apenas para compatibilidade com codigo legado.
+     */
+    @Deprecated
     public static void enviarQuestionario(String emailFornec, String urlQuestionario, String empresa) throws Exception {
         EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
         JdbcWrapper jdbc = dwf.getJdbcWrapper();
         jdbc.openSession();
         try {
-            String msgmHtml = (String)ParameterUtils.getParameter("HTMLEMAILQUEST");
-            String mensagem = msgmHtml.replace("{URL}", urlQuestionario).replace("{EMPRESA}", empresa);
+            String msgmHtml = (String) ParameterUtils.getParameter("HTMLEMAILQUEST");
+            String mensagem = msgmHtml
+                .replace("{URL}", urlQuestionario != null ? urlQuestionario : "")
+                .replace("{EMPRESA}", empresa != null ? empresa : "");
             String assunto = "Qualificacao de Fornecedor";
             Collection<AnexoEmail> anexos = new ArrayList<>();
             criarEmailNaFila(dwf, emailFornec, assunto, mensagem, null, anexos);
         } finally {
             JdbcWrapper.closeSession(jdbc);
         }
+    }
+
+    public static void enviarQuestionarioComAnexo(
+        String emailFornec,
+        String empresa,
+        String blocoDocumentosHtml,
+        Collection<AnexoEmail> anexos
+    ) throws Exception {
+        EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
+        JdbcWrapper jdbc = dwf.getJdbcWrapper();
+        jdbc.openSession();
+        try {
+            String msgmHtml = (String) ParameterUtils.getParameter("HTMLEMAILQUEST");
+            if (msgmHtml == null || msgmHtml.trim().isEmpty()) {
+                msgmHtml = templatePadraoQuestionario();
+            }
+            String mensagem = msgmHtml
+                .replace("{EMPRESA}", empresa != null ? empresa : "")
+                .replace("{DOCUMENTOS}", blocoDocumentosHtml != null ? blocoDocumentosHtml : "");
+            String assunto = "Qualificacao de Fornecedor";
+            Collection<AnexoEmail> anexosEnvio = anexos != null ? anexos : new ArrayList<AnexoEmail>();
+            criarEmailNaFila(dwf, emailFornec, assunto, mensagem, null, anexosEnvio);
+        } finally {
+            JdbcWrapper.closeSession(jdbc);
+        }
+    }
+
+    private static String templatePadraoQuestionario() {
+        return "<p>Prezado(a) fornecedor(a),</p>"
+            + "<p>Estamos encaminhando em anexo o questionario de qualificacao para preenchimento e retorno.</p>"
+            + "<p>A empresa {EMPRESA} solicita tambem o envio dos documentos obrigatorios vinculados ao processo "
+            + "de qualificacao cadastral.</p>"
+            + "<p><strong>Documentos solicitados:</strong></p>"
+            + "{DOCUMENTOS}"
+            + "<p>Pedimos que o questionario preenchido e os documentos solicitados sejam enviados dentro do prazo "
+            + "estabelecido para continuidade do processo de qualificacao/homologacao do fornecedor.</p>"
+            + "<p>Em caso de duvidas, favor entrar em contato com nossa equipe responsavel.</p>"
+            + "<p>Atenciosamente,</p>";
     }
 
     public static void enviarRncFornecedor(String emailFornec, String empresa, String detalhamento, String numRnc) throws Exception {
@@ -58,15 +103,50 @@ public class EnviarEmailUtil {
     }
 
     public static void EnviarNotificacaoAcoes(String emailParc, String mensagem, String assunto) throws Exception {
+        enviarHtmlNaFila(emailParc, assunto, mensagem);
+    }
+
+    public static void enviarHtmlNaFila(String destinatario, String assunto, String mensagemHtml) throws Exception {
         EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
         JdbcWrapper jdbc = dwf.getJdbcWrapper();
         jdbc.openSession();
         try {
             Collection<AnexoEmail> anexos = new ArrayList<>();
-            criarEmailNaFila(dwf, emailParc, assunto, mensagem, null, anexos);
+            criarEmailNaFila(dwf, destinatario, assunto, mensagemHtml, null, anexos);
         } finally {
             JdbcWrapper.closeSession(jdbc);
         }
+    }
+
+    /** Chave do parametro Sankhya com o HTML do e-mail de vencimento. */
+    public static final String PARAM_HTMLEMAILVENC = "HTMLEMAILVENC";
+
+    /**
+     * Monta e-mail de vencimento: template obrigatoriamente do parametro {@link #PARAM_HTMLEMAILVENC}.
+     */
+    public static String montarMensagemVencimento(String listaVencimentosHtml) throws Exception {
+        String template = getParametroHtmlObrigatorio(PARAM_HTMLEMAILVENC);
+        String lista = listaVencimentosHtml != null ? listaVencimentosHtml : "";
+
+        return template
+            .replace("{LISTA_VENCIMENTOS}", lista)
+            .replace("{DOCUMENTOS_VINCULADOS}", lista)
+            .replace("[LISTA_VENCIMENTOS]", lista)
+            .replace("[DOCUMENTOS_VINCULADOS]", lista)
+            .replace("{NOME_DOCUMENTO}", "")
+            .replace("{DATA_VENCIMENTO}", "")
+            .replace("{DIAS_RESTANTES}", "")
+            .replace("[NOME_DOCUMENTO]", "")
+            .replace("[DATA_VENCIMENTO]", "")
+            .replace("[DIAS_RESTANTES]", "");
+    }
+
+    private static String getParametroHtmlObrigatorio(String chave) throws Exception {
+        Object valor = ParameterUtils.getParameter(chave);
+        if (valor == null || valor.toString().trim().isEmpty()) {
+            throw new Exception("Parametro obrigatorio nao configurado: " + chave);
+        }
+        return valor.toString();
     }
 
     private static void criarEmailNaFila(EntityFacade dwfFacade, String destinatario, String assunto, String mensagem, BigDecimal codSMTP, Collection<AnexoEmail> anexos) throws Exception {

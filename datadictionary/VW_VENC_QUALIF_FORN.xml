@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+    <view name="VW_VENC_QUALIF_FORN">
+        <description>Vencimento de qualificacao de fornecedor</description>
+        <primaryKey>
+            <field name="IDQUALIF"/>
+            <field name="TIPO_VENCIMENTO"/>
+            <field name="IDREGISTRO"/>
+        </primaryKey>
+        <instances>
+            <instance name="VencimentoQualificacaoForn">
+                <description>Vencimento Qualificacao Fornecedor</description>
+            </instance>
+        </instances>
+        <fields>
+            <field name="IDQUALIF" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="0" nullable="N" visible="S" required="N">
+                <description>Id. Qualificacao</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="IDREGISTRO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="1" nullable="N" visible="S" required="N">
+                <description>Id. Certificado ou Arquivo</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="TIPO_VENCIMENTO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="2" nullable="N" visible="S" required="N">
+                <description>Tipo Vencimento</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="CODPARC" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+                <description>Cod. Parceiro</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="NOMEPARC" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="S" order="4" nullable="S" visible="S" required="N">
+                <description>Nome Parceiro</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="EMAIL_FORNECEDOR" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+                <description>E-mail Fornecedor</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="EMAIL_NOTIFICACAO_EMPRESA" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+                <description>E-mail Notificacao Empresa</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="DIAS_PARAMETRO_AVISO" dataType="INTEIRO" calculated="N" allowSearch="N" allowDefault="N" visibleOnSearch="N" isPresentation="N" order="7" nullable="S" visible="S" required="N">
+                <description>Dias Parametro Aviso</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="IDQUEST" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="8" nullable="S" visible="S" required="N">
+                <description>Id. Questionario</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="QUALIFICACAO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="9" nullable="S" visible="S" required="N">
+                <description>Qualificacao</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="DATAVALIDADE" dataType="DATA" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="10" nullable="S" visible="S" required="N">
+                <description>Data Validade (certificado ou arquivo)</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="DIAS_RESTANTES" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="11" nullable="S" visible="S" required="N">
+                <description>Dias Restantes</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="NOME_DOCUMENTO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="12" nullable="S" visible="S" required="N">
+                <description>Nome Documento</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="TIPO_NOTIFICACAO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="13" nullable="S" visible="S" required="N">
+                <description>Tipo Notificacao</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+            <field name="ENVIAR_NOTIFICACAO" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="N" visibleOnSearch="S" isPresentation="N" order="14" nullable="S" visible="S" required="N">
+                <description>Enviar Notificacao</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                    <prop name="readOnly">S</prop>
+                </properties>
+            </field>
+        </fields>
+    </view>
+</metadados>

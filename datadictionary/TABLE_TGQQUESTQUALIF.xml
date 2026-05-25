@@ -19,6 +19,11 @@
               <field localName="IDQUEST" targetName="IDQUEST"/>
             </fields>
           </relation>
+            <relation entityName="QuestionarioDocumentosQa" relation="OneToOne" removeCascade="N">
+                <fields>
+                    <field localName="IDQUEST" targetName="IDQUEST"/>
+                </fields>
+            </relation>
         </relationShip>
       </instance>
     </instances>

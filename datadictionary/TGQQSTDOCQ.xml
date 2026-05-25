@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+    <table name="TGQQUESTDOC" sequenceType="A" sequenceField="IDDOCQST">
+        <description>Questionario de Documentos</description>
+        <primaryKey>
+            <field name="IDDOCQST"/>
+        </primaryKey>
+        <instances>
+            <instance name="QuestionarioDocumentosQa">
+                <description>Questionario de Documentos</description>
+            </instance>
+        </instances>
+        <fields>
+            <field name="IDQUEST" dataType="INTEIRO" calculated="N" allowSearch="N" allowDefault="N" visibleOnSearch="N" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+                <description>Id. Questionário</description>
+            </field>
+            <field name="IDDOCQST" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Id. Documento</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="DESCRICAO" dataType="TEXTO" allowSearch="S" visibleOnSearch="S">
+                <description>Descrição</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+        </fields>
+    </table>
+</metadados>

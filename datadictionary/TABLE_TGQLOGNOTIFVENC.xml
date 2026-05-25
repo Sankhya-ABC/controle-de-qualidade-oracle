@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+    <table name="TGQLOGNOTIFVENC" sequenceType="A" sequenceField="IDLOG">
+        <description>Log de notificacoes de vencimento</description>
+        <primaryKey>
+            <field name="IDLOG"/>
+        </primaryKey>
+        <instances>
+            <instance name="LogNotificacaoVencimento">
+                <description>Log Notificacao Vencimento</description>
+            </instance>
+        </instances>
+        <fields>
+            <field name="IDLOG" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Id. Log</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="IDQUALIF" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Id. Qualificacao</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="CODPARC" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Cod. Parceiro</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="TIPO_NOTIFICACAO" dataType="TEXTO" allowSearch="S" visibleOnSearch="S">
+                <description>Tipo Notificacao</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="TIPO_VENCIMENTO" dataType="TEXTO" allowSearch="S" visibleOnSearch="S">
+                <description>Tipo Vencimento (CERTIFICADO / ARQUIVO_QUESTIONARIO)</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="IDREGISTRO" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Id. Certificado ou Arquivo</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="EMAIL_FORNEC" dataType="TEXTO" allowSearch="S" visibleOnSearch="S">
+                <description>E-mail Fornecedor</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="EMAIL_EMPRESA" dataType="TEXTO" allowSearch="S" visibleOnSearch="S">
+                <description>E-mail Empresa</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="DTNOTIF" dataType="DATA" allowSearch="S" visibleOnSearch="S">
+                <description>Data Notificacao</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="DHENVIO" dataType="DATA_HORA" allowSearch="S" visibleOnSearch="S">
+                <description>Data/Hora Envio</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+        </fields>
+    </table>
+</metadados>
