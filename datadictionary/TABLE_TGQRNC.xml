@@ -662,12 +662,12 @@
           <prop name="UITabName">__main</prop>
         </properties>
       </field>
-      <field name="PRIORIDADE" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+      <field name=" PRIORIDADE" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
         <description>Prioridade</description>
         <fieldOptions>
-          <option value="1">Simples</option>
-          <option value="2">Prioritário</option>
-          <option value="3">Crítico</option>
+          <option value="1">Leve</option>
+          <option value="2">Grave</option>
+          <option value="3">Crítica</option>
         </fieldOptions>
         <properties>
           <prop name="UITabName">__main</prop>
