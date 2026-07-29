@@ -17,17 +17,12 @@ import java.util.List;
 
 public class QuestionarioFornecedor {
 
-    private static final String PARAM_NOME_ARQUIVO_QUEST = "NOMEARQUIVOQUEST";
-    private static final String DEFAULT_NOME_ARQUIVO_QUEST =
-        "041500 QUESTION\u00c1RIO INICIAL DE FORNECEDORES (1).xlsx";
-
     public static void enviaQuestionario(String idQuest, String codFornec, String idQualif) throws Exception {
         validarCampoObrigatorio(idQuest, "ID do questionario");
         validarCampoObrigatorio(codFornec, "Codigo do fornecedor");
         validarCampoObrigatorio(idQualif, "ID da qualificacao");
 
         String empresa = getParametroObrigatorio("NOMEEMPQLF");
-        String nomeArquivoQuest = resolverNomeArquivoQuestionario();
 
         String emailFornec = buscarEmailFornecedor(codFornec);
 
@@ -39,14 +34,14 @@ public class QuestionarioFornecedor {
         List<String> documentos = DocumentosQuestionarioUtil.listarDescricoes(idQuest);
         String blocoDocumentosHtml = DocumentosQuestionarioUtil.montarHtmlDocumentos(documentos);
 
-        AnexoEmail anexo = AnexoQuestionarioUtil.carregarAnexoQuestionario(idQuest, nomeArquivoQuest);
+        AnexoEmail anexo = AnexoQuestionarioUtil.carregarAnexoQuestionario(idQuest);
 
         System.out.println("===== ENVIO QUESTIONARIO FORNECEDOR =====");
         System.out.println("CODFORNEC: " + codFornec);
         System.out.println("IDQUEST: " + idQuest);
         System.out.println("IDQUALIF: " + idQualif);
         System.out.println("EMAIL FORNEC: " + emailFornec);
-        System.out.println("ANEXO: " + nomeArquivoQuest);
+        System.out.println("ANEXO: " + anexo.getFileName());
         System.out.println("DOCUMENTOS LISTADOS: " + documentos.size());
         System.out.println("========================================");
 
@@ -72,14 +67,6 @@ public class QuestionarioFornecedor {
         }
 
         EnviarEmailUtil.EnviarNotificacaoFornec(emailFornec, mensagem);
-    }
-
-    private static String resolverNomeArquivoQuestionario() throws Exception {
-        Object valor = ParameterUtils.getParameter(PARAM_NOME_ARQUIVO_QUEST);
-        if (valor != null && !valor.toString().trim().isEmpty()) {
-            return valor.toString().trim();
-        }
-        return DEFAULT_NOME_ARQUIVO_QUEST;
     }
 
     private static String buscarEmailFornecedor(String codFornec) throws Exception {

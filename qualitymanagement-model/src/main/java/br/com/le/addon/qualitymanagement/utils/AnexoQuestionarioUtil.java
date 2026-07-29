@@ -7,6 +7,7 @@ import br.com.sankhya.modelcore.util.EntityFacadeFactory;
 import br.com.sankhya.modelcore.util.MGECoreParameter;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.sql.ResultSet;
 
@@ -24,12 +25,14 @@ public final class AnexoQuestionarioUtil {
     private AnexoQuestionarioUtil() {
     }
 
-    public static AnexoEmail carregarAnexoQuestionario(String idQuest, String nomeArquivoEsperado) throws Exception {
+    /**
+     * Carrega o primeiro anexo do questionario em TSIANX (PKREGISTRO = IDQUEST_Questionarios).
+     */
+    public static AnexoEmail carregarAnexoQuestionario(String idQuest) throws Exception {
         validarCampo(idQuest, "ID do questionario");
-        validarCampo(nomeArquivoEsperado, "Nome do arquivo do questionario");
 
         String pkRegistro = idQuest.trim() + "_" + INSTANCIA_QUESTIONARIOS;
-        MetadadoAnexo metadado = buscarMetadadoAnexo(pkRegistro, nomeArquivoEsperado);
+        MetadadoAnexo metadado = buscarPrimeiroAnexo(pkRegistro);
 
         if (metadado == null) {
             throw new Exception(
@@ -37,9 +40,7 @@ public final class AnexoQuestionarioUtil {
                     + idQuest
                     + ", PKREGISTRO="
                     + pkRegistro
-                    + ", NOMEARQUIVO esperado='"
-                    + nomeArquivoEsperado
-                    + "'. Verifique o anexo na tela Questionarios e o parametro NOMEARQUIVOQUEST.");
+                    + ". Verifique se existe anexo na tela Questionarios (instancia Questionarios).");
         }
 
         byte[] conteudo = lerArquivoRepositorio(metadado.chaveArquivo);
@@ -48,6 +49,8 @@ public final class AnexoQuestionarioUtil {
             throw new Exception(
                 "Conteudo do anexo vazio ou inacessivel. IDQUEST="
                     + idQuest
+                    + ", NUATTACH="
+                    + metadado.nuAttach
                     + ", CHAVEARQUIVO="
                     + metadado.chaveArquivo
                     + ", NOMEARQUIVO="
@@ -57,7 +60,7 @@ public final class AnexoQuestionarioUtil {
         return new AnexoEmail(metadado.nomeArquivo, resolverMimeType(metadado.nomeArquivo), conteudo);
     }
 
-    private static MetadadoAnexo buscarMetadadoAnexo(String pkRegistro, String nomeArquivoEsperado) throws Exception {
+    private static MetadadoAnexo buscarPrimeiroAnexo(String pkRegistro) throws Exception {
         JdbcWrapper jdbc = null;
         NativeSql sql = null;
         ResultSet rset = null;
@@ -72,11 +75,10 @@ public final class AnexoQuestionarioUtil {
             sql.appendSql(" FROM TSIANX ");
             sql.appendSql(" WHERE NOMEINSTANCIA = :NOMEINSTANCIA ");
             sql.appendSql(" AND PKREGISTRO = :PKREGISTRO ");
-            sql.appendSql(" AND UPPER(TRIM(NOMEARQUIVO)) = UPPER(TRIM(:NOMEARQUIVO)) ");
+            sql.appendSql(" ORDER BY NUATTACH ");
 
             sql.setNamedParameter("NOMEINSTANCIA", INSTANCIA_QUESTIONARIOS);
             sql.setNamedParameter("PKREGISTRO", pkRegistro);
-            sql.setNamedParameter("NOMEARQUIVO", nomeArquivoEsperado.trim());
 
             rset = sql.executeQuery();
 
@@ -85,6 +87,7 @@ public final class AnexoQuestionarioUtil {
             }
 
             MetadadoAnexo metadado = new MetadadoAnexo();
+            metadado.nuAttach = rset.getBigDecimal("NUATTACH");
             metadado.chaveArquivo = rset.getString("CHAVEARQUIVO");
             metadado.nomeArquivo = rset.getString("NOMEARQUIVO");
             return metadado;
@@ -149,6 +152,7 @@ public final class AnexoQuestionarioUtil {
     }
 
     private static final class MetadadoAnexo {
+        private BigDecimal nuAttach;
         private String chaveArquivo;
         private String nomeArquivo;
     }
