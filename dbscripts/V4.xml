@@ -102,4 +102,180 @@ WHERE A.DATAVALIDADE IS NOT NULL
 
         </oracle>
     </sql>
+    <sql nomeObjeto="STATUS" tipoObjeto="COLUMN" nomeTabela="TGQCAUSARAIZ" executar="SE_NAO_EXISTIR" ordem="2">
+        <oracle>
+
+ALTER TABLE TGQCAUSARAIZ ADD STATUS VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQCAUSARAIZ ADD STATUS VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="STATUS" tipoObjeto="COLUMN" nomeTabela="TGQACOESIMEDIATAS" executar="SE_NAO_EXISTIR" ordem="3">
+        <oracle>
+
+ALTER TABLE TGQACOESIMEDIATAS ADD STATUS VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQACOESIMEDIATAS ADD STATUS VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="STATUS" tipoObjeto="COLUMN" nomeTabela="TGQABRANGENCIA" executar="SE_NAO_EXISTIR" ordem="4">
+        <oracle>
+
+ALTER TABLE TGQABRANGENCIA ADD STATUS VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQABRANGENCIA ADD STATUS VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="STATUS" tipoObjeto="COLUMN" nomeTabela="TGQACOESCORRETIVAS" executar="SE_NAO_EXISTIR" ordem="5">
+        <oracle>
+
+ALTER TABLE TGQACOESCORRETIVAS ADD STATUS VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQACOESCORRETIVAS ADD STATUS VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="STATUS" tipoObjeto="COLUMN" nomeTabela="TGQIMPLEMENTACAO" executar="SE_NAO_EXISTIR" ordem="6">
+        <oracle>
+
+ALTER TABLE TGQIMPLEMENTACAO ADD STATUS VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQIMPLEMENTACAO ADD STATUS VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="CONCLUIDO" tipoObjeto="COLUMN" nomeTabela="TGQCAUSARAIZ" executar="SE_NAO_EXISTIR" ordem="7">
+        <oracle>
+
+ALTER TABLE TGQCAUSARAIZ ADD CONCLUIDO VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQCAUSARAIZ ADD CONCLUIDO VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="CONCLUIDO" tipoObjeto="COLUMN" nomeTabela="TGQACOESIMEDIATAS" executar="SE_NAO_EXISTIR" ordem="8">
+        <oracle>
+
+ALTER TABLE TGQACOESIMEDIATAS ADD CONCLUIDO VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQACOESIMEDIATAS ADD CONCLUIDO VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="CONCLUIDO" tipoObjeto="COLUMN" nomeTabela="TGQABRANGENCIA" executar="SE_NAO_EXISTIR" ordem="9">
+        <oracle>
+
+ALTER TABLE TGQABRANGENCIA ADD CONCLUIDO VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQABRANGENCIA ADD CONCLUIDO VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="CONCLUIDO" tipoObjeto="COLUMN" nomeTabela="TGQACOESCORRETIVAS" executar="SE_NAO_EXISTIR" ordem="10">
+        <oracle>
+
+ALTER TABLE TGQACOESCORRETIVAS ADD CONCLUIDO VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQACOESCORRETIVAS ADD CONCLUIDO VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="CONCLUIDO" tipoObjeto="COLUMN" nomeTabela="TGQIMPLEMENTACAO" executar="SE_NAO_EXISTIR" ordem="11">
+        <oracle>
+
+ALTER TABLE TGQIMPLEMENTACAO ADD CONCLUIDO VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQIMPLEMENTACAO ADD CONCLUIDO VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="USUINCLUSAO" tipoObjeto="COLUMN" nomeTabela="TGQRNC" executar="SE_NAO_EXISTIR" ordem="12">
+        <oracle>
+
+ALTER TABLE TGQRNC ADD USUINCLUSAO NUMBER(38,0)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQRNC ADD USUINCLUSAO INT
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="DATAINCLUSAO" tipoObjeto="COLUMN" nomeTabela="TGQRNC" executar="SE_NAO_EXISTIR" ordem="13">
+        <oracle>
+
+ALTER TABLE TGQRNC ADD DATAINCLUSAO DATE
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQRNC ADD DATAINCLUSAO DATETIME
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="TGQBASE" tipoObjeto="TABLE" nomeTabela="TGQBASE" executar="SE_NAO_EXISTIR" ordem="14">
+        <oracle>
+
+CREATE TABLE TGQBASE
+(ID NUMBER(10,0),
+DESCRICAO VARCHAR2(100),
+USURESPONSAVEL NUMBER(38,0),
+CONSTRAINT PK_TGQBASE PRIMARY KEY (ID))
+
+</oracle>
+        <mssql>
+
+CREATE TABLE TGQBASE
+(ID BIGINT,
+DESCRICAO VARCHAR(100),
+USURESPONSAVEL INT,
+CONSTRAINT PK_TGQBASE PRIMARY KEY (ID))
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="FK_TGQBASE_USURESP" tipoObjeto="FOREIGN KEY" nomeTabela="TGQBASE" executar="SE_NAO_EXISTIR" ordem="15">
+        <oracle>
+
+ALTER TABLE TGQBASE ADD CONSTRAINT FK_TGQBASE_USURESP FOREIGN KEY (USURESPONSAVEL) REFERENCES TSIUSU(CODUSU)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQBASE ADD CONSTRAINT FK_TGQBASE_USURESP FOREIGN KEY (USURESPONSAVEL) REFERENCES TSIUSU(CODUSU)
+
+</mssql>
+    </sql>
 </scripts>

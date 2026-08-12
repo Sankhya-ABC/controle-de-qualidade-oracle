@@ -729,6 +729,22 @@
           <prop name="UITabName">__main</prop>
         </properties>
       </field>
+      <field name="USUINCLUSAO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="16" nullable="S" visible="S" required="N">
+        <description>Usuário Inclusão</description>
+        <expression>return $ctx_usuario_logado;</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
+      <field name="DATAINCLUSAO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="17" nullable="S" visible="S" required="N">
+        <description>Data Inclusão</description>
+        <expression>return getDateTime();</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="readOnly">S</prop>
+        </properties>
+      </field>
     </fields>
   </table>
 </metadados>

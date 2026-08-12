@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/metadados.xsd">
+  <table name="TGQBASE" sequenceType="A" sequenceField="ID">
+    <description>Base</description>
+      <primaryKey>
+          <field name="ID"/>
+      </primaryKey>
+    <instances>
+      <instance name="CadastroBase">
+        <description>Cadastro de Base</description>
+        <relationShip>
+          <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="USURESPONSAVEL" targetName="CODUSU"/>
+            </fields>
+          </relation>
+        </relationShip>
+      </instance>
+    </instances>
+    <fields>
+      <field name="ID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="0" nullable="S" visible="S" required="N">
+        <description>Id. Base</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DESCRICAO" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="S" order="1" nullable="S" visible="S" required="N">
+        <description>Descrição</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="USURESPONSAVEL" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Usuário Responsável</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+    </fields>
+  </table>
+</metadados>
