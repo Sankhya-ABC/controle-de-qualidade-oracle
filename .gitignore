@@ -31,3 +31,4 @@ datadictionary/*.xsd
 .settings
 **/.ant/
 build/
+/.claude/
