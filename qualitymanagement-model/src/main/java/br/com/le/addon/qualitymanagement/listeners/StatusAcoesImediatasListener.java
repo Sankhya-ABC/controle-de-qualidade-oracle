@@ -10,6 +10,11 @@ public class StatusAcoesImediatasListener extends PersistenceEventAdapter {
 
     @Override
     public void beforeInsert(PersistenceEvent event) throws Exception {
-        StatusFaseRncUtil.marcarEmAndamento(event);
+        StatusFaseRncUtil.marcarEmAndamentoAntesInserir(event);
+    }
+
+    @Override
+    public void afterInsert(PersistenceEvent event) throws Exception {
+        StatusFaseRncUtil.confirmarEmAndamentoAposInserir(event, "TGQACOESIMEDIATAS", "IDACOES");
     }
 }
