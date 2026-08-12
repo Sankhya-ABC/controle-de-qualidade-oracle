@@ -101,6 +101,12 @@
           <prop name="UITabName">__main</prop>
         </properties>
       </field>
+      <field name="CONCLUIDO" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="8" nullable="S" visible="S" required="N">
+        <description>Concluído</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
     </fields>
   </table>
 </metadados>
