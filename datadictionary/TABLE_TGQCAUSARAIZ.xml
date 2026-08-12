@@ -116,6 +116,17 @@
           <prop name="readOnly">S</prop>
         </properties>
       </field>
+      <field name="STATUS" dataType="LISTA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="13" nullable="S" visible="S" required="N">
+        <description>Status</description>
+        <fieldOptions>
+          <option value="E">Em Andamento</option>
+          <option value="A">Atrasada</option>
+          <option value="C">Concluída</option>
+        </fieldOptions>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
     </fields>
   </table>
 </metadados>

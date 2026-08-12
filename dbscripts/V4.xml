@@ -102,4 +102,64 @@ WHERE A.DATAVALIDADE IS NOT NULL
 
         </oracle>
     </sql>
+    <sql nomeObjeto="STATUS" tipoObjeto="COLUMN" nomeTabela="TGQCAUSARAIZ" executar="SE_NAO_EXISTIR" ordem="2">
+        <oracle>
+
+ALTER TABLE TGQCAUSARAIZ ADD STATUS VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQCAUSARAIZ ADD STATUS VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="STATUS" tipoObjeto="COLUMN" nomeTabela="TGQACOESIMEDIATAS" executar="SE_NAO_EXISTIR" ordem="3">
+        <oracle>
+
+ALTER TABLE TGQACOESIMEDIATAS ADD STATUS VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQACOESIMEDIATAS ADD STATUS VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="STATUS" tipoObjeto="COLUMN" nomeTabela="TGQABRANGENCIA" executar="SE_NAO_EXISTIR" ordem="4">
+        <oracle>
+
+ALTER TABLE TGQABRANGENCIA ADD STATUS VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQABRANGENCIA ADD STATUS VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="STATUS" tipoObjeto="COLUMN" nomeTabela="TGQACOESCORRETIVAS" executar="SE_NAO_EXISTIR" ordem="5">
+        <oracle>
+
+ALTER TABLE TGQACOESCORRETIVAS ADD STATUS VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQACOESCORRETIVAS ADD STATUS VARCHAR(2)
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="STATUS" tipoObjeto="COLUMN" nomeTabela="TGQIMPLEMENTACAO" executar="SE_NAO_EXISTIR" ordem="6">
+        <oracle>
+
+ALTER TABLE TGQIMPLEMENTACAO ADD STATUS VARCHAR2(2)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQIMPLEMENTACAO ADD STATUS VARCHAR(2)
+
+</mssql>
+    </sql>
 </scripts>
