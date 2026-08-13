@@ -107,6 +107,12 @@
           <prop name="UITabName">__main</prop>
         </properties>
       </field>
+      <field name="DATAPRAZO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="9" nullable="S" visible="S" required="N">
+        <description>Prazo</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
     </fields>
   </table>
 </metadados>

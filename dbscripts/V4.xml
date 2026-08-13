@@ -278,4 +278,16 @@ ALTER TABLE TGQBASE ADD CONSTRAINT FK_TGQBASE_USURESP FOREIGN KEY (USURESPONSAVE
 
 </mssql>
     </sql>
+    <sql nomeObjeto="DATAPRAZO" tipoObjeto="COLUMN" nomeTabela="TGQIMPLEMENTACAO" executar="SE_NAO_EXISTIR" ordem="16">
+        <oracle>
+
+ALTER TABLE TGQIMPLEMENTACAO ADD DATAPRAZO DATE
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQIMPLEMENTACAO ADD DATAPRAZO DATETIME
+
+</mssql>
+    </sql>
 </scripts>
