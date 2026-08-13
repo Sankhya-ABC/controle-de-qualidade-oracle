@@ -8,6 +8,9 @@ import br.com.sankhya.studio.annotations.Listener;
 @Listener(instanceNames = {"DadosImplementacao"})
 public class StatusImplementacaoListener extends PersistenceEventAdapter {
 
+    private static final String TABELA = "TGQIMPLEMENTACAO";
+    private static final String CAMPO_ID = "IDIMP";
+
     @Override
     public void beforeInsert(PersistenceEvent event) throws Exception {
         StatusFaseRncUtil.marcarEmAndamentoAntesInserir(event);
@@ -15,6 +18,16 @@ public class StatusImplementacaoListener extends PersistenceEventAdapter {
 
     @Override
     public void afterInsert(PersistenceEvent event) throws Exception {
-        StatusFaseRncUtil.confirmarEmAndamentoAposInserir(event, "TGQIMPLEMENTACAO", "IDIMP");
+        StatusFaseRncUtil.confirmarEmAndamentoAposInserir(event, TABELA, CAMPO_ID);
+    }
+
+    @Override
+    public void beforeUpdate(PersistenceEvent event) throws Exception {
+        StatusFaseRncUtil.marcarConcluidaAntesAlterar(event);
+    }
+
+    @Override
+    public void afterUpdate(PersistenceEvent event) throws Exception {
+        StatusFaseRncUtil.confirmarConcluidaAposAlterar(event, TABELA, CAMPO_ID);
     }
 }
