@@ -743,6 +743,7 @@
         <description>Norma</description>
         <properties>
           <prop name="UITabName">__main</prop>
+          <prop name="UIGroupName">Norma</prop>
           <prop name="filterConsFilLig">S</prop>
           <prop name="filterVoidExpression">N</prop>
           <prop name="filterSql">this.CODNR = :CODNR</prop>
