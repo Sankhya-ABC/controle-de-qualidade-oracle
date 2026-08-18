@@ -119,6 +119,11 @@
         <entityName>CadastroBase</entityName>
       </properties>
     </dynamicForm>
+    <dynamicForm id="br.com.sankhya.qualidade.cadastronr" resourceId="br.com.sankhya.qualidade.cadastronr" description="Cadastro de Normas" instance="CadastroNR">
+      <properties>
+        <entityName>CadastroNR</entityName>
+      </properties>
+    </dynamicForm>
     <dynamicForm id="br.com.sankhya.qualidade.cadastroquestionario" resourceId="br.com.sankhya.qualidade.cadastroquestionario" description="Cadastro de Questionários" instance="Questionarios">
       <properties>
         <entityName>Questionarios</entityName>
