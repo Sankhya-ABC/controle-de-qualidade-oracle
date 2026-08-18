@@ -133,6 +133,7 @@
             </fields>
           </relation>
           <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <expression>this.TIPOCADASTRO = 1</expression>
             <fields>
               <field localName="ORIGEM" targetName="ID"/>
             </fields>
