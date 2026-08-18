@@ -187,7 +187,7 @@
         </relationShip>
       </instance>
       <instance name="RespLiberacao">
-        <description>Responável pela Liberação</description>
+        <description>Responsável pela Liberação</description>
         <relationShip>
           <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>

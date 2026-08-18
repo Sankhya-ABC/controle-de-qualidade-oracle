@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/scripts.xsd">
+
+    <sql nomeObjeto="TGQNR" tipoObjeto="TABLE" nomeTabela="TGQNR" executar="SE_NAO_EXISTIR" ordem="1">
+        <oracle>
+
+CREATE TABLE TGQNR
+(CODNR NUMBER(10,0),
+NOMENR VARCHAR2(100),
+CONSTRAINT PK_TGQNR PRIMARY KEY (CODNR))
+
+</oracle>
+        <mssql>
+
+CREATE TABLE TGQNR
+(CODNR BIGINT,
+NOMENR VARCHAR(100),
+CONSTRAINT PK_TGQNR PRIMARY KEY (CODNR))
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="CODNR" tipoObjeto="COLUMN" nomeTabela="TGQRNC" executar="SE_NAO_EXISTIR" ordem="2">
+        <oracle>
+
+ALTER TABLE TGQRNC ADD CODNR NUMBER(10,0)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQRNC ADD CODNR BIGINT
+
+</mssql>
+    </sql>
+    <sql nomeObjeto="FK_TGQRNC_CODNR" tipoObjeto="FOREIGN KEY" nomeTabela="TGQRNC" executar="SE_NAO_EXISTIR" ordem="3">
+        <oracle>
+
+ALTER TABLE TGQRNC ADD CONSTRAINT FK_TGQRNC_CODNR FOREIGN KEY (CODNR) REFERENCES TGQNR(CODNR)
+
+</oracle>
+        <mssql>
+
+ALTER TABLE TGQRNC ADD CONSTRAINT FK_TGQRNC_CODNR FOREIGN KEY (CODNR) REFERENCES TGQNR(CODNR)
+
+</mssql>
+    </sql>
+
+</scripts>

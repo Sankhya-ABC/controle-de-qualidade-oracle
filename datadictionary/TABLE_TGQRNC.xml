@@ -52,12 +52,17 @@
               <field localName="PROCESSO" targetName="ID"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="ConsultaRNC">
         <description>Consulta de Não Conformidades</description>
         <relationShip>
-          <relation entityName="ConsDadosVerificacaoEficacia" insert="N" update="N" relation="OneToOne" removeCascade="N">
+          <relation entityName="ConsDadosCausaRaiz" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="RNCID" targetName="RNCID"/>
             </fields>
@@ -67,7 +72,7 @@
               <field localName="RNCID" targetName="RNCID"/>
             </fields>
           </relation>
-          <relation entityName="ConsDadosCausaRaiz" insert="N" update="N" relation="OneToOne" removeCascade="N">
+          <relation entityName="ConsDadosAbrangencia" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="RNCID" targetName="RNCID"/>
             </fields>
@@ -77,27 +82,27 @@
               <field localName="RNCID" targetName="RNCID"/>
             </fields>
           </relation>
-          <relation entityName="ConsDadosRevisao" insert="N" update="N" relation="OneToOne" removeCascade="N">
-            <fields>
-              <field localName="RNCID" targetName="RNCID"/>
-            </fields>
-          </relation>
           <relation entityName="ConsDadosImplementacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="RNCID" targetName="RNCID"/>
             </fields>
           </relation>
-          <relation entityName="ConsDadosLiberacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
-            <fields>
-              <field localName="RNCID" targetName="RNCID"/>
-            </fields>
-          </relation>
-          <relation entityName="ConsDadosAbrangencia" insert="N" update="N" relation="OneToOne" removeCascade="N">
+          <relation entityName="ConsDadosVerificacaoEficacia" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="RNCID" targetName="RNCID"/>
             </fields>
           </relation>
           <relation entityName="ConsultaRespRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsDadosRevisao" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="ConsDadosLiberacao" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="RNCID" targetName="RNCID"/>
             </fields>
@@ -140,6 +145,11 @@
           <relation entityName="ConsDadosRiscosOportunidades" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -727,6 +737,20 @@
         <description>Não Procedente</description>
         <properties>
           <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="18" nullable="S" visible="S" required="N">
+        <description>Norma</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+          <prop name="filterConsFilLig">S</prop>
+          <prop name="filterVoidExpression">N</prop>
+          <prop name="filterSql">this.CODNR = :CODNR</prop>
+          <prop name="filterKeepLast">S</prop>
+          <prop name="filterOrder">2</prop>
+          <prop name="filterRequired">N</prop>
+          <prop name="filterLabel">Norma</prop>
+          <prop name="filterType">default</prop>
         </properties>
       </field>
       <field name="USUINCLUSAO" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="16" nullable="S" visible="S" required="N">
