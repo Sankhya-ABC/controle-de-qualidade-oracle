@@ -73,10 +73,8 @@
       </field>
       <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
         <description>Usuário</description>
-        <expression>return $ctx_usuario_logado;</expression>
         <properties>
           <prop name="UITabName">__main</prop>
-          <prop name="readOnly">S</prop>
         </properties>
       </field>
       <field name="INEFICAZ" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">

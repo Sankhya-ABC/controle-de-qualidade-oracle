@@ -28,10 +28,10 @@ public class EnviarNotificacaoResponsavelRNC implements AcaoRotinaJava {
         for (i = (arrayOfRegistro = ctx.getLinhas()).length, b = 0; b < i; ) {
             Registro linha = arrayOfRegistro[b];
             String rncId = linha.getCampo("RNCID").toString();
-            String codParc = linha.getCampo("CODPARC").toString();
+            String codUsu = linha.getCampo("CODUSU").toString();
             String enviarEmail = linha.getCampo("ENVIAREMAIL").toString();
             try {
-                retorno = NotificacaoAcoes.enviaNotificacaoResponsavelRNC(rncId, codParc, enviarEmail);
+                retorno = NotificacaoAcoes.enviaNotificacaoResponsavelRNC(rncId, codUsu, enviarEmail);
                 if (retorno != null) {
                     ctx.setMensagemRetorno("Notificacao enviada!");
                 } else {
