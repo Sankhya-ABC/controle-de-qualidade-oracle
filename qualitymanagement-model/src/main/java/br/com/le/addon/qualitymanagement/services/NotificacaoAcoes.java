@@ -73,10 +73,10 @@ public class NotificacaoAcoes {
     /**
      * Notificacao do botao "Enviar Notificacao" do Registro de Nao Conformidade (instancia
      * ResponsavelRNC). So envia se ENVIAREMAIL estiver marcado ('S'); o e-mail do Responsavel
-     * vem do cadastro de Parceiro (TGFPAR.EMAIL) e a mensagem usa o template do parametro
-     * HTMLEMAILRESPRNC, com o conteudo do Detalhamento da RNC.
+     * vem do cadastro de Usuario (TSIUSU.EMAIL) e a mensagem usa o template do parametro
+     * HTMLRNCRESP, com o conteudo do Detalhamento da RNC.
      */
-    public static String enviaNotificacaoResponsavelRNC(String rncId, String codParc, String enviarEmail) throws Exception {
+    public static String enviaNotificacaoResponsavelRNC(String rncId, String codUsu, String enviarEmail) throws Exception {
         if (!"S".equals(enviarEmail)) {
             return null;
         }
@@ -87,14 +87,14 @@ public class NotificacaoAcoes {
         jdbc = dwf.getJdbcWrapper();
         jdbc.openSession();
         try {
-            NativeSql sqlParc = new NativeSql(jdbc);
-            sqlParc.appendSql(" SELECT EMAIL ");
-            sqlParc.appendSql(" FROM TGFPAR ");
-            sqlParc.appendSql(" WHERE CODPARC = " + codParc);
-            ResultSet rsetParc = sqlParc.executeQuery();
-            if (rsetParc.next()) {
-                String emailParc = rsetParc.getString("EMAIL");
-                if (emailParc != null && !emailParc.trim().isEmpty()) {
+            NativeSql sqlUsu = new NativeSql(jdbc);
+            sqlUsu.appendSql(" SELECT EMAIL ");
+            sqlUsu.appendSql(" FROM TSIUSU ");
+            sqlUsu.appendSql(" WHERE CODUSU = " + codUsu);
+            ResultSet rsetUsu = sqlUsu.executeQuery();
+            if (rsetUsu.next()) {
+                String emailUsu = rsetUsu.getString("EMAIL");
+                if (emailUsu != null && !emailUsu.trim().isEmpty()) {
                     NativeSql sqlRnc = new NativeSql(jdbc);
                     sqlRnc.appendSql(" SELECT DETALHAMENTO ");
                     sqlRnc.appendSql(" FROM TGQRNC ");
@@ -102,7 +102,7 @@ public class NotificacaoAcoes {
                     ResultSet rsetRnc = sqlRnc.executeQuery();
                     if (rsetRnc.next()) {
                         String detalhamento = rsetRnc.getString("DETALHAMENTO");
-                        EnviarEmailUtil.enviarNotificacaoResponsavelRNC(emailParc, rncId, detalhamento);
+                        EnviarEmailUtil.enviarNotificacaoResponsavelRNC(emailUsu, rncId, detalhamento);
                         retorno = "Enviado";
                     }
                 }
