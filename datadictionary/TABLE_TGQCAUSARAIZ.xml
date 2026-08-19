@@ -46,10 +46,8 @@
       </field>
       <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="8" nullable="S" visible="S" required="N">
         <description>Usuário</description>
-        <expression>return $ctx_usuario_logado;</expression>
         <properties>
           <prop name="UITabName">__main</prop>
-          <prop name="readOnly">S</prop>
         </properties>
       </field>
       <field name="DATAACAO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="7" nullable="S" visible="S" required="N">
@@ -131,6 +129,42 @@
         <description>Concluído</description>
         <properties>
           <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="DATAPRAZOAUTO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="20" nullable="S" visible="S" required="N">
+        <description>Prazo (Registro NC + 7 dias)</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="PORQUE1" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="15" nullable="S" visible="S" required="N">
+        <description>1º Por que?</description>
+        <properties>
+          <prop name="UITabName">Analise 5 Porques</prop>
+        </properties>
+      </field>
+      <field name="PORQUE2" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="16" nullable="S" visible="S" required="N">
+        <description>2º Por que?</description>
+        <properties>
+          <prop name="UITabName">Analise 5 Porques</prop>
+        </properties>
+      </field>
+      <field name="PORQUE3" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="17" nullable="S" visible="S" required="N">
+        <description>3º Por que?</description>
+        <properties>
+          <prop name="UITabName">Analise 5 Porques</prop>
+        </properties>
+      </field>
+      <field name="PORQUE4" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="18" nullable="S" visible="S" required="N">
+        <description>4º Por que?</description>
+        <properties>
+          <prop name="UITabName">Analise 5 Porques</prop>
+        </properties>
+      </field>
+      <field name="PORQUE5" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="19" nullable="S" visible="S" required="N">
+        <description>5º Por que?</description>
+        <properties>
+          <prop name="UITabName">Analise 5 Porques</prop>
         </properties>
       </field>
     </fields>

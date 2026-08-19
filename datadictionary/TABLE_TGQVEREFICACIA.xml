@@ -99,6 +99,12 @@
           <prop name="readOnly">S</prop>
         </properties>
       </field>
+      <field name="DATAPRAZOAUTO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="9" nullable="S" visible="S" required="N">
+        <description>Prazo (Registro NC + 60 dias)</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
     </fields>
   </table>
 </metadados>
