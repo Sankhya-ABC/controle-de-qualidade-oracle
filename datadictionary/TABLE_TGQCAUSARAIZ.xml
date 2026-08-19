@@ -131,12 +131,6 @@
           <prop name="UITabName">__main</prop>
         </properties>
       </field>
-      <field name="DATAPRAZOAUTO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="20" nullable="S" visible="S" required="N">
-        <description>Prazo (Registro NC + 7 dias)</description>
-        <properties>
-          <prop name="UITabName">__main</prop>
-        </properties>
-      </field>
       <field name="PORQUE1" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="15" nullable="S" visible="S" required="N">
         <description>1º Por que?</description>
         <properties>
