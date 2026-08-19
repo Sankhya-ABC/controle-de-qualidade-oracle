@@ -106,6 +106,30 @@ public class EnviarEmailUtil {
         enviarHtmlNaFila(emailParc, assunto, mensagem);
     }
 
+    /** Chave do parametro Sankhya com o HTML do e-mail de notificacao ao Responsavel pela RNC. */
+    public static final String PARAM_HTMLRNCRESP = "HTMLRNCRESP";
+
+    /**
+     * Envia ao Responsavel (Parceiro) do Registro de Nao Conformidade o e-mail de notificacao,
+     * usando o template obrigatoriamente configurado no parametro {@link #PARAM_HTMLRNCRESP}.
+     */
+    public static void enviarNotificacaoResponsavelRNC(String emailResp, String rncId, String detalhamento) throws Exception {
+        EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
+        JdbcWrapper jdbc = dwf.getJdbcWrapper();
+        jdbc.openSession();
+        try {
+            String msgmHtml = getParametroHtmlObrigatorio(PARAM_HTMLRNCRESP);
+            String mensagem = msgmHtml
+                .replace("{RNC}", rncId != null ? rncId : "")
+                .replace("{DETALHAMENTO}", detalhamento != null ? detalhamento : "");
+            String assunto = "Notificacao Registro de Nao Conformidade " + rncId;
+            Collection<AnexoEmail> anexos = new ArrayList<>();
+            criarEmailNaFila(dwf, emailResp, assunto, mensagem, null, anexos);
+        } finally {
+            JdbcWrapper.closeSession(jdbc);
+        }
+    }
+
     public static void enviarHtmlNaFila(String destinatario, String assunto, String mensagemHtml) throws Exception {
         EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
         JdbcWrapper jdbc = dwf.getJdbcWrapper();

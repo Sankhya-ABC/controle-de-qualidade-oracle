@@ -70,6 +70,51 @@ public class NotificacaoAcoes {
         return retorno;
     }
 
+    /**
+     * Notificacao do botao "Enviar Notificacao" do Registro de Nao Conformidade (instancia
+     * ResponsavelRNC). So envia se ENVIAREMAIL estiver marcado ('S'); o e-mail do Responsavel
+     * vem do cadastro de Parceiro (TGFPAR.EMAIL) e a mensagem usa o template do parametro
+     * HTMLEMAILRESPRNC, com o conteudo do Detalhamento da RNC.
+     */
+    public static String enviaNotificacaoResponsavelRNC(String rncId, String codParc, String enviarEmail) throws Exception {
+        if (!"S".equals(enviarEmail)) {
+            return null;
+        }
+
+        String retorno = null;
+        JdbcWrapper jdbc = null;
+        EntityFacade dwf = EntityFacadeFactory.getDWFFacade();
+        jdbc = dwf.getJdbcWrapper();
+        jdbc.openSession();
+        try {
+            NativeSql sqlParc = new NativeSql(jdbc);
+            sqlParc.appendSql(" SELECT EMAIL ");
+            sqlParc.appendSql(" FROM TGFPAR ");
+            sqlParc.appendSql(" WHERE CODPARC = " + codParc);
+            ResultSet rsetParc = sqlParc.executeQuery();
+            if (rsetParc.next()) {
+                String emailParc = rsetParc.getString("EMAIL");
+                if (emailParc != null && !emailParc.trim().isEmpty()) {
+                    NativeSql sqlRnc = new NativeSql(jdbc);
+                    sqlRnc.appendSql(" SELECT DETALHAMENTO ");
+                    sqlRnc.appendSql(" FROM TGQRNC ");
+                    sqlRnc.appendSql(" WHERE RNCID = " + rncId);
+                    ResultSet rsetRnc = sqlRnc.executeQuery();
+                    if (rsetRnc.next()) {
+                        String detalhamento = rsetRnc.getString("DETALHAMENTO");
+                        EnviarEmailUtil.enviarNotificacaoResponsavelRNC(emailParc, rncId, detalhamento);
+                        retorno = "Enviado";
+                    }
+                }
+            }
+        } finally {
+            if (jdbc != null) {
+                jdbc.closeSession();
+            }
+        }
+        return retorno;
+    }
+
     public static void enviaNotificacao(BigDecimal codFornec, String mensagem) throws Exception {
         String emailFornec = null;
         JdbcWrapper jdbc = null;

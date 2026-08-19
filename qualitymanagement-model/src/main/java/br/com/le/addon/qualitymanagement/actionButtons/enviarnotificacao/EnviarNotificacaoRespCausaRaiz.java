@@ -9,7 +9,7 @@ import br.com.sankhya.studio.annotations.hooks.RefreshTypeEnum;
 import br.com.sankhya.studio.annotations.hooks.TransactionType;
 
 /**
- * Bot√£o "Enviar Notificacao" para RespCausaRaiz (03. Causa Raiz)
+ * Bot„o "Enviar Notificacao" para RespCausaRaiz (03. Causa Raiz)
  */
 @ActionButton(
     description = "Enviar Notificacao",
