@@ -25,6 +25,21 @@
               <field localName="CODVOL" targetName="CODVOL"/>
             </fields>
           </relation>
+          <relation entityName="Empresa" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODEMPNG" targetName="CODEMP"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODCLIENTEAF" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="ConsultaDetalhe">
@@ -44,6 +59,21 @@
             <fields>
               <field localName="NUNOTA" targetName="NUNOTA"/>
               <field localName="SEQUENCIA" targetName="SEQUENCIA"/>
+            </fields>
+          </relation>
+          <relation entityName="Empresa" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODEMPNG" targetName="CODEMP"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODCLIENTEAF" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -120,6 +150,24 @@
       </field>
       <field name="CODVOL" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="8" nullable="S" visible="S" required="N">
         <description>Unidade</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODEMPNG" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="10" nullable="S" visible="S" required="N">
+        <description>Unidade de Negocio</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODCLIENTEAF" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="11" nullable="S" visible="S" required="N">
+        <description>Cliente</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="12" nullable="S" visible="S" required="N">
+        <description>Norma</description>
         <properties>
           <prop name="UITabName">__main</prop>
         </properties>
