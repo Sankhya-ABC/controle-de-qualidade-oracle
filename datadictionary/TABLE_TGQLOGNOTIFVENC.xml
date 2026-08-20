@@ -8,6 +8,13 @@
         <instances>
             <instance name="LogNotificacaoVencimento">
                 <description>Log Notificacao Vencimento</description>
+                <relationShip>
+                    <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+                        <fields>
+                            <field localName="CODNR" targetName="CODNR"/>
+                        </fields>
+                    </relation>
+                </relationShip>
             </instance>
         </instances>
         <fields>
@@ -67,6 +74,12 @@
             </field>
             <field name="DHENVIO" dataType="DATA_HORA" allowSearch="S" visibleOnSearch="S">
                 <description>Data/Hora Envio</description>
+                <properties>
+                    <prop name="UITabName">__main</prop>
+                </properties>
+            </field>
+            <field name="CODNR" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
+                <description>Norma</description>
                 <properties>
                     <prop name="UITabName">__main</prop>
                 </properties>

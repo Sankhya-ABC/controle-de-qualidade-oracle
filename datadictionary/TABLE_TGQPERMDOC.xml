@@ -24,6 +24,11 @@
               <field localName="IDCONFIG" targetName="IDCONFIG"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
     </instances>
@@ -48,6 +53,12 @@
       </field>
       <field name="IMPRESSAO" dataType="CHECKBOX" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
         <description>Impressão</description>
+      </field>
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="7" nullable="S" visible="S" required="N">
+        <description>Norma</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
       </field>
     </fields>
   </table>

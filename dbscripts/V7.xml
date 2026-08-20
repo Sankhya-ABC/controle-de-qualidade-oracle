@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/scripts.xsd">
+
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQABRANGENCIA" executar="SE_EXISTIR" ordem="1">
+        <oracle>
+
+ALTER TABLE TGQABRANGENCIA DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQABRANGENCIA" executar="SE_EXISTIR" ordem="2">
+        <oracle>
+
+ALTER TABLE TGQABRANGENCIA DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQACOESCORRETIVAS" executar="SE_EXISTIR" ordem="3">
+        <oracle>
+
+ALTER TABLE TGQACOESCORRETIVAS DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQACOESCORRETIVAS" executar="SE_EXISTIR" ordem="4">
+        <oracle>
+
+ALTER TABLE TGQACOESCORRETIVAS DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQACOESIMEDIATAS" executar="SE_EXISTIR" ordem="5">
+        <oracle>
+
+ALTER TABLE TGQACOESIMEDIATAS DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQACOESIMEDIATAS" executar="SE_EXISTIR" ordem="6">
+        <oracle>
+
+ALTER TABLE TGQACOESIMEDIATAS DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQACOESMUDANCA" executar="SE_EXISTIR" ordem="7">
+        <oracle>
+
+ALTER TABLE TGQACOESMUDANCA DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQACOESMUDANCA" executar="SE_EXISTIR" ordem="8">
+        <oracle>
+
+ALTER TABLE TGQACOESMUDANCA DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQARQDOC" executar="SE_EXISTIR" ordem="9">
+        <oracle>
+
+ALTER TABLE TGQARQDOC DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQARQDOC" executar="SE_EXISTIR" ordem="10">
+        <oracle>
+
+ALTER TABLE TGQARQDOC DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQARQEVIDENCIA" executar="SE_EXISTIR" ordem="11">
+        <oracle>
+
+ALTER TABLE TGQARQEVIDENCIA DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQARQEVIDENCIA" executar="SE_EXISTIR" ordem="12">
+        <oracle>
+
+ALTER TABLE TGQARQEVIDENCIA DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQARQQUESTFORN" executar="SE_EXISTIR" ordem="13">
+        <oracle>
+
+ALTER TABLE TGQARQQUESTFORN DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQARQQUESTFORN" executar="SE_EXISTIR" ordem="14">
+        <oracle>
+
+ALTER TABLE TGQARQQUESTFORN DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQBASE" executar="SE_EXISTIR" ordem="15">
+        <oracle>
+
+ALTER TABLE TGQBASE DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQBASE" executar="SE_EXISTIR" ordem="16">
+        <oracle>
+
+ALTER TABLE TGQBASE DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQCADASTROS" executar="SE_EXISTIR" ordem="17">
+        <oracle>
+
+ALTER TABLE TGQCADASTROS DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQCADASTROS" executar="SE_EXISTIR" ordem="18">
+        <oracle>
+
+ALTER TABLE TGQCADASTROS DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQCAUSARAIZ" executar="SE_EXISTIR" ordem="19">
+        <oracle>
+
+ALTER TABLE TGQCAUSARAIZ DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQCAUSARAIZ" executar="SE_EXISTIR" ordem="20">
+        <oracle>
+
+ALTER TABLE TGQCAUSARAIZ DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQCERTFORN" executar="SE_EXISTIR" ordem="21">
+        <oracle>
+
+ALTER TABLE TGQCERTFORN DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQCERTFORN" executar="SE_EXISTIR" ordem="22">
+        <oracle>
+
+ALTER TABLE TGQCERTFORN DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQCONFIG" executar="SE_EXISTIR" ordem="23">
+        <oracle>
+
+ALTER TABLE TGQCONFIG DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQCONFIG" executar="SE_EXISTIR" ordem="24">
+        <oracle>
+
+ALTER TABLE TGQCONFIG DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQCONTDOC" executar="SE_EXISTIR" ordem="25">
+        <oracle>
+
+ALTER TABLE TGQCONTDOC DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQCONTDOC" executar="SE_EXISTIR" ordem="26">
+        <oracle>
+
+ALTER TABLE TGQCONTDOC DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQCRITERIOQF" executar="SE_EXISTIR" ordem="27">
+        <oracle>
+
+ALTER TABLE TGQCRITERIOQF DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQCRITERIOQF" executar="SE_EXISTIR" ordem="28">
+        <oracle>
+
+ALTER TABLE TGQCRITERIOQF DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQCTRLIMPRESSOS" executar="SE_EXISTIR" ordem="29">
+        <oracle>
+
+ALTER TABLE TGQCTRLIMPRESSOS DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQCTRLIMPRESSOS" executar="SE_EXISTIR" ordem="30">
+        <oracle>
+
+ALTER TABLE TGQCTRLIMPRESSOS DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQDOCEVI" executar="SE_EXISTIR" ordem="31">
+        <oracle>
+
+ALTER TABLE TGQDOCEVI DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQDOCEVI" executar="SE_EXISTIR" ordem="32">
+        <oracle>
+
+ALTER TABLE TGQDOCEVI DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQFASES" executar="SE_EXISTIR" ordem="33">
+        <oracle>
+
+ALTER TABLE TGQFASES DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQFASES" executar="SE_EXISTIR" ordem="34">
+        <oracle>
+
+ALTER TABLE TGQFASES DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQFASESGM" executar="SE_EXISTIR" ordem="35">
+        <oracle>
+
+ALTER TABLE TGQFASESGM DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQFASESGM" executar="SE_EXISTIR" ordem="36">
+        <oracle>
+
+ALTER TABLE TGQFASESGM DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQFASESORIGEM" executar="SE_EXISTIR" ordem="37">
+        <oracle>
+
+ALTER TABLE TGQFASESORIGEM DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQFASESORIGEM" executar="SE_EXISTIR" ordem="38">
+        <oracle>
+
+ALTER TABLE TGQFASESORIGEM DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQGESTAOMUDANCA" executar="SE_EXISTIR" ordem="39">
+        <oracle>
+
+ALTER TABLE TGQGESTAOMUDANCA DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQGESTAOMUDANCA" executar="SE_EXISTIR" ordem="40">
+        <oracle>
+
+ALTER TABLE TGQGESTAOMUDANCA DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQHISTSTATUS" executar="SE_EXISTIR" ordem="41">
+        <oracle>
+
+ALTER TABLE TGQHISTSTATUS DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQHISTSTATUS" executar="SE_EXISTIR" ordem="42">
+        <oracle>
+
+ALTER TABLE TGQHISTSTATUS DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQIMPLEMENTACAO" executar="SE_EXISTIR" ordem="43">
+        <oracle>
+
+ALTER TABLE TGQIMPLEMENTACAO DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQIMPLEMENTACAO" executar="SE_EXISTIR" ordem="44">
+        <oracle>
+
+ALTER TABLE TGQIMPLEMENTACAO DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQIQF" executar="SE_EXISTIR" ordem="45">
+        <oracle>
+
+ALTER TABLE TGQIQF DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQIQF" executar="SE_EXISTIR" ordem="46">
+        <oracle>
+
+ALTER TABLE TGQIQF DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQLIBERPROD" executar="SE_EXISTIR" ordem="47">
+        <oracle>
+
+ALTER TABLE TGQLIBERPROD DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQLIBERPROD" executar="SE_EXISTIR" ordem="48">
+        <oracle>
+
+ALTER TABLE TGQLIBERPROD DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQLOGNOTIFVENC" executar="SE_EXISTIR" ordem="49">
+        <oracle>
+
+ALTER TABLE TGQLOGNOTIFVENC DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQLOGNOTIFVENC" executar="SE_EXISTIR" ordem="50">
+        <oracle>
+
+ALTER TABLE TGQLOGNOTIFVENC DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQNR" executar="SE_EXISTIR" ordem="51">
+        <oracle>
+
+ALTER TABLE TGQNR DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQNR" executar="SE_EXISTIR" ordem="52">
+        <oracle>
+
+ALTER TABLE TGQNR DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQPERGQUEST" executar="SE_EXISTIR" ordem="53">
+        <oracle>
+
+ALTER TABLE TGQPERGQUEST DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQPERGQUEST" executar="SE_EXISTIR" ordem="54">
+        <oracle>
+
+ALTER TABLE TGQPERGQUEST DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQPERGQUESTOPC" executar="SE_EXISTIR" ordem="55">
+        <oracle>
+
+ALTER TABLE TGQPERGQUESTOPC DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQPERGQUESTOPC" executar="SE_EXISTIR" ordem="56">
+        <oracle>
+
+ALTER TABLE TGQPERGQUESTOPC DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQPERGUNTASAVALIACAO" executar="SE_EXISTIR" ordem="57">
+        <oracle>
+
+ALTER TABLE TGQPERGUNTASAVALIACAO DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQPERGUNTASAVALIACAO" executar="SE_EXISTIR" ordem="58">
+        <oracle>
+
+ALTER TABLE TGQPERGUNTASAVALIACAO DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQPERMDOC" executar="SE_EXISTIR" ordem="59">
+        <oracle>
+
+ALTER TABLE TGQPERMDOC DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQPERMDOC" executar="SE_EXISTIR" ordem="60">
+        <oracle>
+
+ALTER TABLE TGQPERMDOC DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQPERMISSAOUSUDOC" executar="SE_EXISTIR" ordem="61">
+        <oracle>
+
+ALTER TABLE TGQPERMISSAOUSUDOC DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQPERMISSAOUSUDOC" executar="SE_EXISTIR" ordem="62">
+        <oracle>
+
+ALTER TABLE TGQPERMISSAOUSUDOC DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQPONTUACAO" executar="SE_EXISTIR" ordem="63">
+        <oracle>
+
+ALTER TABLE TGQPONTUACAO DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQPONTUACAO" executar="SE_EXISTIR" ordem="64">
+        <oracle>
+
+ALTER TABLE TGQPONTUACAO DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQPRIORIDADE" executar="SE_EXISTIR" ordem="65">
+        <oracle>
+
+ALTER TABLE TGQPRIORIDADE DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQPRIORIDADE" executar="SE_EXISTIR" ordem="66">
+        <oracle>
+
+ALTER TABLE TGQPRIORIDADE DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQQUALIFFORN" executar="SE_EXISTIR" ordem="67">
+        <oracle>
+
+ALTER TABLE TGQQUALIFFORN DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQQUALIFFORN" executar="SE_EXISTIR" ordem="68">
+        <oracle>
+
+ALTER TABLE TGQQUALIFFORN DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQQUALIFRESP" executar="SE_EXISTIR" ordem="69">
+        <oracle>
+
+ALTER TABLE TGQQUALIFRESP DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQQUALIFRESP" executar="SE_EXISTIR" ordem="70">
+        <oracle>
+
+ALTER TABLE TGQQUALIFRESP DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQQUEMGESTAOMUDANCA" executar="SE_EXISTIR" ordem="71">
+        <oracle>
+
+ALTER TABLE TGQQUEMGESTAOMUDANCA DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQQUEMGESTAOMUDANCA" executar="SE_EXISTIR" ordem="72">
+        <oracle>
+
+ALTER TABLE TGQQUEMGESTAOMUDANCA DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQQUEMRNC" executar="SE_EXISTIR" ordem="73">
+        <oracle>
+
+ALTER TABLE TGQQUEMRNC DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQQUEMRNC" executar="SE_EXISTIR" ordem="74">
+        <oracle>
+
+ALTER TABLE TGQQUEMRNC DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQQUESTAVALIACAO" executar="SE_EXISTIR" ordem="75">
+        <oracle>
+
+ALTER TABLE TGQQUESTAVALIACAO DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQQUESTAVALIACAO" executar="SE_EXISTIR" ordem="76">
+        <oracle>
+
+ALTER TABLE TGQQUESTAVALIACAO DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQQUESTQUALIF" executar="SE_EXISTIR" ordem="77">
+        <oracle>
+
+ALTER TABLE TGQQUESTQUALIF DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQQUESTQUALIF" executar="SE_EXISTIR" ordem="78">
+        <oracle>
+
+ALTER TABLE TGQQUESTQUALIF DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQREGFASES" executar="SE_EXISTIR" ordem="79">
+        <oracle>
+
+ALTER TABLE TGQREGFASES DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQREGFASES" executar="SE_EXISTIR" ordem="80">
+        <oracle>
+
+ALTER TABLE TGQREGFASES DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQRESPGESTAOMUDANCA" executar="SE_EXISTIR" ordem="81">
+        <oracle>
+
+ALTER TABLE TGQRESPGESTAOMUDANCA DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQRESPGESTAOMUDANCA" executar="SE_EXISTIR" ordem="82">
+        <oracle>
+
+ALTER TABLE TGQRESPGESTAOMUDANCA DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQRESPRNC" executar="SE_EXISTIR" ordem="83">
+        <oracle>
+
+ALTER TABLE TGQRESPRNC DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQRESPRNC" executar="SE_EXISTIR" ordem="84">
+        <oracle>
+
+ALTER TABLE TGQRESPRNC DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQREVISAODOC" executar="SE_EXISTIR" ordem="85">
+        <oracle>
+
+ALTER TABLE TGQREVISAODOC DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQREVISAODOC" executar="SE_EXISTIR" ordem="86">
+        <oracle>
+
+ALTER TABLE TGQREVISAODOC DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQRISCOSOPORT" executar="SE_EXISTIR" ordem="87">
+        <oracle>
+
+ALTER TABLE TGQRISCOSOPORT DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQRISCOSOPORT" executar="SE_EXISTIR" ordem="88">
+        <oracle>
+
+ALTER TABLE TGQRISCOSOPORT DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQRNC" executar="SE_EXISTIR" ordem="89">
+        <oracle>
+
+ALTER TABLE TGQRNC DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQRNC" executar="SE_EXISTIR" ordem="90">
+        <oracle>
+
+ALTER TABLE TGQRNC DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQRNCDET" executar="SE_EXISTIR" ordem="91">
+        <oracle>
+
+ALTER TABLE TGQRNCDET DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQRNCDET" executar="SE_EXISTIR" ordem="92">
+        <oracle>
+
+ALTER TABLE TGQRNCDET DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQUSUIMPRESSOS" executar="SE_EXISTIR" ordem="93">
+        <oracle>
+
+ALTER TABLE TGQUSUIMPRESSOS DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQUSUIMPRESSOS" executar="SE_EXISTIR" ordem="94">
+        <oracle>
+
+ALTER TABLE TGQUSUIMPRESSOS DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQVEREFICACIA" executar="SE_EXISTIR" ordem="95">
+        <oracle>
+
+ALTER TABLE TGQVEREFICACIA DROP COLUMN CODEMPNG
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQVEREFICACIA" executar="SE_EXISTIR" ordem="96">
+        <oracle>
+
+ALTER TABLE TGQVEREFICACIA DROP COLUMN CODCLIENTEAF
+
+</oracle>
+    </sql>
+
+</scripts>

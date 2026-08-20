@@ -30,6 +30,11 @@
               <field localName="IDGESTAO" targetName="IDGESTAO"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="ConsultaGestao">
@@ -81,6 +86,11 @@
               <field localName="IDGESTAO" targetName="IDGESTAO"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="GestaoMudanca">
@@ -106,6 +116,11 @@
             <expression>this.ORIGEM = 'AM'</expression>
             <fields>
               <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -134,6 +149,11 @@
               <field localName="IDGESTAO" targetName="IDGESTAO"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="MudancaAvaliacaoRisco">
@@ -158,6 +178,11 @@
             <expression>this.TIPOCADASTRO = 4</expression>
             <fields>
               <field localName="PROCESSO" targetName="ID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -190,6 +215,11 @@
             <expression>this.ORIGEM = 'AP'</expression>
             <fields>
               <field localName="IDGESTAO" targetName="IDGESTAO"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -252,6 +282,12 @@
       </field>
       <field name="SITUACAOATUAL" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
         <description>Situação Atual</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="9" nullable="S" visible="S" required="N">
+        <description>Norma</description>
         <properties>
           <prop name="UITabName">__main</prop>
         </properties>

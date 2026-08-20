@@ -19,6 +19,11 @@
               <field localName="CODUSU" targetName="CODUSU"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="DadosCausaRaiz">
@@ -32,6 +37,11 @@
           <relation entityName="RespCausaRaiz" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -159,6 +169,12 @@
         <description>5º Por que?</description>
         <properties>
           <prop name="UITabName">Analise 5 Porques</prop>
+        </properties>
+      </field>
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="20" nullable="S" visible="S" required="N">
+        <description>Norma</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
         </properties>
       </field>
     </fields>

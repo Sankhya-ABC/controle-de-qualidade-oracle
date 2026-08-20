@@ -24,6 +24,11 @@
               <field localName="IDQUALIF" targetName="IDQUALIF"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
     </instances>
@@ -57,6 +62,12 @@
       </field>
       <field name="IDPERG" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="1" nullable="S" visible="S" required="N">
         <description>Id. Pergunta</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="5" nullable="S" visible="S" required="N">
+        <description>Norma</description>
         <properties>
           <prop name="UITabName">__main</prop>
         </properties>

@@ -24,6 +24,11 @@
               <field localName="CODPARC" targetName="CODPARC"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="ResponsavelRNC">
@@ -42,6 +47,11 @@
           <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -64,6 +74,11 @@
               <field localName="CODPARC" targetName="CODPARC"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="RespCausaRaiz">
@@ -82,6 +97,11 @@
           <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -104,6 +124,11 @@
               <field localName="CODPARC" targetName="CODPARC"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="RespImplementacao">
@@ -122,6 +147,11 @@
           <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -144,6 +174,11 @@
               <field localName="CODPARC" targetName="CODPARC"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="RespRevisao">
@@ -162,6 +197,11 @@
           <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -184,6 +224,11 @@
               <field localName="CODPARC" targetName="CODPARC"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="RespLiberacao">
@@ -202,6 +247,11 @@
           <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="CODPARC" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -240,6 +290,12 @@
       </field>
       <field name="FASESNCID" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
         <description>Fase</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="6" nullable="S" visible="S" required="N">
+        <description>Norma</description>
         <properties>
           <prop name="UITabName">__main</prop>
         </properties>

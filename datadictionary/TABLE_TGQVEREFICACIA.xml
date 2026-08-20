@@ -24,6 +24,11 @@
               <field localName="CODUSU" targetName="CODUSU"/>
             </fields>
           </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="DadosVerificacaoEficacia">
@@ -42,6 +47,11 @@
           <relation entityName="RespVerifEficacia" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="RNCID" targetName="RNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -99,6 +109,12 @@
       </field>
       <field name="DATAPRAZO" dataType="DATA_HORA" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="9" nullable="S" visible="S" required="N">
         <description>Prazo</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="11" nullable="S" visible="S" required="N">
+        <description>Norma</description>
         <properties>
           <prop name="UITabName">__main</prop>
         </properties>

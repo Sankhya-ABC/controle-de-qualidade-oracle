@@ -8,6 +8,13 @@
     <instances>
       <instance name="PontuacaoFornec">
         <description>Pontuação Qualificação de Fornecedor</description>
+        <relationShip>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
+        </relationShip>
       </instance>
     </instances>
     <fields>
@@ -34,6 +41,12 @@
         <description>Id. Pontos</description>
         <properties>
           <prop name="visivel">N</prop>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
+        <description>Norma</description>
+        <properties>
           <prop name="UITabName">__main</prop>
         </properties>
       </field>
