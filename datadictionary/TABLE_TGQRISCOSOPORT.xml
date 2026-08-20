@@ -19,6 +19,21 @@
               <field localName="RNCID" targetName="RNCID"/>
             </fields>
           </relation>
+          <relation entityName="Empresa" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODEMPNG" targetName="CODEMP"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODCLIENTEAF" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
+            </fields>
+          </relation>
         </relationShip>
       </instance>
       <instance name="ConsDadosRiscosOportunidades">
@@ -32,6 +47,21 @@
           <relation entityName="Usuario" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="CODUSU" targetName="CODUSU"/>
+            </fields>
+          </relation>
+          <relation entityName="Empresa" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODEMPNG" targetName="CODEMP"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODCLIENTEAF" targetName="CODPARC"/>
+            </fields>
+          </relation>
+          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -108,6 +138,24 @@
       <field name="CODUSU" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="4" nullable="S" visible="S" required="N">
         <description>Usuário Ação</description>
         <expression>return $ctx_usuario_logado;</expression>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODEMPNG" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="13" nullable="S" visible="S" required="N">
+        <description>Unidade de Negocio</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODCLIENTEAF" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="14" nullable="S" visible="S" required="N">
+        <description>Cliente</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="15" nullable="S" visible="S" required="N">
+        <description>Norma</description>
         <properties>
           <prop name="UITabName">__main</prop>
         </properties>

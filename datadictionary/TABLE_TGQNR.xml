@@ -8,6 +8,18 @@
     <instances>
       <instance name="CadastroNR">
         <description>Cadastro de Normas</description>
+        <relationShip>
+          <relation entityName="Empresa" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODEMPNG" targetName="CODEMP"/>
+            </fields>
+          </relation>
+          <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="CODCLIENTEAF" targetName="CODPARC"/>
+            </fields>
+          </relation>
+        </relationShip>
       </instance>
     </instances>
     <fields>
@@ -19,6 +31,18 @@
       </field>
       <field name="NOMENR" dataType="TEXTO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="S" order="1" nullable="S" visible="S" required="N">
         <description>Nome da Norma</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODEMPNG" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="2" nullable="S" visible="S" required="N">
+        <description>Unidade de Negocio</description>
+        <properties>
+          <prop name="UITabName">__main</prop>
+        </properties>
+      </field>
+      <field name="CODCLIENTEAF" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="3" nullable="S" visible="S" required="N">
+        <description>Cliente</description>
         <properties>
           <prop name="UITabName">__main</prop>
         </properties>
