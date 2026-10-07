@@ -9,16 +9,6 @@
             <instance name="LogNotificacaoVencimento">
                 <description>Log Notificacao Vencimento</description>
                 <relationShip>
-                    <relation entityName="Empresa" insert="N" update="N" relation="OneToOne" removeCascade="N">
-                        <fields>
-                            <field localName="CODEMPNG" targetName="CODEMP"/>
-                        </fields>
-                    </relation>
-                    <relation entityName="Parceiro" insert="N" update="N" relation="OneToOne" removeCascade="N">
-                        <fields>
-                            <field localName="CODCLIENTEAF" targetName="CODPARC"/>
-                        </fields>
-                    </relation>
                     <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
                         <fields>
                             <field localName="CODNR" targetName="CODNR"/>
@@ -84,18 +74,6 @@
             </field>
             <field name="DHENVIO" dataType="DATA_HORA" allowSearch="S" visibleOnSearch="S">
                 <description>Data/Hora Envio</description>
-                <properties>
-                    <prop name="UITabName">__main</prop>
-                </properties>
-            </field>
-            <field name="CODEMPNG" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
-                <description>Unidade de Negocio</description>
-                <properties>
-                    <prop name="UITabName">__main</prop>
-                </properties>
-            </field>
-            <field name="CODCLIENTEAF" dataType="INTEIRO" allowSearch="S" visibleOnSearch="S">
-                <description>Cliente</description>
                 <properties>
                     <prop name="UITabName">__main</prop>
                 </properties>
