@@ -617,20 +617,6 @@ ALTER TABLE TGQRISCOSOPORT DROP COLUMN CODCLIENTEAF
 
 </oracle>
     </sql>
-    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQRNC" executar="SE_EXISTIR" ordem="89">
-        <oracle>
-
-ALTER TABLE TGQRNC DROP COLUMN CODEMPNG
-
-</oracle>
-    </sql>
-    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQRNC" executar="SE_EXISTIR" ordem="90">
-        <oracle>
-
-ALTER TABLE TGQRNC DROP COLUMN CODCLIENTEAF
-
-</oracle>
-    </sql>
     <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQRNCDET" executar="SE_EXISTIR" ordem="91">
         <oracle>
 

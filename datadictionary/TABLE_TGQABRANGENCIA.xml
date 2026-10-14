@@ -19,11 +19,6 @@
               <field localName="CODUSU" targetName="CODUSU"/>
             </fields>
           </relation>
-          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
-            <fields>
-              <field localName="CODNR" targetName="CODNR"/>
-            </fields>
-          </relation>
         </relationShip>
       </instance>
       <instance name="DadosAbrangencia">
@@ -37,11 +32,6 @@
           <relation entityName="QuemRNC" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="IDABRANGENCIA" targetName="IDABRANGENCIA"/>
-            </fields>
-          </relation>
-          <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
-            <fields>
-              <field localName="CODNR" targetName="CODNR"/>
             </fields>
           </relation>
         </relationShip>
@@ -143,7 +133,7 @@
           <prop name="UITabName">__main</prop>
         </properties>
       </field>
-      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="S" isPresentation="N" order="15" nullable="S" visible="S" required="N">
+      <field name="CODNR" dataType="INTEIRO" calculated="N" allowSearch="S" allowDefault="S" visibleOnSearch="N" isPresentation="N" order="15" nullable="S" visible="N" required="N">
         <description>Norma</description>
         <properties>
           <prop name="UITabName">__main</prop>

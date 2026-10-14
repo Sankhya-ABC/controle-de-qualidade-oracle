@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.gradle/scripts.xsd">
+
+    <sql nomeObjeto="CONCLUSAO" tipoObjeto="COLUMN" nomeTabela="TGQCAUSARAIZ" executar="SE_NAO_EXISTIR" ordem="1">
+        <oracle>
+
+ALTER TABLE TGQCAUSARAIZ ADD CONCLUSAO VARCHAR2(4000)
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODEMPNG" tipoObjeto="COLUMN" nomeTabela="TGQRNC" executar="SE_NAO_EXISTIR" ordem="2">
+        <oracle>
+
+ALTER TABLE TGQRNC ADD CODEMPNG NUMBER(10,0)
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="CODCLIENTEAF" tipoObjeto="COLUMN" nomeTabela="TGQRNC" executar="SE_NAO_EXISTIR" ordem="3">
+        <oracle>
+
+ALTER TABLE TGQRNC ADD CODCLIENTEAF NUMBER(10,0)
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="FN_TGQ_PRAZO_FASE" tipoObjeto="FUNCTION" nomeTabela="FN_TGQ_PRAZO_FASE" executar="SEMPRE" ordem="4">
+        <oracle>
+
+CREATE OR REPLACE FUNCTION FN_TGQ_PRAZO_FASE (P_RNCID NUMBER, P_FASE NUMBER, P_PADRAO NUMBER)
+RETURN DATE
+IS
+    V_PRAZO DATE;
+BEGIN
+    SELECT R.DATAREGISTRO + NVL(FO.DIAS, P_PADRAO)
+    INTO V_PRAZO
+    FROM TGQRNC R
+    LEFT JOIN TGQFASESORIGEM FO
+           ON FO.FASESNCID = P_FASE
+          AND TO_CHAR(FO.ID) = TRIM(R.ORIGEM)
+    WHERE R.RNCID = P_RNCID;
+
+    RETURN V_PRAZO;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN NULL;
+END;
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="FN_TGQ_CODNR_RNC" tipoObjeto="FUNCTION" nomeTabela="FN_TGQ_CODNR_RNC" executar="SEMPRE" ordem="5">
+        <oracle>
+
+CREATE OR REPLACE FUNCTION FN_TGQ_CODNR_RNC (P_RNCID NUMBER)
+RETURN NUMBER
+IS
+    V_CODNR NUMBER;
+BEGIN
+    SELECT CODNR
+    INTO V_CODNR
+    FROM TGQRNC
+    WHERE RNCID = P_RNCID;
+
+    RETURN V_CODNR;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN NULL;
+END;
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="TRG_STATUS_TGQACOESIMEDIATAS" tipoObjeto="TRIGGER" nomeTabela="TGQACOESIMEDIATAS" executar="SEMPRE" ordem="6">
+        <oracle>
+
+CREATE OR REPLACE TRIGGER TRG_STATUS_TGQACOESIMEDIATAS
+BEFORE INSERT OR UPDATE ON TGQACOESIMEDIATAS FOR EACH ROW
+BEGIN
+    IF INSERTING THEN
+        :NEW.STATUS := 'E';
+        IF :NEW.DATAPRAZO IS NULL THEN
+            :NEW.DATAPRAZO := FN_TGQ_PRAZO_FASE(:NEW.RNCID, 2, 2);
+        END IF;
+        IF :NEW.CODNR IS NULL THEN
+            :NEW.CODNR := FN_TGQ_CODNR_RNC(:NEW.RNCID);
+        END IF;
+    ELSIF UPDATING THEN
+        IF :NEW.CONCLUIDO = 'S' THEN
+            :NEW.STATUS := 'C';
+        END IF;
+    END IF;
+END;
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="TRG_STATUS_TGQCAUSARAIZ" tipoObjeto="TRIGGER" nomeTabela="TGQCAUSARAIZ" executar="SEMPRE" ordem="7">
+        <oracle>
+
+CREATE OR REPLACE TRIGGER TRG_STATUS_TGQCAUSARAIZ
+BEFORE INSERT OR UPDATE ON TGQCAUSARAIZ FOR EACH ROW
+BEGIN
+    IF INSERTING THEN
+        :NEW.STATUS := 'E';
+        IF :NEW.DATAPRAZO IS NULL THEN
+            :NEW.DATAPRAZO := FN_TGQ_PRAZO_FASE(:NEW.RNCID, 3, 7);
+        END IF;
+        IF :NEW.CODNR IS NULL THEN
+            :NEW.CODNR := FN_TGQ_CODNR_RNC(:NEW.RNCID);
+        END IF;
+    ELSIF UPDATING THEN
+        IF :NEW.CONCLUIDO = 'S' THEN
+            :NEW.STATUS := 'C';
+        END IF;
+    END IF;
+END;
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="TRG_STATUS_TGQABRANGENCIA" tipoObjeto="TRIGGER" nomeTabela="TGQABRANGENCIA" executar="SEMPRE" ordem="8">
+        <oracle>
+
+CREATE OR REPLACE TRIGGER TRG_STATUS_TGQABRANGENCIA
+BEFORE INSERT OR UPDATE ON TGQABRANGENCIA FOR EACH ROW
+BEGIN
+    IF INSERTING THEN
+        :NEW.STATUS := 'E';
+        IF :NEW.DATAPRAZO IS NULL THEN
+            :NEW.DATAPRAZO := FN_TGQ_PRAZO_FASE(:NEW.RNCID, 4, 7);
+        END IF;
+        IF :NEW.CODNR IS NULL THEN
+            :NEW.CODNR := FN_TGQ_CODNR_RNC(:NEW.RNCID);
+        END IF;
+    ELSIF UPDATING THEN
+        IF :NEW.CONCLUIDO = 'S' THEN
+            :NEW.STATUS := 'C';
+        END IF;
+    END IF;
+END;
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="TRG_STATUS_TGQACOESCORRETIVAS" tipoObjeto="TRIGGER" nomeTabela="TGQACOESCORRETIVAS" executar="SEMPRE" ordem="9">
+        <oracle>
+
+CREATE OR REPLACE TRIGGER TRG_STATUS_TGQACOESCORRETIVAS
+BEFORE INSERT OR UPDATE ON TGQACOESCORRETIVAS FOR EACH ROW
+BEGIN
+    IF INSERTING THEN
+        :NEW.STATUS := 'E';
+        IF :NEW.DATAPRAZO IS NULL THEN
+            :NEW.DATAPRAZO := FN_TGQ_PRAZO_FASE(:NEW.RNCID, 5, 15);
+        END IF;
+        IF :NEW.CODNR IS NULL THEN
+            :NEW.CODNR := FN_TGQ_CODNR_RNC(:NEW.RNCID);
+        END IF;
+    ELSIF UPDATING THEN
+        IF :NEW.CONCLUIDO = 'S' THEN
+            :NEW.STATUS := 'C';
+        END IF;
+    END IF;
+END;
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="TRG_PRAZO_TGQRISCOSOPORT" tipoObjeto="TRIGGER" nomeTabela="TGQRISCOSOPORT" executar="SEMPRE" ordem="10">
+        <oracle>
+
+CREATE OR REPLACE TRIGGER TRG_PRAZO_TGQRISCOSOPORT
+BEFORE INSERT ON TGQRISCOSOPORT FOR EACH ROW
+BEGIN
+    IF :NEW.DATAPRAZO IS NULL THEN
+        :NEW.DATAPRAZO := FN_TGQ_PRAZO_FASE(:NEW.RNCID, 7, 15);
+    END IF;
+    IF :NEW.CODNR IS NULL THEN
+        :NEW.CODNR := FN_TGQ_CODNR_RNC(:NEW.RNCID);
+    END IF;
+END;
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="TRG_STATUS_TGQIMPLEMENTACAO" tipoObjeto="TRIGGER" nomeTabela="TGQIMPLEMENTACAO" executar="SEMPRE" ordem="11">
+        <oracle>
+
+CREATE OR REPLACE TRIGGER TRG_STATUS_TGQIMPLEMENTACAO
+BEFORE INSERT OR UPDATE ON TGQIMPLEMENTACAO FOR EACH ROW
+BEGIN
+    IF INSERTING THEN
+        :NEW.STATUS := 'E';
+        IF :NEW.DATAPRAZO IS NULL THEN
+            :NEW.DATAPRAZO := FN_TGQ_PRAZO_FASE(:NEW.RNCID, 8, 30);
+        END IF;
+        IF :NEW.CODNR IS NULL THEN
+            :NEW.CODNR := FN_TGQ_CODNR_RNC(:NEW.RNCID);
+        END IF;
+    ELSIF UPDATING THEN
+        IF :NEW.CONCLUIDO = 'S' THEN
+            :NEW.STATUS := 'C';
+        END IF;
+    END IF;
+END;
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="TRG_PRAZO_TGQLIBERPROD" tipoObjeto="TRIGGER" nomeTabela="TGQLIBERPROD" executar="SEMPRE" ordem="12">
+        <oracle>
+
+CREATE OR REPLACE TRIGGER TRG_PRAZO_TGQLIBERPROD
+BEFORE INSERT ON TGQLIBERPROD FOR EACH ROW
+BEGIN
+    IF :NEW.DATAPRAZO IS NULL THEN
+        :NEW.DATAPRAZO := FN_TGQ_PRAZO_FASE(:NEW.RNCID, 9, 30);
+    END IF;
+    IF :NEW.CODNR IS NULL THEN
+        :NEW.CODNR := FN_TGQ_CODNR_RNC(:NEW.RNCID);
+    END IF;
+END;
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="TRG_PRAZO_TGQVEREFICACIA" tipoObjeto="TRIGGER" nomeTabela="TGQVEREFICACIA" executar="SEMPRE" ordem="13">
+        <oracle>
+
+CREATE OR REPLACE TRIGGER TRG_PRAZO_TGQVEREFICACIA
+BEFORE INSERT ON TGQVEREFICACIA FOR EACH ROW
+BEGIN
+    IF :NEW.DATAPRAZO IS NULL THEN
+        :NEW.DATAPRAZO := FN_TGQ_PRAZO_FASE(:NEW.RNCID, 10, 60);
+    END IF;
+    IF :NEW.CODNR IS NULL THEN
+        :NEW.CODNR := FN_TGQ_CODNR_RNC(:NEW.RNCID);
+    END IF;
+END;
+
+</oracle>
+    </sql>
+    <sql nomeObjeto="TRG_CODNR_TGQREVISAODOC" tipoObjeto="TRIGGER" nomeTabela="TGQREVISAODOC" executar="SEMPRE" ordem="14">
+        <oracle>
+
+CREATE OR REPLACE TRIGGER TRG_CODNR_TGQREVISAODOC
+BEFORE INSERT ON TGQREVISAODOC FOR EACH ROW
+BEGIN
+    IF :NEW.CODNR IS NULL THEN
+        :NEW.CODNR := FN_TGQ_CODNR_RNC(:NEW.RNCID);
+    END IF;
+END;
+
+</oracle>
+    </sql>
+
+</scripts>

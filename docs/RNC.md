@@ -64,6 +64,34 @@ Se origem da RNC = **"RISCOS"** ou **"OPORTUNIDADES"**, pula da Fase 3 direto pa
 | `REINCIDENTE` | VARCHAR | Indicador de reincidência |
 | `NCVINCULADA` | INTEGER | RNC vinculada (se reincidente) |
 | `NAOPROCEDENTE` | CHECKBOX | Marca como não procedente |
+| `CODEMPNG` | INTEGER | Unidade de Negócio (TSIEMP) |
+| `CODCLIENTEAF` | INTEGER | Cliente (TGFPAR) |
+| `CODNR` (FK) | INTEGER | Norma (TGQNR) |
+
+> **Identificação da RNC:** Unidade de Negócio, Cliente e Norma são informados apenas na Etapa 1 (Registro). As telas das demais etapas são instâncias da própria `TGQRNC`, então exibem esses dados já preenchidos. Nas tabelas filhas das etapas o `CODNR` fica oculto e é copiado automaticamente da RNC no insert.
+
+### Prazos Automáticos das Etapas
+
+No insert de cada etapa, se `DATAPRAZO` não for informado, ele é calculado pela função `FN_TGQ_PRAZO_FASE` como `TGQRNC.DATAREGISTRO + dias`. Os dias vêm da tabela `TGQFASESORIGEM` (fase + origem da RNC), configurada na tela de Origem. Sem configuração, vale o padrão:
+
+| Fase | Tabela | Padrão (dias) |
+|------|--------|---------------|
+| 2 - Ações Imediatas | `TGQACOESIMEDIATAS` | 2 |
+| 3 - Causa Raiz | `TGQCAUSARAIZ` | 7 |
+| 4 - Abrangência | `TGQABRANGENCIA` | 7 |
+| 5 - Ações Corretivas | `TGQACOESCORRETIVAS` | 15 |
+| 7 - Riscos e Oportunidades | `TGQRISCOSOPORT` | 15 |
+| 8 - Implementação | `TGQIMPLEMENTACAO` | 30 |
+| 9 - Liberação de Produto | `TGQLIBERPROD` | 30 |
+| 10 - Verificação de Eficácia | `TGQVEREFICACIA` | 60 |
+
+#### TGQFASESORIGEM — Prazo por Fase e Origem
+
+| Campo | Tipo | Função |
+|-------|------|--------|
+| `FASESNCID` (PK) | INTEGER | Fase |
+| `ID` (PK) | INTEGER | Origem (TGQCADASTROS) |
+| `DIAS` | INTEGER | Dias de prazo a partir do registro |
 
 #### TGQFASES — Definição das Fases
 
@@ -114,8 +142,10 @@ Se origem da RNC = **"RISCOS"** ou **"OPORTUNIDADES"**, pula da Fase 3 direto pa
 | `MEIOAMBIENTE` | VARCHAR | Meio ambiente |
 | `DATAPRAZO` | DATE | Prazo |
 | `NAOSEAPLICA` | CHECKBOX | Não se aplica |
+| `PORQUE1`..`PORQUE5` | VARCHAR | Análise dos 5 Porquês |
+| `CONCLUSAO` | VARCHAR | Conclusão da análise (Ishikawa ou 5 Porquês) |
 
-> Usa **Diagrama de Ishikawa (6M)**: Mão de Obra, Máquina, Método, Material, Medida, Meio Ambiente
+> Usa **Diagrama de Ishikawa (6M)**: Mão de Obra, Máquina, Método, Material, Medida, Meio Ambiente, ou a **Análise dos 5 Porquês**. A conclusão é registrada em `CONCLUSAO`.
 
 #### TGQACOESCORRETIVAS — Ações Corretivas / 5W2H (Fase 4)
 
@@ -124,6 +154,11 @@ Se origem da RNC = **"RISCOS"** ou **"OPORTUNIDADES"**, pula da Fase 3 direto pa
 | `IDACOES` (PK) | INTEGER | ID |
 | `RNCID` (FK) | INTEGER | RNC vinculada |
 | `DETALHEACAO` | HTML | Detalhes da ação |
+
+> Os campos 5W2H abaixo continuam no banco, mas estão ocultos na tela de Ações Corretivas.
+
+| Campo | Tipo | Função |
+|-------|------|--------|
 | `OQUE` | VARCHAR | O quê? |
 | `COMO` | VARCHAR | Como? |
 | `ONDE` | VARCHAR | Onde? |

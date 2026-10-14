@@ -24,7 +24,7 @@
       <instance name="Origem">
         <description>Origem RNC</description>
         <relationShip>
-          <relation entityName="FasesOrigem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+          <relation entityName="FasesOrigem" insert="N" update="N" relation="OneToMany" removeCascade="S">
             <fields>
               <field localName="ID" targetName="ID"/>
             </fields>

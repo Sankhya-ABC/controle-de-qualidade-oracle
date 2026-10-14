@@ -3,7 +3,8 @@
   <table name="TGQFASESORIGEM" sequenceType="M">
     <description>Fases por origem</description>
       <primaryKey>
-          <field name="FASESID"/>
+          <field name="FASESNCID"/>
+          <field name="ID"/>
       </primaryKey>
     <instances>
       <instance name="FasesOrigem">
@@ -12,6 +13,11 @@
           <relation entityName="CadastroFases" insert="N" update="N" relation="OneToOne" removeCascade="N">
             <fields>
               <field localName="FASESNCID" targetName="FASESNCID"/>
+            </fields>
+          </relation>
+          <relation entityName="Origem" insert="N" update="N" relation="OneToOne" removeCascade="N">
+            <fields>
+              <field localName="ID" targetName="ID"/>
             </fields>
           </relation>
           <relation entityName="CadastroNR" insert="N" update="N" relation="OneToOne" removeCascade="N">
